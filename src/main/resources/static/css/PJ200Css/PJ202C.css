@@ -1,0 +1,366 @@
+html{
+    eight: 100%;
+}
+body{
+    margin: 0px;
+    font-family: 'Black Han Sans', sans-serif;
+    min-width: 1480px;
+    height: 100%;
+}
+#wrap{
+    width: 100%;
+    height: calc(100% - 0px);
+    overflow-y: auto;
+}
+#header {
+    width: 100%;
+    height: 140px;
+    background-color: #2e3459;
+    position: relative;
+    font-size: 0px;
+}
+.top {
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: #FFFFFF;
+}
+.site_name {
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #2e3459;
+}
+.logo_area {
+    display: inline-block;
+    width: calc(100% - 470px);
+    height: 70px;
+    background-color: #FFFFFF;
+    text-indent: 40px;
+}
+.logo_photo {
+    height: 35px;
+    margin-top: 18px;
+}
+.logins {
+    display: inline-block;
+    vertical-align: top;
+    width: 470px;
+    height: 70px;
+    text-align: right;
+    background-color: #FFFFFF;
+}
+.sub_login1 {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 55px;
+}
+.sub_login2 {
+    display: block;
+    width: calc(100% - 75px);
+    height: 15px;
+    line-height: 10px;
+    text-align: right;
+    padding-right: 75px;
+}
+.sub_login2 span {
+    position: relative;
+    width: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.sub_login2 span:hover {
+    color: #fcba03;
+}
+.login {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+#loginBtn {
+    float: right;
+    margin: 20px 20px 0px 5px;
+    width: 50px;
+    height: 30px;
+    background-color: #2e3459;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 0px;
+}
+#loginBtn:hover{
+    color: #FFFFFF;
+    background-color: #f37321;
+}
+.banner {
+    width: 100%;
+    height: 70px;
+}
+.menu {
+    position: absolute;
+    height: 70px;
+    left: 20px;
+}
+.menu ul li {
+    list-style: none;
+    float: left;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 100px;
+    line-height: 70px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu ul li:hover {
+    color: #fcba03;
+}
+.menu ul li a {
+    display: inline-block;
+    height: 30px;
+    text-decoration: none;
+    color: white;
+}
+.search_icon {
+    float: right;
+    margin: 17px 20px 13px 0px;
+    width: 40px;
+    cursor: pointer;
+}
+#container{
+    width: 1280px;
+    margin: 0px auto;
+}
+.profile{
+    text-align: center;
+    width: 650px;
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 50px auto 10px auto;
+}
+.milestone{
+    width: 650px;
+    margin: 50px auto;
+    position: relative;
+    padding-left: 25px;
+}
+.milestone_title{
+    width: 120px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid #2e3459;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 0px;
+    background-color: #EAEAEA;
+}
+#milestone_on{
+    color: white;
+    background-color: #ff3333;
+}
+.arrow_img{
+    display: inline-block;
+    vertical-align: top;
+}
+.arrow_img img{
+    width:30px;
+    height: 50px;
+}
+#infoWrap{
+    width: 650px;
+    margin: 80px auto 20px auto;
+    padding: 10px 50px 30px 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+#att{
+    display:none;
+}
+#photoArea{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px thin rgb(242, 242, 242, 0.6);
+    margin-left: 200px;
+}
+#photo{
+    width: 140px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+#findPhotoBtn{
+    margin: 20px 0px 0px 232px;
+}
+.title{
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 14pt;
+}
+#inputNic{
+    width: 400px;
+    margin-top: 15px;
+    height: 30px;
+}
+#inputIntro{
+    width: 498px;
+    margin-top: 15px;
+    height: 300px;
+}
+input[type='text']:focus, #inputIntro:hover{
+    outline-color: #fcba03;
+}
+input[type='button']{
+    padding: 4px 0px;
+    background-color: white;
+    border: 2px solid #2e3459;
+    border-radius: 20px;
+    height: 35px;
+    cursor: pointer;
+    width: 80px;
+    margin-left: 10px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    font-weight: bold;
+}
+input[type='button']:hover{
+    color: white;
+    background-color: #2e3459;
+}
+#btnWrap{
+    text-align: center;
+}
+#preBtn{
+    margin: 50px 70px 50px 0px;
+}
+#preBtn:hover{
+    background-color: #F1404B;
+}
+#footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #2e3459;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+#footer p {
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-left: 250px;
+    width: 600px;
+    height: 80px;
+}
+.search {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 250px;
+    height: 29px;
+}
+.filter {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 100px;
+    height: 35px;
+}
+.popup {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+.btn_list a{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 120px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+}
+.btn_list a:first-child {
+    border-radius: 0 0 0 10px;
+}
+.btn_list a:last-child {
+    border-radius: 0 0 10px 0;
+}
+.btn_list a:hover {
+    background-color: #f37321;
+    color: white;
+}
+#yesBtn{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 270px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 0 0 10px 10px;
+    cursor:pointer;
+}
+#yesBtn:hover {
+    background-color: #f37321;
+    color: white;
+}
+.bg {
+    display: inline-block;
+    width: 100%;
+    height: 1434px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+}
+#inputID, #inputPW {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+#cancelImg{
+    margin-top: 10px;
+    width: 30px;
+    margin-left: 135px;
+    cursor: pointer;
+}

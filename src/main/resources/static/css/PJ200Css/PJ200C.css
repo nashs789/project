@@ -1,0 +1,110 @@
+.terms{
+    text-align: center;
+    width: 650px;
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 50px auto 10px auto;
+}
+.milestone{
+    width: 650px;
+    margin: 50px auto;
+    position: relative;
+    padding-left: 25px;
+}
+.milestone_title{
+    width: 120px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid #2e3459;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 0px;
+    background-color: #EAEAEA;
+}
+#milestone_on{
+    color: white;
+    background-color: #ff3333;
+}
+.arrow_img{
+    display: inline-block;
+    vertical-align: top;
+}
+.arrow_img img{
+    width:30px;
+    height: 50px;
+}
+#termsWrap{
+    width: 650px;
+    margin: 80px auto 20px auto;
+    padding: 20px 50px 30px 50px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.material-icons{
+    font-weight: bold;
+}
+.task{
+    margin-top: 40px;
+}
+.long{
+    font-family:monospace;
+    margin: 20px auto 0px auto;
+    width:550px;
+    height: 300px;
+    overflow: scroll;
+    box-shadow: 1px 1px 1px 1px gray;
+}
+.title{
+    color:blue;
+    text-align:center;
+    font-weight: bold;
+}
+.sub_title{
+    color:gray;
+    font-weight: bold;
+}
+.text, .text1{
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.text1{
+    width: 650px;
+    margin: 0px auto;
+}
+input[type='checkbox']{
+    margin-left: 10px;
+}
+.term{
+    text-decoration: underline;
+    font-weight: bold;
+}
+#btnWrap{
+    text-align: center;
+}
+input[type='button']{
+    padding: 4px 0px;
+    background-color: white;
+    border: 2px solid #2e3459;
+    border-radius: 20px;
+    height: 35px;
+    cursor: pointer;
+    width: 80px;
+    margin-left: 10px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    font-weight: bold;
+}
+input[type='button']:hover{
+    color: white;
+    background-color: #2e3459;
+}
+#preBtn{
+    margin: 50px 70px 50px 0px;
+}
+#preBtn:hover{
+    background-color: #F1404B;
+}

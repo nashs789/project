@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CJMM">
+	<select id="login" parameterType="hashmap" resultType="hashmap">
+		SELECT M.INTRO, M.MEM_NO, G.GRADE_NO, PHOTO_PATH, NIC, TO_CHAR(LAST_DATE, 'YYYY-MM-DD')AS LAST_DATE, TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS TODAY 
+		FROM MEM M INNER JOIN GRADE G
+		                   ON M.MEM_NO = G.MEM_NO
+		                   AND M.LEAVE_DATE IS NULL
+		WHERE ID = #{inputID} AND PW = #{inputPW}
+	</select>
+	
+	<update id="accCnt" parameterType="hashmap">
+		UPDATE MEM SET ACC_CNT = ACC_CNT+1, LAST_DATE = SYSDATE
+		WHERE MEM_NO = #{MEM_NO}
+	</update>
+	
+	<select id="getNumber" parameterType="hashmap" resultType="hashmap">
+		SELECT FR.FOLLOWER_CNT, FW.FOLLOWING_CNT, BJ.BMK_JOURNAL_CNT, JC.JOURNAL_CNT, TP.TOTAL_POINT
+		FROM (SELECT COUNT(*) AS FOLLOWER_CNT
+		      FROM FOLLOW F INNER JOIN MEM M
+		                            ON F.TARGET_MEM_NO = M.MEM_NO
+		                            AND M.LEAVE_DATE IS NULL
+		                    INNER JOIN MEM M2
+				                    ON F.REQUEST_MEM_NO = M2.MEM_NO
+				                    AND M2.LEAVE_DATE IS NULL  
+		      WHERE F.TARGET_MEM_NO = #{MEM_NO}) FR INNER JOIN (SELECT COUNT(*) AS FOLLOWING_CNT
+			                                                    FROM FOLLOW F INNER JOIN MEM M
+			                                                                          ON F.REQUEST_MEM_NO = M.MEM_NO
+			                                                    WHERE REQUEST_MEM_NO = #{MEM_NO}) FW
+			                                                ON 1 = 1
+		                                 INNER JOIN (SELECT COUNT(*) AS BMK_JOURNAL_CNT
+												 	 FROM BMK B INNER JOIN JOURNAL J
+											 		                    ON B.JOURNAL_NO = J.JOURNAL_NO
+													                   AND J.DEL = 1
+													            INNER JOIN MEM M
+													                    ON J.MEM_NO = M.MEM_NO
+													                    AND M.LEAVE_DATE IS NULL
+													 WHERE BMK_NO IN(SELECT BMK_NO
+													                 FROM BMK_FOLDER BF
+													                 WHERE BF.MEM_NO = #{MEM_NO})) BJ
+		                                         ON 1 = 1 
+		                                 INNER JOIN (SELECT COUNT(*) AS JOURNAL_CNT
+		                                             FROM JOURNAL J INNER JOIN MEM M
+		                                                                    ON J.MEM_NO = M.MEM_NO
+		                                                                    AND M.LEAVE_DATE IS NULL
+		                                             WHERE J.MEM_NO = #{MEM_NO}) JC
+		                                         ON 1 = 1
+		                                 INNER JOIN (SELECT A1.LIKE_POINT + A2.JOURNAL_POINT + A3.FOLLOWER_POINT AS TOTAL_POINT
+		                                             FROM (SELECT COUNT(*) * 5 AS LIKE_POINT
+		                                                   FROM JOURNAL_LIKE JL INNER JOIN JOURNAL J
+		                                                                                ON JL.JOURNAL_NO = J.JOURNAL_NO
+		                                                                                AND J.MEM_NO = #{MEM_NO}
+		                                                                        INNER JOIN MEM M
+		                                                                                ON JL.MEM_NO = M.MEM_NO
+		                                                                                AND M.LEAVE_DATE IS NULL) A1 INNER JOIN (SELECT COUNT(*) * 20 AS JOURNAL_POINT
+		                                                                                     FROM JOURNAL J INNER JOIN MEM M
+		                                                                                                            ON J.MEM_NO = M.MEM_NO
+		                                                                                                            AND M.LEAVE_DATE IS NULL
+		                                                                                                            AND J.MEM_NO = #{MEM_NO}) A2
+		                                                                                 ON 1 = 1
+		                                                                         INNER JOIN (SELECT COUNT(*) * 5 AS FOLLOWER_POINT
+		                                                                                     FROM FOLLOW F INNER JOIN MEM M
+		                                                                                                           ON F.REQUEST_MEM_NO = M.MEM_NO
+		                                                                                                           AND M.LEAVE_DATE IS NULL
+		                                                                                                           AND F.TARGET_MEM_NO = #{MEM_NO}) A3
+		                                                                                 ON 1 = 1) TP  
+		                                        ON 1 = 1
+	</select>
+	
+	<select id="journalCnt" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM JOURNAL J INNER JOIN MEM M
+							   ON J.MEM_NO = M.MEM_NO
+		WHERE J.MEM_NO = #{MEM_NO}
+		AND J.DEL = 1
+		AND M.LEAVE_DATE IS NULL
+		GROUP BY J.MEM_NO
+	</select>
+	
+	<select id="myPageJournal"  parameterType="hashmap" resultType="hashmap">
+		SELECT JOURNAL_NO, TITLE, TO_CHAR(JOURNAL_DATE, 'YYYY-MM-DD') AS JOURNAL_DATE, HIT, SUB_CATEGORY, CATEGORY, PHOTO_PATH, REGION, LIKE_CNT, PATH
+		FROM (SELECT J.JOURNAL_NO, CASE WHEN LENGTH(J.TITLE) > 25
+		                                THEN SUBSTR(J.TITLE, 1, 25) || '....' || CASE WHEN JCMT.CNT != 0
+		                                                                              THEN '[' || JCMT.CNT || ']'
+		                                                                              ELSE '[0]'
+		                                                                         END
+		                                ELSE J.TITLE || CASE WHEN JCMT.CNT != 0
+		                                                     THEN '[' || JCMT.CNT || ']'
+		                                                     ELSE '[0]'
+		                                                 END
+		                            END AS TITLE, J.JOURNAL_DATE, CASE WHEN HIT IS NULL
+		                                                               THEN 0
+		                                                               ELSE HIT
+		                                                           END AS HIT, JC.SUB_CATEGORY_NAME AS SUB_CATEGORY, JC2.SUB_CATEGORY_NAME AS CATEGORY, JD.PHOTO_PATH,
+		             JC3.SUB_CATEGORY_NAME AS REGION, CASE WHEN JLIKE.LIKE_CNT IS NULL
+		                                                   THEN 0
+		                                                   ELSE JLIKE.LIKE_CNT
+		                                              END AS LIKE_CNT, RANK() OVER(ORDER BY J.JOURNAL_DATE DESC) AS RK, H.PATH
+		      FROM JOURNAL J INNER JOIN JOURNAL_CATEGORY JC
+		                             ON J.CATEGORY = JC.CATEGORY_NO
+		                             AND J.SUB_CATEGORY = JC.SUB_CATEGORY_NO
+		                              AND J.DEL = 1
+		                     INNER JOIN JOURNAL_CATEGORY JC2
+		                             ON JC.CATEGORY_NO = JC2.SUB_CATEGORY_NO
+		                             AND JC2.CATEGORY_NO = 0
+		                     INNER JOIN JOURNAL_DETAIL JD
+		                             ON J.JOURNAL_NO = JD.JOURNAL_NO
+		                             AND JD.JOURNAL_SEQUENCE = 0
+		                     INNER JOIN JOURNAL_CATEGORY JC3
+		                             ON J.REGION_NO = JC3.SUB_CATEGORY_NO
+		                             AND JC3.CATEGORY_NO = 1
+		                     LEFT OUTER JOIN (SELECT J.JOURNAL_NO, COUNT(*) AS CNT
+		                                      FROM JOURNAL J INNER JOIN JOURNAL_CMT JC
+		                                                             ON J.JOURNAL_NO = JC.JOURNAL_NO
+		                                                             AND JC.DEL = 1
+		                                      GROUP BY J.JOURNAL_NO) JCMT
+		                                  ON J.JOURNAL_NO = JCMT.JOURNAL_NO
+		                     LEFT OUTER JOIN (SELECT JOURNAL_NO, COUNT(*) AS LIKE_CNT
+		                                      FROM JOURNAL_LIKE
+		                                      GROUP BY JOURNAL_NO) JLIKE
+		                                  ON J.JOURNAL_NO = JLIKE.JOURNAL_NO
+		                     LEFT OUTER JOIN (SELECT J.JOURNAL_NO, MAX(SUBSTR(SYS_CONNECT_BY_PATH(J.HASH_NAME, ','), 2)) AS PATH
+		                                      FROM (SELECT J.JOURNAL_NO, h.HASH_NAME,
+		                                                 ROW_NUMBER() OVER(PARTITION BY J.JOURNAL_NO ORDER BY H.HASH_NO ASC) AS RNUM
+		                                            FROM JOURNAL J INNER JOIN JOURNAL_HASH JH 
+		                                                                 ON J.JOURNAL_NO = JH.JOURNAL_NO
+		                                                         INNER JOIN HASH H
+		                                                                 ON JH.HASH_NO = H.HASH_NO) J
+		                                      START WITH J.RNUM = 1
+		                                      CONNECT BY PRIOR J.JOURNAL_NO = J.JOURNAL_NO
+		                                      AND PRIOR J.RNUM = J.RNUM - 1
+		                                      GROUP BY J.JOURNAL_NO) H 
+		                                  ON J.JOURNAL_NO = H.JOURNAL_NO
+                            INNER JOIN MEM M
+                            		ON J.MEM_NO = M.MEM_NO
+                            		AND M.LEAVE_DATE IS NULL
+		      WHERE J.MEM_NO = #{MEM_NO})
+		WHERE RK BETWEEN #{startCnt} AND #{endCnt}
+		ORDER BY RK ASC
+	</select>
+</mapper>
