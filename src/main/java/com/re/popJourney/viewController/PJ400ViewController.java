@@ -15,10 +15,10 @@ public class PJ400ViewController {
     // 여행일지 목록
     // PJ400M
     // journalBoard
-    @RequestMapping(value = "/journalBoard")
+    @RequestMapping(value = "/PJ400M")
     public ModelAndView journalBoard(ModelAndView mav) {
 
-        mav.setViewName("LES/journalBoard");
+        mav.setViewName("PJ400Views/PJ400M");
 
         return mav;
     }

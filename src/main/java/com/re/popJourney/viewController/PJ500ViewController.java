@@ -15,20 +15,20 @@ public class PJ500ViewController {
     // 마이페이지 썸네일
     // PJ500M
     // myPage
-    @RequestMapping(value = "/myPage")
+    @RequestMapping(value = "/PJ500M")
     public ModelAndView myPage(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("LES/myPage");
+        mav.setViewName("PJ500Views/PJ500M");
 
         return mav;
     }
 
     // 마이페이지 북마크
     // PJ501M
-    @RequestMapping(value = "/myPageBMK")
+    @RequestMapping(value = "/PJ501M")
     public ModelAndView myPageBMK(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("LES/myPageBMK");
+        mav.setViewName("PJ501Views/PJ501M");
 
         return mav;
 

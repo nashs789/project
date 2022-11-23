@@ -14,8 +14,8 @@ public class PJ000ViewController {
 
 
     // 내부관리자-회원관리
-    // PJ000
-    @RequestMapping(value = "/memAdmin")
+    // PJ000M
+    @RequestMapping(value = "/PJ000M")
     public ModelAndView memAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int page = 1;
@@ -34,7 +34,7 @@ public class PJ000ViewController {
 
         mav.addObject("page", page);
 
-        mav.setViewName("CJM/memAdmin");
+        mav.setViewName("PJ000Views/PJ000M");
 
         return mav;
     }

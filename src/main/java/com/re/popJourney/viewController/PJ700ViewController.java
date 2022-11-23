@@ -11,19 +11,21 @@ public class PJ700ViewController {
 
     // 타임라인 페이지 - 이인복
     // PJ700M
-    @RequestMapping(value = "/timeline")
+    // timeline
+    @RequestMapping(value = "/PJ700M")
     public ModelAndView timeline(ModelAndView mav) {
         int page = 1;
 
         mav.addObject("page", page);
-        mav.setViewName("LIB/timeline");
+        mav.setViewName("PJ700Views/PJ700M");
 
         return mav;
     }
 
     // 알람 모아보기 - 이인복
     // PJ701M
-    @RequestMapping(value = "/notification")
+    // notification
+    @RequestMapping(value = "/PJ701M")
     public ModelAndView notification(ModelAndView mav) {
 
         int page = 0;
@@ -31,7 +33,7 @@ public class PJ700ViewController {
 
         mav.addObject("firstPage", firstPage);
         mav.addObject("page", page);
-        mav.setViewName("LIB/notification");
+        mav.setViewName("PJ701Views/PJ701M");
 
         return mav;
     }

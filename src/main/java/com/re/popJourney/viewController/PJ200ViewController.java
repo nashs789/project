@@ -22,6 +22,7 @@ public class PJ200ViewController {
 
     // 회원가입 페이지 - 이인복
     // PJ201M
+    // join
     @RequestMapping(value = "/PJ201M")
     public ModelAndView join(@RequestParam HashMap<String, String> params, ModelAndView mav) {
         HashMap<String, String> data = new HashMap<String, String>();

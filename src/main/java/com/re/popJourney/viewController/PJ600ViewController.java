@@ -11,8 +11,11 @@ import java.util.HashMap;
 @RestController
 @Slf4j
 public class PJ600ViewController {
+
     // 통합검색처리
-    @RequestMapping(value = "/search")
+    // PJ600M
+    // search
+    @RequestMapping(value = "/PJ600M")
     public ModelAndView search(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         // re-fact
@@ -34,13 +37,15 @@ public class PJ600ViewController {
         // mav.addObject("boardList", boardList);
         // mav.addObject("nicList", nicList);
 
-        mav.setViewName("CJM/search");
+        mav.setViewName("PJ600Views/PJ600M");
 
         return mav;
     }
 
     // 통합검색 - 여행일지 검색
-    @RequestMapping(value = "/searchTravelDiary")
+    // 601
+    // searchTravelDiary
+    @RequestMapping(value = "/PJ601M")
     public ModelAndView searchTravelDiary(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int Pages = 1;
@@ -51,13 +56,15 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/searchTravelDiary");
+        mav.setViewName("PJ601Views/PJ601M");
 
         return mav;
     }
 
     // 통합검색 - 해시태그 검색
-    @RequestMapping(value = "/searchHashtag")
+    // 602
+    // searchHashtag
+    @RequestMapping(value = "/PJ602M")
     public ModelAndView searchHashtag(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int Pages = 1;
@@ -68,13 +75,14 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/searchHashtag");
+        mav.setViewName("PJ602Views/PJ602M");
 
         return mav;
     }
 
     // 통합검색 - 자유게시판 검색
-    @RequestMapping(value = "/searchCommunity")
+    // 603
+    @RequestMapping(value = "/PJ603M")
     public ModelAndView searchCommunity(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int Pages = 1;
@@ -85,13 +93,14 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/searchCommunity");
+        mav.setViewName("PJ603Views/PJ603M");
 
         return mav;
     }
 
     // 통합검색 - 닉네임 검색
-    @RequestMapping(value = "/searchNic")
+    // 604
+    @RequestMapping(value = "/PJ604M")
     public ModelAndView searchNic(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int Pages = 1;
@@ -102,7 +111,7 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/searchNic");
+        mav.setViewName("PJ604Views/PJ604M");
 
         return mav;
     }

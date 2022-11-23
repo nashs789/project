@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class PJ800ViewController {
     // 여행작가랭킹
     // PJ800M
-    @RequestMapping(value = "/travelWriterRank")
+    @RequestMapping(value = "/PJ800M")
     public ModelAndView travelWriterRank(@RequestParam HashMap<String, String> params, ModelAndView mav)throws Throwable {
 
         int Pages = 1;
@@ -24,7 +24,7 @@ public class PJ800ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/travelWriterRank");
+        mav.setViewName("PJ800Views/PJ800M");
 
         return mav;
     }

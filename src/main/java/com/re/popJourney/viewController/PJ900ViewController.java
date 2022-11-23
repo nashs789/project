@@ -14,10 +14,10 @@ public class PJ900ViewController {
 
     // 고객센터-자주 묻는 질문
     // PJ900M
-    @RequestMapping(value = "/clientCenterQuestion")
+    @RequestMapping(value = "/PJ900M")
     public ModelAndView clientCenterQuestion(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("CJM/clientCenterQuestion");
+        mav.setViewName("PJ900Views/PJ900M");
 
         return mav;
     }

@@ -1,0 +1,534 @@
+  /*  #fcba03 노랑
+      #2e3459 남색
+      #f37321 주황
+      #294a37 초록
+  */
+body {
+  margin: 0px;
+  font-size: 0px;
+  font-family: 'Black Han Sans', sans-serif;
+  min-width: 1480px;
+  background-color: #f9f9f9;
+}
+
+/* 여기서부터 헤더 레이아웃 */
+#wrap {
+    width: 100%;
+}
+#header {
+    width: 100%;
+    height: 140px;
+    background-color: #2e3459;
+    position: relative;
+}
+.top {
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: #FFFFFF;
+}
+.site_name {
+    display: inline-block;
+    vertical-align: top;
+    position: absolute; /* 추가하기 */
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #2e3459;
+}
+.logo_area {
+    display: inline-block;
+    width: calc(100% - 470px);
+    height: 70px;
+    background-color: #FFFFFF;
+    text-indent: 40px;
+}
+.logo_photo {
+    height: 35px;
+    margin-top: 18px;
+}
+.btns {
+    display: none;
+    vertical-align: top;
+    position:relative;
+    width: 470px;
+    height: 70px;
+    text-align: right;
+    background-color: #FFFFFF;
+}
+#bookmarkPhoto, #notificationPhoto {
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+#notificationPhoto{
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    position: relative;
+}
+#notificationTxt{
+    line-height: 17px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: 10px;
+    right: 190px;
+    border-radius: 50%;
+    color: white;
+}
+#profilePhoto{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+#notificationPhoto {
+    margin-left: 200px;
+}
+.logins {
+    display: inline-block;
+    vertical-align: top;
+    width: 470px;
+    height: 70px;
+    text-align: right;
+    background-color: #FFFFFF;
+}
+.sub_login1 {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 55px;
+}
+.sub_login2 {
+    display: block;
+    width: calc(100% - 75px);
+    height: 15px;
+    line-height: 10px;
+    text-align: right;
+    padding-right: 75px;
+}
+.sub_login2 span {
+    position: relative;
+    width: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.sub_login2 span:hover {
+    color: #fcba03;
+}
+#inputID, #inputPW {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+#loginBtn {
+    float: right;
+    margin: 20px 20px 0px 5px;
+    width: 50px;
+    height: 30px;
+    background-color: #2e3459;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 26px;
+}
+#loginBtn:hover{
+    color: #FFFFFF;
+    background-color: #f37321;
+}
+input[type='text']:focus, input[type='password']:focus{
+    outline-color: #fcba03;
+}
+.popup {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+#yesBtn{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 270px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 0 0 10px 10px;
+}
+#yesBtn:hover {
+    background-color: #f37321;
+    color: white;
+}
+.btn_list a{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 120px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+}
+.btn_list a:first-child {
+    border-radius: 0 0 0 10px;
+}
+.btn_list a:last-child {
+    border-radius: 0 0 10px 0;
+}
+.btn_list a:hover {
+    background-color: #f37321;
+    color: white;
+}
+.bg {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+}
+#cancelImg{
+    margin-top: 10px;
+    width: 30px;
+    margin-left: 135px;
+    cursor: pointer;
+}
+#notification{
+    display:none;
+    width: 600px;
+    box-shadow: 0px 0px 1px 1px #444444;
+    position: absolute;
+    right: 10px;
+    z-index: 300;
+    font-size: 10pt;
+}
+.read{
+    background-color: #d1d1e0;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+.notRead{
+    background-color: #a3a3c2;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+#notification table{
+    border-collapse: collapse;
+}
+
+#notification table tr th:first-child{
+    text-align: center;
+}
+
+#notification tr th{
+    text-align: left;
+}
+
+#notification tr th img{
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+
+#notification tfoot tr{
+    background-color: #48486a;
+    color: white;
+}
+
+#notification tfoot tr th{
+    text-align: center;
+    cursor: pointer;
+}
+
+#notification tfoot tr th:hover{
+    background-color: #a4a4c1;
+}
+
+#notification table tr th span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#notification table tr th span:hover{
+    color: blue;
+}
+#profileSlidedown{
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    border: 2px solid #fcba03;
+    background-color: white;
+    position: absolute;
+    padding: 0px;
+    right: 8px;
+    width: 122px;
+    margin-top: 10px;
+}
+#profileSlidedown li {
+    display: inline-block;
+    border: 1px solid rgb(250,250,250);
+    font-size: 12pt;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+#profileSlidedown li:hover {
+    background-color: #f37321;
+}
+.btns ul li {
+    list-style: none;
+    float: left;
+    text-align: center;
+    color: #2e3459;
+    line-height: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 900;
+}
+.btns>ul>li {
+    margin-right: 10px;
+}
+.banner {
+    width: 100%;
+    height: 70px;
+}
+.menu {
+    position: absolute;
+    height: 70px;
+    left: 20px;
+}
+.menu ul li {
+    list-style: none;
+    float: left;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 100px;
+    line-height: 70px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu ul li:hover {
+    color: #fcba03;
+}
+.menu ul li a {
+    display: inline-block;
+    height: 30px;
+    text-decoration: none;
+    color: white;
+}
+.search {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 250px;
+    height: 29px;
+}
+.filter {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 100px;
+    height: 35px;
+}
+.search_icon {
+    float: right;
+    margin: 17px 20px 13px 0px;
+    width: 40px;
+    cursor: pointer;
+}
+input[type='text']:focus, input[type='password']:focus, select:focus {
+    outline-color: #fcba03;
+}
+#admin {
+    display: none;
+}
+/* 여기까지 헤더 레이아웃 !!! */
+
+#container {
+    display: block;
+    width: 1280px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+.rank_area {
+    display: block;
+    width: 650px;
+    margin: 0px auto;
+    padding: 20px;
+}
+.nic_search {
+    display: block;
+    width: 375px;
+    height: 40px;
+    font-size: 15pt;
+    font-weight: bold;
+    margin: 40px 0px 10px 280px;
+}
+.nic_txt {
+    position: relative;
+    top: -2px;
+    width: 200px;
+    height: 28px;
+    padding: 5px;
+    font-size: 10pt;
+    border: 1px solid black;
+}
+.nic_btn {
+    width: 90px;
+    height: 40px;
+    background-color: #FFFFFF;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 2px solid #2E3459;
+}
+.nic_btn:hover {
+    background-color: #2e3459;
+    color: #FFFFFF;
+}
+table {
+    border-collapse: collapse;
+}
+thead tr {
+    background-color: #FFFFFF;
+    color: #000000;
+    height: 40px;
+    border-top: 2px solid #2e3459;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+thead tr th {
+    padding: 0px 5px;
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+}
+tbody tr{
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+tbody tr:hover {
+    background-color: #FFFFFF;
+}
+tbody tr td {
+    font-size: 10pt;
+    font-weight: 300;
+}
+.travel_writer_rank {
+    display: block;
+    width: 650px;
+    text-align: center;
+}
+.rank_photo {
+    width: 32px;
+}
+.article {
+    font-size: 13pt;
+}
+.click_article {
+    cursor: pointer;
+}
+.click_article:hover {
+    color: #fcba03;
+}
+
+.paging {
+    font-size: 0;
+    text-align: center;
+    margin: 40px 0px 60px 0px;
+}
+.paging div {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+.paging_btn {
+    background-color: none;
+    color: #2e3459;
+    letter-spacing:-5px;
+    font-size: 12pt;
+}
+.paging div.num {
+    color: #2e3459;
+}
+.paging div:first-child {
+    margin-left: 0;
+}
+.paging div.num:hover,
+.paging div.num.on,
+.paging div.paging_btn:hover  {
+    color: #F1404B;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.travel_writer_score h4, .travel_writer_score h6 {
+    font-size: 10pt;
+    font-weight: 600;
+    width: 400px;
+    margin: 10px 0px 10px 0px;
+}
+/* 여기까지 container */
+
+#footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #2e3459;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+#footer p {
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-left: 250px;
+    width: 600px;
+    height: 80px;
+}

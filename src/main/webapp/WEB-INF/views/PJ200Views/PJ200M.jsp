@@ -9,19 +9,14 @@
 	<link href="static/css/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ200C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
-	<script type="text/javascript" src="static/js/callServer.js"></script>
-	<script type="text/javascript" src="static/js/callPopup.js"></script>
-	<script type="text/javascript" src="static/js/common.js"></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ200S.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
 	if("${sMEM_NO}" != ""){
-		location.href="main";
+		location.href="PJ100M";
 	}
 	*/
-	
-	var popupText = ""; //팝업 문구변경
 	
 	$("#ckAll").change(function(){ //전체선택 체크박스 클릭
 		if($("#ckAll").prop("checked") == true)
@@ -32,10 +27,6 @@ $(document).ready(function(){
 		{
 			$("#ck1, #ck2, #ck3").prop("checked", false);
 		}
-	});
-	
-	$("#preBtn").on("click", function(){ //이전버튼 클릭
-		location.href = "main";
 	});
 	
 	$("#nextBtn").on("click", function(){ //다음으로 가기버튼 클릭
@@ -60,169 +51,40 @@ $(document).ready(function(){
 			$("#marketingForm").submit();
 		}
 	}); //nextBtn click end
-	
-	$("#inputPW, #inputID").on("keypress", function(){
-		$(".popup").remove();
-		$(".bg").remove();
-		if(event.keyCode == 13)
-			$("#loginBtn").click();
+
+	// 메인화면 페이지
+	$("#preBtn").on("click", function(){
+		location.href = "PJ100M";
 	});
-	
-	$("#loginBtn").on("click", function(){  //로그인 버튼 클릭
-		if($.trim($("#inputID").val()) == "")
-		{
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-		}
-		else if($.trim($("#inputPW").val()) == "")
-		{
-			popupText = "비밀번호를 입력하세요.";
-			commonPopup(popupText);
-		}
-		else
-		{
-			var params = $("#loginForm").serialize();
-			
-			$.ajax({
-				url: "logins",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result)
-				{
-					if(result.msg == "success")
-						location.href="main";
-					else
-					{
-						popupText = "ID와 PW가 일치하지 않습니다.";
-						commonPopup(popupText);
-						$("#inputID").val("");
-						$("#inputPW").val("");
-					} 
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end 
-		}// if ~ else end
-	}); //loginBtn click end
-	
-	$("#join").on("click", function(){  //회원가입 버튼 클릭
-		location.href="terms";
-	}); // join click end
-	
-	$("#find").on("click", function(){
-		findBtnPopup();
-	}); //find click end
-	
-    $("#journalBoard").on("click", function(){
-    	location.href = "journalBoard";
-    });//postBoard click end
-    
-    $("#community").on("click", function(){
-    	location.href = "community";
-    });//community click end
-  
-   	$("#travelWriter").on("click", function() {
-  		location.href = "travelWriterRank";
-  	}); //travelWriter click end
-	
-	$("#clientCenter").on("click", function() {
-  		location.href = "clientCenterQuestion";
-  	}); //clientCenter click end
-  	
-	// 메인검색창 넘어가는 부분
-	$(".search_icon").on("click", function() {
-		if($("#mainSearchFilter").val() == 0) {
-			$("#goSearch").attr("action", "search");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 1) {
-			$("#goSearch").attr("action", "searchTravelDiary");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 2) {
-			$("#goSearch").attr("action", "searchHashtag");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 3) {
-			$("#goSearch").attr("action", "searchCommunity");
-			$("#goSearch").submit();
-		} else {
-			$("#goSearch").attr("action", "searchNic");
-			$("#goSearch").submit();
-		}
-	});
+
 }); //document ready end
 </script>
 </head>
 <body>
-<form action="join" id="marketingForm" method="post">
+<form action="PJ201M" id="marketingForm" method="post">
 	<input type="hidden" name="marketing" id="marketing" value="0">
 </form>
 <div id="wrap">
-         <!-- header부분 고정 -->
-         <div id="header">
-            <div class="banner">
-               <div class="top">
-                  <div class="logo_area">
-                     <a href="main"><img alt="로고" src="static/images/logo.png" class="logo_photo"></a>
-                     <div class="site_name">우리들의 여행일지</div>
-                  </div>
-
-                  <div class="logins">
-                     <div class="sub_login1">
-                        <form action="#" id="loginForm">
-	                        <input type="button" id="loginBtn" value="로그인" />
-	                        <input type="password" id="inputPW" name="inputPW" placeholder="PW" />
-	                        <input type="text" id="inputID" name="inputID" placeholder="ID" />
-                        </form>
-                     </div>
-                     <div class="sub_login2">
-                        <span id="join">회원가입</span>
-                        <span id="find">ID/PW 찾기</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <nav class="menu">
-               <ul>
-                  <li id="journalBoard">여행게시판</li>
-                  <li id="community">자유게시판</li>
-                  <li id="travelWriter">여행작가</li>
-				  <li id="clientCenter">고객센터</li>
-               </ul>
-            </nav>
-            <form action="#" id="goSearch" method="post" >
-				<img alt="search" src="static/images/search.png" class="search_icon"/>
-				<input type="text" class="search" id="mainSearchTxt" name="mainSearchTxt" value="${param.mainSearchTxt}" placeholder="검색">
-				<select class="filter" id="mainSearchFilter" name="mainSearchFilter" >
-					<option value="0" selected="selected">통합검색</option>
-					<option value="1">여행일지</option>
-					<option value="2">해시태그</option>
-					<option value="3">자유게시판</option>
-					<option value="4">닉네임</option>
-				</select>
-			</form>
-         </div> <!-- header end -->
-         
-         <div id="container">
-         	<div class="terms">[약관 동의]</div>
-         
-        	 <div class="milestone">
-				<div class="milestone_title" id="milestone_on">
-					약관 동의
-				</div>
-				<div class="arrow_img"><img src="static/images/milestone.png"></div>
-				<div class="milestone_title">
-					정보입력
-				</div>	
-				<div class="arrow_img"><img src="static/images/milestone.png"></div>
-				<div class="milestone_title">
-					프로필 설정
-				</div>
-				<div class="arrow_img"><img src="static/images/milestone.png"></div>
-				<div class="milestone_title">
-					가입 완료
-				</div>
-		   </div> <!-- container end -->
+	 <jsp:include page="../Frame/header.jsp"></jsp:include>
+	 <div id="container">
+		<div class="terms">[약관 동의]</div>
+		 <div class="milestone">
+			<div class="milestone_title" id="milestone_on">
+				약관 동의
+			</div>
+			<div class="arrow_img"><img src="static/images/milestone.png"></div>
+			<div class="milestone_title">
+				정보입력
+			</div>
+			<div class="arrow_img"><img src="static/images/milestone.png"></div>
+			<div class="milestone_title">
+				프로필 설정
+			</div>
+			<div class="arrow_img"><img src="static/images/milestone.png"></div>
+			<div class="milestone_title">
+				가입 완료
+			</div>
+	   </div> <!-- container end -->
 		   
 		   <div id="termsWrap">
 		   		<div class="task"><span class="material-icons">task_alt 회원약관</span></div>
@@ -357,14 +219,7 @@ $(document).ready(function(){
 			</div><!-- btnWrap end -->
 			
 	   </div> <!-- container end -->
-        
-         <div id="footer">
-            <p>
-               POPJOURNEY<br/>
-               GDJ-35기 LEE Eun-Soo, LEE In-Bok, CHOI Jeong-Min<br/>
-               Copyright© POPJOURNEY. All Rights Reserved.
-            </p>
-        </div><!-- footer end -->         	
+		<jsp:include page="../Frame/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

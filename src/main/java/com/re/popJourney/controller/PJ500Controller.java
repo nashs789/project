@@ -149,7 +149,7 @@ public class PJ500Controller {
         return mapper.writeValueAsString(modelMap);
     }
 
-    //북마크 추가delBMKs
+    //북마크 추가
     @RequestMapping(value = "/addBMKs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
     @ResponseBody
     public String addBMKs(@RequestParam HashMap<String, String> params) throws Throwable {
@@ -222,6 +222,27 @@ public class PJ500Controller {
         try {
 
             int cnt = ipjs.updateBMK(params);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+    }
+
+    //북마크 삭제하기
+    // 501
+    @RequestMapping(value = "/delBMKs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String delBMKs(@RequestParam HashMap<String, String> params) throws Throwable {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        try {
+
+            int cnt = ipjs.delBMK(params);
+            int cnt2 = ipjs.delBMK2(params);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -331,6 +352,36 @@ public class PJ500Controller {
 
             modelMap.put("msg", "success");
             modelMap.put("followingMemo", followingMemo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+    }
+
+    //팔로우 메모 업데이트
+    // 503
+    // updateMemos
+    @RequestMapping(value = "/updateMemos", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String updateMemos(@RequestParam HashMap<String, String> params) throws Throwable {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        try {
+
+            int cnt = ipjs.updateMemo(params);
+
+            if(cnt > 0)
+            {
+                modelMap.put("msg", "success");
+            }
+            else
+            {
+                modelMap.put("msg", "failed");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

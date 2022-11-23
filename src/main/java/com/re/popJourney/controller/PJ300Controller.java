@@ -13,6 +13,116 @@ import java.util.Map;
 @Slf4j
 public class PJ300Controller {
 
+    //자유게시판- (기본)전체보기
+    // 300
+    // communityLists
+    @RequestMapping(value = "/communityLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String communityLists(@RequestParam HashMap<String, String>params) throws Throwable{
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        int Pages = Integer.parseInt(params.get("Pages"));
+
+        int cnt = iEsPopjourneyService.getPostCnt(params);
+        PagingBean pb = iPagingService.getPagingBean(Pages, cnt, 20, 5);
+        params.put("startCnt", Integer.toString(pb.getStartCount()));
+        params.put("endCnt", Integer.toString(pb.getEndCount()));
+
+        try {
+            List<HashMap<String,String>> list = iEsPopjourneyService.getPostList(params);
+
+            if(list != null)
+            {
+                modelMap.put("msg", "success");
+                modelMap.put("list",list);
+                modelMap.put("pb", pb);
+            }
+            else
+            {
+                modelMap.put("msg", "failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+    }
+
+    //자유게시판- 공지사항
+    // 300
+    // communityNLists
+    @RequestMapping(value = "/communityNLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String communityNLists(@RequestParam HashMap<String, String>params) throws Throwable{
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        int Pages = Integer.parseInt(params.get("Pages"));
+
+        int cnt = iEsPopjourneyService.getPostNCnt(params);
+        PagingBean pb = iPagingService.getPagingBean(Pages, cnt, 20, 5);
+        params.put("startCnt", Integer.toString(pb.getStartCount()));
+        params.put("endCnt", Integer.toString(pb.getEndCount()));
+        try {
+            List<HashMap<String,String>> list = iEsPopjourneyService.getPostNList(params);
+            System.out.println(list);
+
+            if(list != null)
+            {
+                modelMap.put("msg", "success");
+                modelMap.put("list",list);
+                modelMap.put("pb", pb);
+            }
+            else
+            {
+                modelMap.put("msg", "failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+    }
+
+    // 300
+    // communityCMTLists
+    @RequestMapping(value = "/communityCMTLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String communityCMTLists(@RequestParam HashMap<String, String>params) throws Throwable{
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        int Pages = Integer.parseInt(params.get("Pages"));
+
+        int cnt = iEsPopjourneyService.getPostCMTCnt(params);
+        PagingBean pb = iPagingService.getPagingBean(Pages, cnt, 20, 5);
+        params.put("startCnt", Integer.toString(pb.getStartCount()));
+        params.put("endCnt", Integer.toString(pb.getEndCount()));
+        try {
+            List<HashMap<String,String>> list = iEsPopjourneyService.getPostCMTList(params);
+            System.out.println(list);
+
+            if(list != null)
+            {
+                modelMap.put("msg", "success");
+                modelMap.put("list",list);
+                modelMap.put("pb", pb);
+            }
+            else
+            {
+                modelMap.put("msg", "failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+    }
+
     // 300
     @RequestMapping(value = "checkPoints", method = RequestMethod.POST, produces ="test/json;charset=UTF-8")
     @ResponseBody
@@ -140,6 +250,33 @@ public class PJ300Controller {
         }
 */
         return mapper.writeValueAsString(modelMap);
+    }
+
+    // 301
+    // postCmtCmtDeletes
+    @RequestMapping(value="/postCmtCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @ResponseBody
+    public String postCmtCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+/*
+        try {
+            int cnt = iEsPopjourneyService.getCmtDeletes(params);
+
+            if (cnt > 0) {
+                modelMap.put("msg", "success");
+            } else {
+                modelMap.put("msg", "failed");
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+            modelMap.put("msg", "error");
+        }
+*/
+        return mapper.writeValueAsString(modelMap);
+
     }
 
     // 301
