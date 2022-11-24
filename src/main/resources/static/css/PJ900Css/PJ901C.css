@@ -1,0 +1,655 @@
+
+/*  #fcba03 노랑
+#2e3459 남색
+#f37321 주황
+#294a37 초록
+*/
+body {
+    margin: 0px;
+    font-size: 0px;
+    font-family: 'Black Han Sans', sans-serif;
+    min-width: 1480px;
+    background-color: #f9f9f9;
+}
+
+/* 여기서부터 헤더 레이아웃 */
+#wrap {
+    width: 100%;
+    height: 100%;
+}
+#header {
+    width: 100%;
+    height: 140px;
+    background-color: #2e3459;
+    position: relative;
+}
+.top {
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: #FFFFFF;
+}
+.site_name {
+    display: inline-block;
+    vertical-align: top;
+    position: absolute; /* 추가하기 */
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #2e3459;
+}
+.logo_area {
+    display: inline-block;
+    width: calc(100% - 470px);
+    height: 70px;
+    background-color: #FFFFFF;
+    text-indent: 40px;
+}
+.logo_photo {
+    height: 35px;
+    margin-top: 18px;
+}
+.btns {
+    display: none;
+    vertical-align: top;
+    position:relative;
+    width: 470px;
+    height: 70px;
+    text-align: right;
+    background-color: #FFFFFF;
+}
+.btns ul li {
+    list-style: none;
+    float: left;
+    text-align: center;
+    color: #2e3459;
+    line-height: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 900;
+}
+.btns>ul>li {
+    margin-right: 10px;
+}
+#bookmarkPhoto, #notificationPhoto {
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+#notificationPhoto{
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    position: relative;
+}
+#notificationTxt{
+    line-height: 17px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: 10px;
+    right: 190px;
+    border-radius: 50%;
+    color: white;
+}
+#profilePhoto{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+#notificationPhoto {
+    margin-left: 200px;
+}
+.logins {
+    display: inline-block;
+    vertical-align: top;
+    width: 470px;
+    height: 70px;
+    text-align: right;
+    background-color: #FFFFFF;
+}
+.sub_login1 {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 55px;
+}
+.sub_login2 {
+    display: block;
+    width: calc(100% - 75px);
+    height: 15px;
+    line-height: 10px;
+    text-align: right;
+    padding-right: 75px;
+}
+.sub_login2 span {
+    position: relative;
+    width: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.sub_login2 span:hover {
+    color: #fcba03;
+}
+#inputID, #inputPW {
+    float: right;
+    width: 100px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+#loginBtn {
+    float: right;
+    margin: 20px 20px 0px 5px;
+    width: 50px;
+    height: 30px;
+    background-color: #2e3459;
+    font-weight: bold;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 26px;
+}
+#loginBtn:hover{
+    color: #FFFFFF;
+    background-color: #f37321;
+}
+.popup {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+#yesBtn{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 270px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 0 0 10px 10px;
+}
+#yesBtn:hover {
+    background-color: #f37321;
+    color: white;
+}
+.btn_list a{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 120px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+}
+.btn_list a:first-child {
+    border-radius: 0 0 0 10px;
+}
+.btn_list a:last-child {
+    border-radius: 0 0 10px 0;
+}
+.btn_list a:hover {
+    background-color: #f37321;
+    color: white;
+}
+.bg {
+    display: inline-block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+}
+#cancelImg{
+    margin-top: 10px;
+    width: 30px;
+    margin-left: 135px;
+    cursor: pointer;
+}
+#notification{
+    display:none;
+    width: 600px;
+    box-shadow: 0px 0px 1px 1px #444444;
+    position: absolute;
+    right: 10px;
+    z-index: 300;
+    font-size: 10pt;
+}
+.read{
+    background-color: #d1d1e0;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+.notRead{
+    background-color: #a3a3c2;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+#notification table{
+    border-collapse: collapse;
+}
+
+#notification table tr th:first-child{
+    text-align: center;
+}
+
+#notification tr th{
+    text-align: left;
+}
+
+#notification tr th img{
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+
+#notification tfoot tr{
+    background-color: #48486a;
+    color: white;
+}
+
+#notification tfoot tr th{
+    text-align: center;
+    cursor: pointer;
+}
+
+#notification tfoot tr th:hover{
+    background-color: #a4a4c1;
+}
+
+#notification table tr th span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#notification table tr th span:hover{
+    color: blue;
+}
+#profileSlidedown{
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    border: 2px solid #fcba03;
+    background-color: white;
+    position: absolute;
+    padding: 0px;
+    right: 8px;
+    width: 122px;
+    margin-top: 10px;
+}
+#profileSlidedown li {
+    display: inline-block;
+    border: 1px solid rgb(250,250,250);
+    font-size: 12pt;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+}
+#profileSlidedown li:hover {
+    background-color: #f37321;
+}
+input[type='text']:focus, input[type='password']:focus{
+    outline-color: #fcba03;
+}
+.banner {
+    width: 100%;
+    height: 70px;
+}
+.menu {
+    position: absolute;
+    height: 70px;
+    left: 20px;
+}
+.menu ul li {
+    list-style: none;
+    float: left;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 100px;
+    line-height: 70px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu ul li:hover {
+    color: #fcba03;
+}
+.search {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 250px;
+    height: 29px;
+}
+.filter {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 100px;
+    height: 35px;
+}
+.search_icon {
+    float: right;
+    margin: 17px 20px 13px 0px;
+    width: 40px;
+    cursor: pointer;
+}
+input[type='text']:focus, input[type='password']:focus, input[type="date"], select:focus {
+    outline-color: #fcba03;
+}
+#admin {
+    display: none;
+}
+/* 여기까지 헤더 레이아웃 !!! */
+
+/* 컨테이너 레이아웃 */
+
+.popup_write {
+    display: none; /* 클릭 시 inline-block */
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    font-size: 16pt;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popup_write .popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+.popup_write .btn_list span{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 270px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 0 0 10px 10px;
+}
+.popup_write .btn_list span:hover {
+    background-color: #f37321;
+    color: white;
+    cursor: pointer;
+}
+.bg_write { /* 클릭 시 inline-block */
+    display: none;
+    width: 100%;
+    height: 1523px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+}
+
+#container {
+    display: block;
+    width: 1280px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+.client_center_search {
+    display: block;
+    margin: 50px auto 0px auto;
+    width: 100%;
+    height: 120px;
+    background-color: #fcba03;
+    border-radius: 20px;
+    border: 0px;
+}
+.client_center_name {
+    display: inline-block;
+    vertical-align: top;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 30pt;
+    width: 30%;
+    height: 100%;
+    margin-left: 50px;
+}
+.client_center_name div {
+    width: 54%;
+    margin: 0px auto;
+    line-height: 120px;
+}
+.question_search {
+    display: inline-block;
+    vertical-align: top;
+    width: 700px;
+    height: 64px;
+    margin-top: 30px;
+}
+.question_search input {
+    width: 600px;
+    height: 60px;
+    line-height: 100px;
+    font-size: 15pt;
+    text-align: left;
+    border-radius: 5px;
+    border: 0px;
+}
+.question_search div {
+    display: inline-block;
+    vertical-align: top;
+    width: 70px;
+    height: 70px;
+    margin: -3px 0px 0px 10px;
+}
+.question_search img {
+    width: 70px;
+    height: 70px;
+    line-height: -30px;
+    cursor: pointer;
+}
+
+.sidebar {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.sidebar2 {
+    color: #f37321;
+}
+.sidebar1, .sidebar2 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15pt;
+    font-weight: bold;
+    width: 200px;
+    line-height: 100px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 20px;
+}
+.sidebar1:hover, .sidebar2:hover {
+    color: #f37321;
+}
+.sidebar3 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15pt;
+    font-weight: bold;
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    float: right;
+}
+.sidebar3 p {
+    border-left: 1px solid rgb(238, 238, 238);
+    color: #fcba03;
+}
+
+#list_wrap table {
+    border-collapse: collapse;
+    margin: 50px auto 0px auto;
+}
+#list_wrap table thead tr {
+    background-color: #FFFFFF;
+    color: #000000;
+    height: 40px;
+    border-top: 2px solid #2e3459;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+#list_wrap table thead tr th {
+    padding: 0px 5px;
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+}
+#list_wrap tbody tr{
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+#list_wrap tbody tr:hover {
+    background-color: #FFFFFF;
+}
+#list_wrap tbody tr td {
+    font-size: 9pt;
+    text-align: center;
+}
+.article {
+    font-size: 13pt;
+}
+.matter_title {
+    text-align: left;
+}
+.matter_write_btn {
+    width: 960px;
+    height: 40px;
+    margin: 20px auto;
+}
+.matter_write_btn input {
+    float: right;
+    width: 90px;
+    height: 40px;
+    background-color: #FFFFFF;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 2px solid #2E3459;
+}
+.matter_write_btn input:hover {
+    background-color: #2e3459;
+    color: #FFFFFF;
+}
+.cmt_ok {
+    font-weight: bold;
+}
+
+
+.paging {
+    font-size: 0;
+    text-align: center;
+    margin: 40px 0px 60px 0px;
+}
+.paging div {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+.paging_btn {
+    background-color: none;
+    color: #2e3459;
+    letter-spacing:-5px;
+    font-size: 12pt;
+}
+.paging div.num {
+    color: #2e3459;
+}
+.paging div:first-child {
+    margin-left: 0;
+}
+.paging div.num:hover,
+.paging div.num.on,
+.paging div.paging_btn:hover  {
+    color: #F1404B;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* 컨테이너 레이아웃 끝 */
+#footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #2e3459;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+#footer p {
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-left: 250px;
+    width: 600px;
+    height: 80px;
+}
+
+#session {
+    font-size: 50pt;
+    color: black;
+}

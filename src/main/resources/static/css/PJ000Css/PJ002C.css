@@ -1,0 +1,426 @@
+  /*  #fcba03 노랑
+      #2e3459 남색
+      #f37321 주황
+      #294a37 초록
+  */
+body {
+  margin: 0px;
+  font-size: 0px;
+  font-family: 'Black Han Sans', sans-serif;
+  min-width: 1480px;
+  background-color: #f9f9f9;
+}
+
+/* 여기서부터 헤더 레이아웃 */
+#wrap {
+    width: 100%;
+    height: 100%;
+}
+#header {
+    width: 100%;
+    height: 140px;
+    background-color: #2e3459;
+    position: relative;
+}
+.top {
+    display: block;
+    width: 100%;
+    height: 70px;
+    background-color: #FFFFFF;
+}
+.site_name {
+    display: inline-block;
+    vertical-align: top;
+    position: absolute; /* 추가하기 */
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #2e3459;
+}
+.logo_area {
+    display: inline-block;
+    width: calc(100% - 470px);
+    height: 70px;
+    background-color: #FFFFFF;
+    text-indent: 40px;
+}
+.logo_photo {
+    height: 35px;
+    margin-top: 18px;
+}
+.banner {
+    width: 100%;
+    height: 70px;
+}
+.menu {
+    position: absolute;
+    height: 70px;
+    left: 20px;
+}
+.menu ul li {
+    list-style: none;
+    float: left;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 100px;
+    line-height: 70px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu ul li:hover {
+    color: #fcba03;
+}
+.search {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 250px;
+    height: 29px;
+}
+.filter {
+    float: right;
+    margin: 20px 20px 20px 0px;
+    width: 100px;
+    height: 35px;
+}
+.search_icon {
+    float: right;
+    margin: 17px 20px 13px 0px;
+    width: 40px;
+    cursor: pointer;
+}
+input[type='text']:focus, input[type='password']:focus, input[type="date"], select:focus {
+    outline-color: #fcba03;
+}
+/* 여기까지 헤더 레이아웃 !!! */
+
+.popupDel {
+    display: none; /* 클릭 시 inline-block */
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    font-size: 16pt;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+.btn_list span{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 120px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+}
+.btn_list span:first-child {
+    border-radius: 0 0 0 10px;
+}
+.btn_list span:last-child {
+    border-radius: 0 0 10px 0;
+}
+.btn_list span:hover {
+    background-color: #f37321;
+    color: white;
+    cursor: pointer;
+}
+.bg { /* 클릭 시 inline-block */
+    display: none;
+    width: 100%;
+    height: 1403px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+    position: fixed;
+}
+.popupDel2 {
+    display: none; /* 클릭 시 inline-block */
+    width: 300px;
+    height: 150px;
+    background-color: #fcfcfc;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    position: fixed;
+    top: calc(50% - 75px);
+    left: calc(50% - 150px);
+    z-index: 500;
+    font-size: 16pt;
+    border-radius: 10px;
+    font-size: 0px;
+    border: 0px;
+}
+.popupDel2 .popup_entity_txt {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    width: 265px;
+    height:40px;
+    margin: 30px auto 30px auto;
+}
+.popupDel2 .btn_list span{
+    text-decoration: none;
+    display:inline-block;
+    text-align:center;
+    width: 270px;
+    height:30px;
+    padding: 10px 15px 10px 15px;
+    font-size: 12pt;
+    color: #f37321;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 0 0 10px 10px;
+}
+.popupDel2 .btn_list span:hover {
+    background-color: #f37321;
+    color: white;
+    cursor: pointer;
+}
+.bg2 { /* 클릭 시 inline-block */
+    display: none;
+    width: 100%;
+    height: 1403px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    z-index: 400;
+    opacity: 0.2;
+    position: fixed;
+}
+
+#container {
+    display: block;
+    width: 1280px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+
+.mem_admin_area {
+    display: block;
+    width: 1280px;
+    margin: 0px auto;
+    padding: 20px 0px 20px 0px;
+}
+.admin_menu {
+    display: block;
+    height: 50px;
+}
+.admin_menu span {
+    cursor: pointer;
+    font-size: 15pt;
+    font-weight: bold;
+}
+.admin_menu span:hover {
+    color: #f37321;
+}
+.menu2 {
+    color: #f37321;
+}
+.sub_search {
+    display: block;
+    margin: 40px auto 20px auto;
+    width: 940px;
+    height: 40px;
+    font-size: 15pt;
+    font-weight: bold;
+}
+.search_filter {
+    position: relative;
+    top: -2px;
+    left: 0px;
+    width: 100px;
+    height: 40px;
+}
+.search_date {
+    position: relative;
+    top: -2px;
+    left: 0px;
+    width: 130px;
+    height: 37px;
+    text-align: center;
+}
+.search_txt {
+    position: relative;
+    top: -2px;
+    width: 200px;
+    height: 28px;
+    padding: 5px;
+    font-size: 10pt;
+    border: 1px solid black;
+}
+.search_btn {
+    width: 90px;
+    height: 40px;
+    background-color: #FFFFFF;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 2px solid #2E3459;
+}
+.diary_delete_btn {
+    width: 90px;
+    height: 40px;
+    background-color: #FFFFFF;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 2px solid #2E3459;
+}
+.search_btn:hover {
+    background-color: #2e3459;
+    color: #FFFFFF;
+}
+.diary_delete_btn:hover {
+    background-color: #F1404B;
+    color: #FFFFFF;
+    border: 2px solid #F1404B;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+thead tr {
+    background-color: #FFFFFF;
+    color: #000000;
+    height: 40px;
+    border-top: 2px solid #2e3459;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+thead tr th {
+    padding: 0px 5px;
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+}
+tbody tr{
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+tbody tr:hover {
+    background-color: #FFFFFF;
+}
+tbody tr td {
+    font-size: 9pt;
+    font-weight: 300;
+    text-align: center;
+}
+.diary_title {
+    text-align: left;
+}
+.article th {
+    font-size: 10pt;
+}
+.ckbox {
+    height: 15px;
+    width: 15px;
+}
+.not_del {
+    background-color: #f9f9f9;
+}
+.del {
+    background-color: #d9d9d9;
+    pointer-events: none;
+}
+.del .edit_btn {
+    background-color: #d9d9d9;
+    border: 2px solid #2E3459;
+}
+
+
+.paging {
+    font-size: 0;
+    text-align: center;
+    margin: 40px 0px 60px 0px;
+}
+.paging div {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+.paging_btn {
+    background-color: none;
+    color: #2e3459;
+    letter-spacing:-5px;
+    font-size: 12pt;
+}
+.paging div.num {
+    color: #2e3459;
+}
+.paging div:first-child {
+    margin-left: 0;
+}
+.paging div.num:hover,
+.paging div.num.on,
+.paging div.paging_btn:hover  {
+    color: #F1404B;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.edit_btn {
+    width: 45px;
+    height: 24px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid #2E3459;
+}
+.edit_btn:hover {
+    background-color: #2E3459;
+    color: #FFFFFF;
+    border: 2px solid #2E3459;
+}
+
+
+#footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    background-color: #2e3459;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+#footer p {
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-left: 250px;
+    width: 600px;
+    height: 80px;
+}
