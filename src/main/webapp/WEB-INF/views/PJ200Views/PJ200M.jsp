@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인화면</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 	<link href="static/css/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ200C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ200S.js"></script>
+	<script type="text/javascript" src="static/js/Common/callServer.js"></script>
+	<script type="text/javascript" src="static/js/Common/popup.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
@@ -60,10 +62,10 @@ $(document).ready(function(){
 }); //document ready end
 </script>
 </head>
-<body>
 <form action="PJ201M" id="marketingForm" method="post">
 	<input type="hidden" name="marketing" id="marketing" value="0">
 </form>
+<body>
 <div id="wrap">
 	 <jsp:include page="../Frame/header.jsp"></jsp:include>
 	 <div id="container">

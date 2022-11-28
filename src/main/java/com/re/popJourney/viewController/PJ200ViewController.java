@@ -1,11 +1,18 @@
 package com.re.popJourney.viewController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.model.MemVo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 
 @RestController
@@ -13,31 +20,40 @@ import java.util.HashMap;
 public class PJ200ViewController {
     // 약관 페이지 - 이인복
     // PJ200M
-    @RequestMapping(value = "/PJ200M")
-    public ModelAndView terms(ModelAndView mav) {
-        mav.setViewName("PJ200Views/PJ200M");
-
-        return mav;
+    // terms
+    @GetMapping(value = "/PJ200M")
+    public ModelAndView PJ200M() {
+        return new ModelAndView("PJ200Views/PJ200M");
     }
 
     // 회원가입 페이지 - 이인복
     // PJ201M
     // join
-    @RequestMapping(value = "/PJ201M")
-    public ModelAndView join(@RequestParam HashMap<String, String> params, ModelAndView mav) {
-        HashMap<String, String> data = new HashMap<String, String>();
+    @PostMapping(value = "/PJ201M")
+    // MemVo memVo
+    public ModelAndView PJ201M(MemVo memVo, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        // ObjectMapper mapper = new ObjectMapper();
+        // String jsonStringData = mapper.writeValueAsString(memVo);
 
-        data.put("marketing", params.get("marketing"));
-
-        mav.addObject("data", data);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("memVo", memVo);
         mav.setViewName("PJ200Views/PJ201M");
 
+        //String viewName = mav.getViewName();
+
+        //RequestDispatcher dispatcher = req.getRequestDispatcher(viewName);
+        //dispatcher.forward(req, res);
+
+        // String viewPath = "/WEB-INF/views/PJ200Views/PJ201M.jsp";
+        // RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
+        // dispatcher.forward(req, res);
+        //return mav;
         return mav;
     }
 
     // 프로필 작성- 이인복
     // PJ202M
-    @RequestMapping(value = "/PJ202M")
+    @GetMapping(value = "/PJ202M")
     public ModelAndView writeProfile(@RequestParam HashMap<String, String> params, ModelAndView mav) {
         String birth = params.get("inputYear") + "-" + params.get("inputMonth") + "-" + params.get("inputDay");
         String phone = "010" + params.get("inputPhone");
@@ -58,7 +74,7 @@ public class PJ200ViewController {
 
     // 회원정보수정 - 이인복
     // PJ203M
-    @RequestMapping(value = "/PJ203M")
+    @GetMapping(value = "/PJ203M")
     public ModelAndView editInfo(ModelAndView mav) {
         int page = 1;
 
@@ -70,7 +86,7 @@ public class PJ200ViewController {
 
     // 프로필 수정 페이지 - 이인복
     // PJ204M
-    @RequestMapping(value = "/PJ204M")
+    @GetMapping(value = "/PJ204M")
     public ModelAndView editProfile(ModelAndView mav) {
         int page = 1;
 
@@ -82,7 +98,7 @@ public class PJ200ViewController {
 
     // 아이디 찾기 페이지- 이인복
     // PJ205M
-    @RequestMapping(value = "/PJ205M")
+    @GetMapping(value = "/PJ205M")
     public ModelAndView findID(ModelAndView mav) {
         mav.setViewName("PJ200Views/PJ205M");
 
@@ -91,7 +107,7 @@ public class PJ200ViewController {
 
     // 비밀번호 찾기 페이지- 이인복
     // PJ206M
-    @RequestMapping(value = "/PJ206M")
+    @GetMapping(value = "/PJ206M")
     public ModelAndView findPW(ModelAndView mav) {
         mav.setViewName("PJ200Views/PJ206M");
 

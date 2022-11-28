@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>계정정보작성</title>
 	<%--<link href="static/css/common.css" rel="stylesheet" type="text/css">--%>
 	<link href="static/css/PJ202Css/PJ202C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>

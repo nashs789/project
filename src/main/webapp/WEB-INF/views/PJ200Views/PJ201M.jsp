@@ -5,34 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>약관</title>
 	<%--<link href="static/css/common.css" rel="stylesheet" type="text/css">--%>
-	<link href="static/css/PJ201C.css" rel="stylesheet" type="text/css">
+	<link href="static/css/PJ200Css/PJ201C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
-	<script type="text/javascript" src="static/js/callServer.js"></script>
-	<script type="text/javascript" src="static/js/callPopup.js"></script>
-	<script type="text/javascript" src="static/js/common.js"></script>
-	<script type="text/javascript" src="static/js/PJ201S.js"></script>
+	<script type="text/javascript" src="static/js/PJ200Js/PJ201S.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	console.log("${memVo.marketing}");
 	/*
-	if("${sMEM_NO}" != "" || "${data.marketing}" == "")
+	if("{sMEM_NO}" != "" || "{data.marketing}" == "")
 	{	
 		location.href="main";
 	}
 	*/
+	/*
 	var popupText = ""; //팝업 문구변경
 	var IDCheck = "";  //아이디 중복 확인용
 	var pattern1 = /[0-9]/;
     var pattern2 = /[a-zA-Z]/;
 	var pattern3 = /[~!@\#$%<>^&*]/; //특수문자 확인용 정규식
-	
-	$("#inputPW2, #inputID2").on("keypress", function(){
-		$(".popup").remove();
-		$(".bg").remove();
-		if(event.keyCode == 13)
-			$("#loginBtn").click();
-	});
 	
 	$("#IDDbCkBtn").on("click", function(){  //아이디 중복체크
 		$(".popup").remove();
@@ -350,90 +342,29 @@ $(document).ready(function(){
 	$("#preBtn").on("click", function(){ //이전버튼 클릭
 		location.href = "terms";
 	}); //preBtn click end
-	
-	$("#loginBtn").on("click", function(){  //로그인 버튼 클릭
-		if($.trim($("#inputID2").val()) == "")
-		{
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
+*/
+
+	$("#nextBtn").on("click", function(){
+		let params = {
+			           "name": $("#inp_name").val()
+					 , "birth": $("#sel_year").val()
+			         , "sex": $("#rad_sex").val()
+					 , "id": $("#inp_id").val()
+					 , "pw": $("#inp_pw").val()
+			   	 	 , "telcom": $("#sel_telcom").val()
+					 , "phone": $("#inp_phone").val()
+					 , "email": $("#inp_email").val()
+					 , "domain": $("#inp_domain").val()
+					 , "email_confirm": $("#inp_code").val()
+					 , "keyword_no": $("#sel_keyword").val()
+					 , "keyword": $("#inp_keyword").val()
+				     , "marketing": ${memVo.marketing}
 		}
-		else if($.trim($("#inputPW2").val()) == "")
-		{
-			popupText = "비밀번호를 입력하세요.";
-			commonPopup(popupText);
-		}
-		else
-		{
-			var params = $("#loginForm").serialize();
-			
-			$.ajax({
-				url: "logins",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result)
-				{
-					if(result.msg == "success")
-						location.href="main";
-					else
-					{
-						popupText = "ID와 PW가 일치하지 않습니다.";
-						commonPopup(popupText);
-						$("#inputID2").val("");
-						$("#inputPW2").val("");
-					} 
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end 
-		}// if ~ else end
-	}); //loginBtn click end
-	
-	$("#join").on("click", function(){  //회원가입 버튼 클릭
-		location.href="terms";
-	}); // join click end
-	
-	$("#find").on("click", function(){
-		findBtnPopup();
-	}); //find click end
-	
-    $("#journalBoard").on("click", function(){
-    	location.href = "journalBoard";
-    });//postBoard click end
-    
-    $("#community").on("click", function(){
-    	location.href = "community";
-    });//community click end
-  
-   	$("#travelWriter").on("click", function() {
-  		location.href = "travelWriterRank";
-  	}); //travelWriter click end
-   	
-	$("#clientCenter").on("click", function() {
-  		location.href = "clientCenterQuestion";
-  	}); //clientCenter click end
-  	
-	// 메인검색창 넘어가는 부분
-	$(".search_icon").on("click", function() {
-		if($("#mainSearchFilter").val() == 0) {
-			$("#goSearch").attr("action", "search");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 1) {
-			$("#goSearch").attr("action", "searchTravelDiary");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 2) {
-			$("#goSearch").attr("action", "searchHashtag");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 3) {
-			$("#goSearch").attr("action", "searchCommunity");
-			$("#goSearch").submit();
-		} else {
-			$("#goSearch").attr("action", "searchNic");
-			$("#goSearch").submit();
-		}
+
+		console.log(params);
 	});
 });//document ready end
+
 </script>
 </head>
 <body>
@@ -441,51 +372,21 @@ $(document).ready(function(){
 <form action="#" id="Form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 </form>
+<form action="#" id="testForm">
+	<input type="hidden" id="name" name="name"/>
+	<input type="hidden" id="birth" name="birth"/>
+	<input type="hidden" id="sex" name="sex"/>
+	<input type="hidden" id="id" name="id"/>
+	<input type="hidden" id="pw" name="pw"/>
+	<input type="hidden" id="telcom" name="telcom"/>
+	<input type="hidden" id="phone" name="phone"/>
+	<input type="hidden" id="email" name="email"/>
+	<input type="hidden" id="email_confirm" name="email_confirm"/>
+	<input type="hidden" id="keyword" name="keyword"/>
+	<input type="hidden" id="marketing" name="marketing" value="${memVo.marketing}"/>
+</form>
 <div id="wrap">
-         <!-- header부분 고정 -->
-         <div id="header">
-            <div class="banner">
-               <div class="top">
-                  <div class="logo_area">
-                     <a href="main"><img alt="로고" src="./resources/images/logo.png" class="logo_photo"></a>
-                     <div class="site_name">우리들의 여행일지</div>
-                  </div>
-                  <div class="logins">
-                     <div class="sub_login1">
-                        <form action="#" id="loginForm">
-	                        <input type="button" id="loginBtn" value="로그인" />
-	                        <input type="password" id="inputPW2" name="inputPW" placeholder="PW" />
-	                        <input type="text" id="inputID2" name="inputID" placeholder="ID" />
-                        </form>
-                     </div>
-                     <div class="sub_login2">
-                        <span id="join">회원가입</span>
-                        <span id="find">ID/PW 찾기</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <nav class="menu">
-               <ul>
-                  <li id="journalBoard">여행게시판</li>
-                  <li id="community">자유게시판</li>
-                  <li id="travelWriter">여행작가</li>
-				  <li id="clientCenter">고객센터</li>
-               </ul>
-            </nav>
-            <form action="#" id="goSearch" method="post" >
-				<img alt="search" src="./resources/images/search.png" class="search_icon"/>
-				<input type="text" class="search" id="mainSearchTxt" name="mainSearchTxt" value="${param.mainSearchTxt}" placeholder="검색">
-				<select class="filter" id="mainSearchFilter" name="mainSearchFilter" >
-					<option value="0" selected="selected">통합검색</option>
-					<option value="1">여행일지</option>
-					<option value="2">해시태그</option>
-					<option value="3">자유게시판</option>
-					<option value="4">닉네임</option>
-				</select>
-			</form>
-         </div>
-		
+		<jsp:include page="../Frame/header.jsp"></jsp:include>
 		<div id="container">
 			<div class="join">[회원가입]</div>
 		
@@ -493,126 +394,115 @@ $(document).ready(function(){
 				<div class="milestone_title">
 					약관 동의
 				</div>
-				<div class="arrow_img"><img src="./resources/images/milestone.png"></div>
+				<div class="arrow_img"><img src="static/images/milestone.png"></div>
 				<div class="milestone_title" id="milestone_on">
 					정보입력
 				</div>	
-				<div class="arrow_img"><img src="./resources/images/milestone.png"></div>
+				<div class="arrow_img"><img src="static/images/milestone.png"></div>
 				<div class="milestone_title">
 					프로필 설정
 				</div>
-				<div class="arrow_img"><img src="./resources/images/milestone.png"></div>
+				<div class="arrow_img"><img src="static/images/milestone.png"></div>
 				<div class="milestone_title">
 					가입 완료
 				</div>				
 			</div>
-			
-			<form action="writeProfile" id="infoForm" method="post">
-				<div id="infoWrap">
-					<div class="title">이름</div>
-					<input type="text" id="inputName" name="inputName" placeholder="이름를 입력해 주세요."/> 
-					
-					<div class="title">생일/성별</div>
-					<select id="selectYear" name="inputYear">
-						<option>연도</option>
-						<c:forEach var="i" begin="1900" end="2021" step="1" >
-							<option value="${i}">${i}</option>
-						</c:forEach>
-					</select>
-					<select id="selectMonth" name="inputMonth">
-						<option>월</option>
-						<c:forEach var="i" begin="1" end="12" step="1" >
-							<option value="${i}">${i}</option>
-						</c:forEach>
-					</select>
-					<select id="selectDay" name="inputDay">
-						<option>일</option>
-						<c:forEach var="i" begin="1" end="31" step="1" >
-							<option value="${i}">${i}</option>
-						</c:forEach>
-					</select><br/>
-					
-					<div id="radioWrap">
-						<label><input type="radio" name="sex" value="0" checked/>선택없음</label>
-						<label><input type="radio" name="sex" value="1"/>남자</label>
-						<label><input type="radio" name="sex" value="2"/>여자</label>
-					</div>
-				
-					<div class="title">아이디</div>
-					<input type="text" id="inputID" name="inputID" placeholder="아이디 입력를 입력해 주세요."/>
-					<input type="button" id="IDDbCkBtn" value="중복확인"/>
-					
-					<div class="title">비밀번호</div>
-					<input type="password" id="inputPW" name="inputPW" placeholder="8~32자리 특수문자포함 입력해주세요 " minlength="8" maxlength="32"/>
-					
-					<div class="title">비밀번호 재확인</div>
-					<input type="password" id="inputRePW" name="inputRePW" placeholder="비밀번호를 재입력 해주세요."  minlength="8" maxlength="32"/>
-					
-					<div class="title">전화번호</div>
-					
-					<div>
-						<select id="selectTelcom" name="selectTelcom">
-							<option value="0">통신사</option>
-							<option value="KT">KT</option>
-							<option value="SKT">SKT</option>
-							<option value="LG">LG</option>
-						</select>
-						<input type="text" maxlength="8" placeholder="전화번호 8자리(010 / '-'제외)" id="inputPhone" name="inputPhone"/>
-					</div>
-				
-					<div class="title">이메일</div>
-					<div>
-						<input type="text" id="inputEmail" name="inputEmail"/>
-						<span id="txtAt">@</span>
-						<input type="text" id="inputDomain" name="inputDomain"/>
-						
-						<select id="selectDomain" name="selectDomain">
-							<option value="">직접입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="nate.com">nate.com</option>
-							<option value="gmail.com">gmail.com</option>
-						</select>
-						<input type="button" value="코드발송" id="sendCode"/>
-						<div id="codeWrap">
-							<input type="text" id="inputCode" name="inputCode" placeholder="인증번호를 입력하세요"/>
-					  	    <input type="button" id="ckCode" value="확 인"/>
-					    	<input type="button" id="reSend" value="재발송"/>
-						</div>
-					</div>
-					
-					<div class="title">키워드</div>
-					<select id="selectKeyword" name="selectKeyword">
-							<option value="0">키워드 질문을 골라주세요</option>
-							<option value="1">당신의 첫 사랑의 이름은?</option>
-							<option value="2">기분이 우울할 때 듣는 노래 제목은?</option>
-							<option value="3">좋아하는 소설의 이름은?</option>
-							<option value="4">감명깊게 본 영화 이름은</option>
-							<option value="5">가장 존경하는 사람의 이름은?</option>
-							<option value="6">나에게 가장 큰 의미가 있는 장소는?</option>
-							<option value="7">내가 좋아하는 과자 이름은?</option>
-							<option value="8">나의 직업은?</option>
-							<option value="9">나의 버켓리스트 목록 1번은</option>
-							<option value="10">당신이 다녔던 초등학교는 어딘가요?</option>
-							
-					</select>
-					<input type="text" id="inputKeyword" name="inputKeyword" placeholder="키워드를 입력하세요."/>
+
+			<div id="infoWrap">
+				<div class="title">이름</div>
+				<input type="text" id="inp_name" placeholder="이름를 입력해 주세요."/>
+
+				<div class="title">생일/성별</div>
+				<select id="sel_year">
+					<option>연도</option>
+					<c:forEach var="i" begin="1900" end="2021" step="1" >
+						<option value="${i}">${i}</option>
+					</c:forEach>
+				</select>
+				<select id="sel_month">
+					<option>월</option>
+					<c:forEach var="i" begin="1" end="12" step="1" >
+						<option value="${i}">${i}</option>
+					</c:forEach>
+				</select>
+				<select id="sel_day">
+					<option>일</option>
+					<c:forEach var="i" begin="1" end="31" step="1" >
+						<option value="${i}">${i}</option>
+					</c:forEach>
+				</select><br/>
+
+				<div id="rad_sex">
+					<label><input type="radio" value="0" checked/>선택없음</label>
+					<label><input type="radio" value="1"/>남자</label>
+					<label><input type="radio" value="2"/>여자</label>
 				</div>
-				<input type="hidden" id="marketing" name="marketing" value="${data.marketing}"/>
-			</form>
-			
+
+				<div class="title">아이디</div>
+				<input type="text" id="inp_id" placeholder="아이디 입력를 입력해 주세요."/>
+				<input type="button" id="IDDbCkBtn" value="중복확인"/>
+
+				<div class="title">비밀번호</div>
+				<input type="password" id="inp_pw" placeholder="8~32자리 특수문자포함 입력해주세요 " minlength="8" maxlength="32"/>
+
+				<div class="title">비밀번호 재확인</div>
+				<input type="password" id="inp_re_pw" placeholder="비밀번호를 재입력 해주세요."  minlength="8" maxlength="32"/>
+
+				<div class="title">전화번호</div>
+
+				<div>
+					<select id="sel_telcom">
+						<option value="0">통신사</option>
+						<option value="KT">KT</option>
+						<option value="SKT">SKT</option>
+						<option value="LG">LG</option>
+					</select>
+					<input type="text" maxlength="8" placeholder="전화번호 8자리(010 / '-'제외)" id="inp_phone"/>
+				</div>
+
+				<div class="title">이메일</div>
+				<div>
+					<input type="text" id="inp_email"/>
+					<span id="txtAt">@</span>
+					<input type="text" id="inp_domain"/>
+
+					<select id="sel_domain">
+						<option value="">직접입력</option>
+						<option value="naver.com">naver.com</option>
+						<option value="nate.com">nate.com</option>
+						<option value="gmail.com">gmail.com</option>
+					</select>
+					<input type="button" value="코드발송" id="sendCode"/>
+					<div id="codeWrap">
+						<input type="text" id="inp_code" placeholder="인증번호를 입력하세요"/>
+						<input type="button" id="ckCode" value="확 인"/>
+						<input type="button" id="reSend" value="재발송"/>
+					</div>
+				</div>
+
+				<div class="title">키워드</div>
+				<select id="sel_keyword">
+						<option value="0">키워드 질문을 골라주세요</option>
+						<option value="1">당신의 첫 사랑의 이름은?</option>
+						<option value="2">기분이 우울할 때 듣는 노래 제목은?</option>
+						<option value="3">좋아하는 소설의 이름은?</option>
+						<option value="4">감명깊게 본 영화 이름은</option>
+						<option value="5">가장 존경하는 사람의 이름은?</option>
+						<option value="6">나에게 가장 큰 의미가 있는 장소는?</option>
+						<option value="7">내가 좋아하는 과자 이름은?</option>
+						<option value="8">나의 직업은?</option>
+						<option value="9">나의 버켓리스트 목록 1번은</option>
+						<option value="10">당신이 다녔던 초등학교는 어딘가요?</option>
+				</select>
+				<input type="text" id="inp_keyword" placeholder="키워드를 입력하세요."/>
+			</div>
+
 			<div id="btnWrap">
 				<input id="preBtn" type="button" value="Prev"/>
 				<input id="nextBtn" type="button" value="Next"/>
 			</div>
 		</div>
-		
-		<div id="footer">
-            <p>
-               POPJOURNEY<br/>
-               GDJ-35기 LEE Eun-Soo, LEE In-Bok, CHOI Jeong-Min<br/>
-               Copyright© POPJOURNEY. All Rights Reserved.
-            </p>
-        </div>         	
+		<jsp:include page="../Frame/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

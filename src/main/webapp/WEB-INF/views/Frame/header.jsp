@@ -297,7 +297,7 @@
 		<div class="banner">
 			<div class="top">
 				<div class="logo_area">
-					<a href="#"><img alt="로고" src="static/images/logo.png" class="logo_photo"></a>
+					<a href="PJ100M"><img alt="로고" src="static/images/logo.png" class="logo_photo"></a>
 					<div class="site_name">우리들의 여행일지</div>
 				</div>
 				<div class="btns">
@@ -338,8 +338,8 @@
 					<div class="sub_login1">
 						<form action="#" id="loginForm">
 							<input type="button" id="loginBtn" value="로그인" />
-							<input type="password" id="inputPW" name="inputPW" placeholder="PW" />
-							<input type="text" id="inputID" name="inputID" placeholder="ID" />
+							<input type="password" id="loginId" name="inputPW" placeholder="PW" />
+							<input type="text" id="loginPw" name="inputID" placeholder="ID" />
 						</form>
 					</div>
 					<div class="sub_login2">
