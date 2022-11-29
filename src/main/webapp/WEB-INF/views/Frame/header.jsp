@@ -8,6 +8,7 @@
 	<link href="static/css/Common/popup.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/Common/popup.js"></script>
+	<script type="text/javascript" src="static/js/Common/common.js"></script>
 	<script type="text/javascript" src="static/js/Frame/header.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -53,52 +54,11 @@
 				}//if ~ else end 클릭된 것에 따라서 해당 프로필 or 글로 이동
 			}); //notification tbody span tr click end
 
-			$("#loginBtn").on("click", function(){  //로그인 버튼 클릭
-				if($.trim($("#inputID").val()) == "")
-				{
-					popupText = "아이디를 입력하세요.";
-					commonPopup(popupText);
-				}
-				else if($.trim($("#inputPW").val()) == "")
-				{
-					popupText = "비밀번호를 입력하세요.";
-					commonPopup(popupText);
-				}
-				else
-				{
-					var params = $("#loginForm").serialize();
-
-					$.ajax({
-						url: "logins",
-						data: params,
-						dataType: "json",
-						type: "post",
-						success:function(result)
-						{
-							if(result.msg == "failed")
-							{
-								popupText = "ID와 PW가 일치하지 않습니다.";
-								commonPopup(popupText);
-								$("#inputID").val("");
-								$("#inputPW").val("");
-							}
-							else
-							{
-								location.reload();
-							}
-						}, //success end
-						error: function(request, status, error) {
-							console.log(error);
-						} // error end
-					}); //ajax end
-				}// if ~ else end
-			}); //loginBtn click end
-
 			$("#inputPW, #inputID").on("keypress", function(){
 				$(".popup").remove();
 				$(".bg").remove();
 				if(event.keyCode == 13)
-					$("#loginBtn").click();
+					$("#btn_login").click();
 			});//inputPW, inputID
 			//keypress end 엔터시 로그인 버튼 클릭
 			*/
@@ -123,7 +83,7 @@
 		function chkStat(){
 			/*
 			//로그인 상태 확인
-			if("${sMEM_NO}" != "")
+			if("{sMEM_NO}" != "")
 			{
 				$(".logins").css("display", "none");
 				$(".btns").css("display", "inline-block");
@@ -131,9 +91,9 @@
 
 				var path = ""; //사진경로 담아줄 변수
 
-				if("${sPHOTO_PATH}" != "")
+				if("{sPHOTO_PATH}" != "")
 				{
-					path = "resources/upload/" + "${sPHOTO_PATH}";
+					path = "resources/upload/" + "{sPHOTO_PATH}";
 
 					$("#profilePhoto").attr("src", path);
 				}
@@ -145,7 +105,7 @@
 				}//if ~ else end
 				//프로필 사진이 DB에 있는경우 저장된 사진으로, 없는 경우 기본 사진으로
 
-				if("${sGRADE_NO}" == "0")
+				if("{sGRADE_NO}" == "0")
 				{
 					$("#admin").show();
 				}//등급에 따라서 내부 관리자 보이기
@@ -178,6 +138,16 @@
 		} // function chkStat end
 
 		function setHeaderEvent(){
+			$("#btn_login").on("click", function(){  //로그인 버튼 클릭
+				if(trim($("#inp_id")) == "") {
+					commonPopup("아이디를 입력하세요.");
+				} else if(trim($("#inp_pw")) == "") {
+					commonPopup("비밀번호를 입력하세요.");
+				} else {
+					commonLogin();
+				}
+			}); //btn_login click end
+
 			$("#find").on("click", function(){
 				findBtnPopup();
 			}); //find click end
@@ -210,16 +180,16 @@
 
 			// 메인검색창 넘어가는 부분
 			$(".search_icon").on("click", function() {
-				if($("#mainSearchFilter").val() == 0) {
+				if($("#sel_main_search_filter").val() == 0) {
 					$("#goSearch").attr("action", "PJ600M");
 					$("#goSearch").submit();
-				} else if($("#mainSearchFilter").val() == 1) {
+				} else if($("#sel_main_search_filter").val() == 1) {
 					$("#goSearch").attr("action", "PJ601M");
 					$("#goSearch").submit();
-				} else if($("#mainSearchFilter").val() == 2) {
+				} else if($("#sel_main_search_filter").val() == 2) {
 					$("#goSearch").attr("action", "PJ602M");
 					$("#goSearch").submit();
-				} else if($("#mainSearchFilter").val() == 3) {
+				} else if($("#sel_main_search_filter").val() == 3) {
 					$("#goSearch").attr("action", "PJ603M");
 					$("#goSearch").submit();
 				} else {
@@ -337,9 +307,9 @@
 				<div class="logins">
 					<div class="sub_login1">
 						<form action="#" id="loginForm">
-							<input type="button" id="loginBtn" value="로그인" />
-							<input type="password" id="loginId" name="inputPW" placeholder="PW" />
-							<input type="text" id="loginPw" name="inputID" placeholder="ID" />
+							<input type="button" id="btn_login" value="로그인" />
+							<input type="password" id="inp_pw" name="inputPW" placeholder="PW" />
+							<input type="text" id="inp_id" name="inputID" placeholder="ID" />
 						</form>
 					</div>
 					<div class="sub_login2">
@@ -360,8 +330,8 @@
 		</nav>
 		<form action="#" id="goSearch" method="post" >
 			<img alt="search" src="static/images/search.png" class="search_icon"/>
-			<input type="text" class="search" id="mainSearchTxt" name="mainSearchTxt" value="${param.mainSearchTxt}" placeholder="검색">
-			<select class="filter" id="mainSearchFilter" name="mainSearchFilter" >
+			<input type="text" class="search" id="inp_main_search_txt" name="inp_main_search_txt" value="${param.inp_main_search_txt}" placeholder="검색">
+			<select class="filter" id="sel_main_search_filter" name="sel_main_search_filter" >
 				<option value="0" selected="selected">통합검색</option>
 				<option value="1">여행일지</option>
 				<option value="2">해시태그</option>

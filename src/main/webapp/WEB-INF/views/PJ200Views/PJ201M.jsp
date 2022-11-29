@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>약관</title>
-	<%--<link href="static/css/common.css" rel="stylesheet" type="text/css">--%>
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ201C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ201S.js"></script>
@@ -339,12 +339,12 @@ $(document).ready(function(){
 		}); //ajax end 
 	});//reSend click end
 	
-	$("#preBtn").on("click", function(){ //이전버튼 클릭
+	$("#btn_pre").on("click", function(){ //이전버튼 클릭
 		location.href = "terms";
 	}); //preBtn click end
 */
 
-	$("#nextBtn").on("click", function(){
+	$("#btn_next").on("click", function(){
 		let params = {
 			           "name": $("#inp_name").val()
 					 , "birth": $("#sel_year").val()
@@ -361,7 +361,21 @@ $(document).ready(function(){
 				     , "marketing": ${memVo.marketing}
 		}
 
-		console.log(params);
+		$("#name").val(params.name);
+		$("#birth").val(params.birth);
+		$("#sex").val(params.sex);
+		$("#id").val(params.id);
+		$("#pw").val(params.pw);
+		$("#telcom").val(params.telcom);
+		$("#phone").val(params.phone);
+		$("#email").val(params.email);
+		$("#domain").val(params.domain);
+		$("#email_confirm").val(params.email_confirm);
+		$("#keyword_no").val(params.keyword_no);
+		$("#keyword").val(params.keyword);
+		$("#marketing").val(params.marketing);
+
+		$("#form_test").submit();
 	});
 });//document ready end
 
@@ -372,7 +386,7 @@ $(document).ready(function(){
 <form action="#" id="Form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 </form>
-<form action="#" id="testForm">
+<form action="PJ202M" id="form_test" method="post">
 	<input type="hidden" id="name" name="name"/>
 	<input type="hidden" id="birth" name="birth"/>
 	<input type="hidden" id="sex" name="sex"/>
@@ -498,8 +512,8 @@ $(document).ready(function(){
 			</div>
 
 			<div id="btnWrap">
-				<input id="preBtn" type="button" value="Prev"/>
-				<input id="nextBtn" type="button" value="Next"/>
+				<input id="btn_pre" type="button" value="Prev"/>
+				<input id="btn_next" type="button" value="Next"/>
 			</div>
 		</div>
 		<jsp:include page="../Frame/footer.jsp"></jsp:include>

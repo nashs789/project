@@ -1,3 +1,26 @@
+function commonLogin(){
+
+    $.ajax({
+        url: "login",
+        data: {
+                "id": $("#inp_id").val()
+              , "pw": $("#inp_pw").val()
+              },
+        dataType: "json",
+        type: "post",
+        success:function(result) {
+            if(result.msg == "failed") {
+                commonPopup("ID와 PW가 일치하지 않습니다.");
+            } else {
+                location.reload();
+            }
+        }, //success end
+        error: function(request, status, error) {
+            console.log(error);
+        } // error end
+    }); //ajax end
+} // function commonLogin end
+
 function makeNotification(notification)
 {
     var html = ""; //알림 표현용

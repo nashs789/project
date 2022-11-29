@@ -102,14 +102,14 @@
 .sub_login2 span:hover {
     color: #fcba03;
 }
-#loginId, #loginPw {
+#inp_id, #inp_pw {
     float: right;
     width: 100px;
     height: 25px;
     margin-top: 20px;
     margin-left: 5px;
 }
-#loginBtn {
+#btn_login {
     float: right;
     margin: 20px 20px 0px 5px;
     width: 50px;
@@ -122,7 +122,7 @@
     line-height: 26px;
     cursor: pointer;
 }
-#loginBtn:hover{
+#btn_login:hover{
     color: #FFFFFF;
     background-color: #f37321;
 }

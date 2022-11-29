@@ -107,3 +107,61 @@ body {
     font-size: 18pt;
     font-weight: bold;
 }
+#btn_pre{
+    margin: 50px 70px 50px 0px;
+}
+#btn_pre, #btn_next{
+    border-radius: 20px;
+}
+#btn_pre:hover{
+    background-color: #F1404B;
+}
+#btnWrap{
+    text-align: center;
+}
+.milestone{
+    width: 650px;
+    margin: 50px auto;
+    position: relative;
+    padding-left: 25px;
+}
+.milestone_title{
+    width: 120px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid #2e3459;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 0px;
+    background-color: #EAEAEA;
+}
+#milestone_on{
+    color: white;
+    background-color: #ff3333;
+}
+.arrow_img{
+    display: inline-block;
+    vertical-align: top;
+}
+.arrow_img img{
+    width:30px;
+    height: 50px;
+}
+input[type='button']{
+    padding: 4px 0px;
+    background-color: white;
+    border: 2px solid #2e3459;
+    height: 35px;
+    cursor: pointer;
+    width: 80px;
+    margin-left: 10px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px 0;
+    font-weight: bold;
+}
+input[type='button']:hover{
+    color: white;
+    background-color: #2e3459;
+}

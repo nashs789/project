@@ -25,6 +25,9 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'	// JSP 엔진인듯?
 	implementation 'javax.servlet:jstl'								// JSP
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1' // maria db
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0' // mybatis
+	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 }
 
 tasks.named('test') {

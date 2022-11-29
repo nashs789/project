@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>메인화면</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-	<link href="static/css/common.css" rel="stylesheet" type="text/css">
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ200C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ200S.js"></script>
@@ -15,54 +15,54 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
-	if("${sMEM_NO}" != ""){
+	if("{sMEM_NO}" != ""){
 		location.href="PJ100M";
 	}
 	*/
 	
-	$("#ckAll").change(function(){ //전체선택 체크박스 클릭
-		if($("#ckAll").prop("checked") == true)
+	$("#chk_all").change(function(){ //전체선택 체크박스 클릭
+		if($("#chk_all").prop("checked") == true)
 		{
-			$("#ck1, #ck2, #ck3").prop("checked", true);
+			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", true);
 		}
 		else
 		{
-			$("#ck1, #ck2, #ck3").prop("checked", false);
+			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", false);
 		}
 	});
 	
-	$("#nextBtn").on("click", function(){ //다음으로 가기버튼 클릭
-		if($("#ck1").prop("checked") == false)
+	$("#btn_next").on("click", function(){ //다음으로 가기버튼 클릭
+		if($("#chk_q1").prop("checked") == false)
 		{
 			popupText = "약관에 동의해주세요.";
 			commonPopup(popupText);
-			$("#ck1").focus();
+			$("#chk_q1").focus();
 		}
-		else if($("#ck2").prop("checked") == false)
+		else if($("#chk_q2").prop("checked") == false)
 		{
 			popupText = "약관에 동의해주세요.";
 			commonPopup(popupText);
-			$("#ck2").focus();
+			$("#chk_q2").focus();
 		}
 		else
 		{
-			if($("#ck3").prop("checked") == true)
+			if($("#chk_q3").prop("checked") == true)
 			{
 				$("#marketing").val(1);
 			}
-			$("#marketingForm").submit();
+			$("#form_marketing").submit();
 		}
 	}); //nextBtn click end
 
 	// 메인화면 페이지
-	$("#preBtn").on("click", function(){
+	$("#btn_pre").on("click", function(){
 		location.href = "PJ100M";
 	});
 
 }); //document ready end
 </script>
 </head>
-<form action="PJ201M" id="marketingForm" method="post">
+<form action="PJ201M" id="form_marketing" method="post">
 	<input type="hidden" name="marketing" id="marketing" value="0">
 </form>
 <body>
@@ -155,7 +155,7 @@ $(document).ready(function(){
 					<p>1. 기업마당 사이트와 이용자 간에 발생한 서비스 이용에 관한 분쟁에 대하여는 대한민국 법을 적용하며, 본 분쟁으로 인한 소는 대한민국의 법원에 제기합니다.</p>
 		   		</div> <!-- long end -->
 		   		
-		   		<div class="text">이용약관에 동의합니다.(필수)  <input type="checkbox" id="ck1"/></div>
+		   		<div class="text">이용약관에 동의합니다.(필수)  <input type="checkbox" id="chk_q1"/></div>
 		   		
 		   		<div class="task"><span class="material-icons">task_alt 개인정보 수집 및 이용 동의</span></div>
 		   		
@@ -192,7 +192,7 @@ $(document).ready(function(){
 					정보주체는 개인정보 수집에 동의를 거부할 권리가 있습니다. 다만, 필수 항목에 대한 동의를 거부할 시 저희가 제공하는 서비스를 이용할 수 없습니다.</p>
 		   		</div> <!-- long end -->
 		   		
-		   		<div class="text">이용약관에 동의합니다.(필수)  <input type="checkbox" id="ck2"/></div>
+		   		<div class="text">이용약관에 동의합니다.(필수)  <input type="checkbox" id="chk_q2"/></div>
 		   		
 		   		<div class="task"><span class="material-icons">task_alt 마케팅/홍보의 수집 및 이용 동의</span></div>
 				
@@ -210,14 +210,14 @@ $(document).ready(function(){
 					<p>개인정보의 마케팅/홍보의 수집 및 이용 동의를 거부하시더라도 회원 가입 시 제한은 없습니다. 다만, 마케팅 활용 서비스 안내 및 참여에 제한이 있을 수 있습니다.</p>
 				</div>
 				
-				<div class="text">마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)  <input type="checkbox" id="ck3"/></div>
+				<div class="text">마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)  <input type="checkbox" id="chk_q3"/></div>
 		   </div> <!-- terms end --> 	
 		   
-		   <div class="text1"><input type="checkbox" id="ckAll"/> 전체 동의 </div>
+		   <div class="text1"><input type="checkbox" id="chk_all"/> 전체 동의 </div>
 		   
    			<div id="btnWrap">
-				<input id="preBtn" type="button" value="Prev"/>
-				<input id="nextBtn" type="button" value="Next"/>
+				<input id="btn_pre" type="button" value="Prev"/>
+				<input id="btn_next" type="button" value="Next"/>
 			</div><!-- btnWrap end -->
 			
 	   </div> <!-- container end -->

@@ -31,7 +31,8 @@ public class PJ200ViewController {
     // join
     @PostMapping(value = "/PJ201M")
     // MemVo memVo
-    public ModelAndView PJ201M(MemVo memVo, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    // HttpServletRequest req, HttpServletResponse res
+    public ModelAndView PJ201M(MemVo memVo) throws IOException, ServletException {
         // ObjectMapper mapper = new ObjectMapper();
         // String jsonStringData = mapper.writeValueAsString(memVo);
 
@@ -53,8 +54,9 @@ public class PJ200ViewController {
 
     // 프로필 작성- 이인복
     // PJ202M
-    @GetMapping(value = "/PJ202M")
-    public ModelAndView writeProfile(@RequestParam HashMap<String, String> params, ModelAndView mav) {
+    @PostMapping(value = "/PJ202M")
+    public ModelAndView writeProfile(MemVo memVo) {
+        /*
         String birth = params.get("inputYear") + "-" + params.get("inputMonth") + "-" + params.get("inputDay");
         String phone = "010" + params.get("inputPhone");
         String email = params.get("inputEmail") + "@" + params.get("inputDomain");
@@ -67,6 +69,11 @@ public class PJ200ViewController {
 
         mav.addObject("data", data);
 
+        mav.setViewName("PJ200Views/PJ202M");
+         */
+        log.info("memVo = {}", memVo);
+
+        ModelAndView mav = new ModelAndView();
         mav.setViewName("PJ200Views/PJ202M");
 
         return mav;

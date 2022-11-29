@@ -1,19 +1,27 @@
 package com.re.popJourney.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.model.MemVo;
+import com.re.popJourney.service.PJCommonService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 @Slf4j
 public class CommonController {
+
+    private final PJCommonService commonService;
+
+    @Autowired
+    public CommonController(PJCommonService commonService) {
+        this.commonService = commonService;
+    }
 
     // 공통 - 로그아읏
     @PostMapping(value = "/logouts", produces = "text/json;charset=UTF-8")
@@ -99,17 +107,20 @@ public class CommonController {
 
     // 공통 - 로그인
     // params로 넘어오는 키: inputID, inputPW
-    @PostMapping(value = "/logins", produces = "text/json;charset=UTF-8")
-    @ResponseBody
-    public String logins(HttpSession session, @RequestParam HashMap<String, String> params) throws Throwable {
+    @PostMapping(value = "/login", produces = "text/json;charset=UTF-8")
+    public String login(MemVo memVo, HttpSession session) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
         // loginInfo로 넘어오는 키: MEM_NO, GRADE_NO, NIC, LAST_DATE, TODAY
         SimpleDateFormat simpleD = new SimpleDateFormat("yyyy-MM-dd");
+
+        log.info("########### controller ###########");
+        MemVo memVo1 = commonService.login(memVo);
 /*
         //암호화
         params.put("inputPW", Utils.encryptAES128(params.get("inputPW")));
-
+*/
+/*
         HashMap<String, String> loginInfo = ipjs.login(params);
         try {
             if (loginInfo != null) {

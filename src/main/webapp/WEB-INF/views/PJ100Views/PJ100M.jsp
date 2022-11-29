@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="static/css/common.css" rel="stylesheet" type="text/css">
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ100Css/PJ100C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ100Js/PJ100S.js"></script>

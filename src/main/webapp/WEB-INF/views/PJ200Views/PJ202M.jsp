@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>계정정보작성</title>
-	<%--<link href="static/css/common.css" rel="stylesheet" type="text/css">--%>
-	<link href="static/css/PJ202Css/PJ202C.css" rel="stylesheet" type="text/css">
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
+	<link href="static/css/PJ200Css/PJ202C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/callServer.js"></script>
 	<script type="text/javascript" src="static/js/callPopup.js"></script>
@@ -15,11 +15,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
-	if("${sMEM_NO}" != "" || "${data.marketing}" == "")
+	if("{sMEM_NO}" != "" || "{data.marketing}" == "")
 	{	
 		location.href="main";
 	}
-	*/
+
 
 	var popupText = ""; //팝업 문구변경
 	var nicCheck = "";  //닉네임 중복 확인용
@@ -167,217 +167,78 @@ $(document).ready(function(){
 		fileForm.submit();
 	}); //nextBtn click end
 	
-	$("#preBtn").on("click", function(){ //이전버튼 클릭
+	$("#btn_pre").on("click", function(){ //이전버튼 클릭
 		history.back();
 	}); //preBtn click end
-	
-	$("#inputPW, #inputID").on("keypress", function(){
-		$(".popup").remove();
-		$(".bg").remove();
-		if(event.keyCode == 13)
-			$("#loginBtn").click();
-	});
-	
-	$("#loginBtn").on("click", function(){  //로그인 버튼 클릭
-		if($.trim($("#inputID").val()) == "")
-		{
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-		}
-		else if($.trim($("#inputPW").val()) == "")
-		{
-			popupText = "비밀번호를 입력하세요.";
-			commonPopup(popupText);
-		}
-		else
-		{
-			var params = $("#loginForm").serialize();
-			
-			$.ajax({
-				url: "logins",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result)
-				{
-					if(result.msg == "success")
-						location.href="main";
-					else
-					{
-						popupText = "ID와 PW가 일치하지 않습니다.";
-						commonPopup(popupText);
-						$("#inputID").val("");
-						$("#inputPW").val("");
-					} 
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end 
-		}// if ~ else end
-	}); //loginBtn click end
-	
-	$("#join").on("click", function(){  //회원가입 버튼 클릭
-		location.href="terms";
-	}); // join click end
-	
-	$("#find").on("click", function(){
-		findBtnPopup();
-	}); //find click end
-	
-	$("#journalBoard").on("click", function(){
-    	location.href = "journalBoard";
-    });//postBoard click end
-    
-    $("#community").on("click", function(){
-    	location.href = "community";
-    });//community click end
-  
-   	$("#travelWriter").on("click", function() {
-  		location.href = "travelWriterRank";
-  	}); //travelWriter click end
-   	
-	$("#clientCenter").on("click", function() {
-  		location.href = "clientCenterQuestion";
-  	}); //clientCenter click end
-	
-	// 메인검색창 넘어가는 부분
-	$(".search_icon").on("click", function() {
-		if($("#mainSearchFilter").val() == 0) {
-			$("#goSearch").attr("action", "search");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 1) {
-			$("#goSearch").attr("action", "searchTravelDiary");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 2) {
-			$("#goSearch").attr("action", "searchHashtag");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 3) {
-			$("#goSearch").attr("action", "searchCommunity");
-			$("#goSearch").submit();
-		} else {
-			$("#goSearch").attr("action", "searchNic");
-			$("#goSearch").submit();
-		}
-	});
+	 */
 });//document ready end
 </script>
 </head>
-<body>
 <form id="fileForm" action="fileUploadAjax" method="post" enctype="multipart/form-data">
 	<input type="file" name="att" id="att" /> <!-- attach : 첨부 -->
 </form>
 <form action="#" id="Form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 </form>
-<div id="wrap">
-         <!-- header부분 고정 -->
-         <div id="header">
-            <div class="banner">
-               <div class="top">
-                  <div class="logo_area">
-                     <a href="main"><img alt="로고" src="/static/images/logo.png" class="logo_photo"></a>
-                     <div class="site_name">우리들의 여행일지</div>
-                  </div>
-                  <div class="logins">
-                     <div class="sub_login1">
-                        <form action="#" id="loginForm">
-	                        <input type="button" id="loginBtn" value="로그인" />
-	                        <input type="password" id="inputPW" name="inputPW" placeholder="PW" />
-	                        <input type="text" id="inputID" name="inputID" placeholder="ID" />
-                        </form>
-                     </div>
-                     <div class="sub_login2">
-                        <span id="join">회원가입</span>
-                        <span id="find">ID/PW 찾기</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <nav class="menu">
-               <ul>
-                  <li id="journalBoard">여행게시판</li>
-                  <li id="community">자유게시판</li>
-                  <li id="travelWriter">여행작가</li>
-				  <li id="clientCenter">고객센터</li>
-               </ul>
-            </nav>
-            <form action="#" id="goSearch" method="post" >
-				<img alt="search" src="/static/images/search.png" class="search_icon"/>
-				<input type="text" class="search" id="mainSearchTxt" name="mainSearchTxt" value="${param.mainSearchTxt}" placeholder="검색">
-				<select class="filter" id="mainSearchFilter" name="mainSearchFilter" >
-					<option value="0" selected="selected">통합검색</option>
-					<option value="1">여행일지</option>
-					<option value="2">해시태그</option>
-					<option value="3">자유게시판</option>
-					<option value="4">닉네임</option>
-				</select>
-			</form>
-         </div>
-		
-		<div id="container">
-			<div class="profile">[프로필 설정]</div>
-		
-			<div class="milestone">
-				<div class="milestone_title">
-					약관 동의
-				</div>
-				<div class="arrow_img"><img src="/static/images/milestone.png"></div>
-				<div class="milestone_title">
-					정보입력
-				</div>	
-				<div class="arrow_img"><img src="/static/images/milestone.png"></div>
-				<div class="milestone_title" id="milestone_on">
-					프로필 설정
-				</div>
-				<div class="arrow_img"><img src="/static/images/milestone.png"></div>
-				<div class="milestone_title">
-					가입 완료
-				</div>				
-			</div> <!-- milestone end -->
-			
-			<div id="infoWrap">
-				<form action="#" id="infoForm">
-					<input type="hidden" name="inputName" value="${data.inputName}"/>
-					<input type="hidden" name="birth" value="${data.birth}"/>
-					<input type="hidden" name="phone" value="${data.phone}"/>
-					<input type="hidden" name="email" value="${data.email}"/>
-					<input type="hidden" name="inputID" value="${data.inputID}"/>
-					<input type="hidden" name="inputPW" value="${data.inputPW}"/>
-					<input type="hidden" name="inputCode" value="${data.inputCode}"/>
-					<input type="hidden" name="inputKeyword" value="${data.inputKeyword}"/>
-					<input type="hidden" name="sex" value="${data.sex}"/>
-					<input type="hidden" name="selectTelcom" value="${data.selectTelcom}"/>
-					<input type="hidden" name="selectKeyword" value="${data.selectKeyword}"/>
-					<input type="hidden" name="marketing" value="${data.marketing}"/>	
-				
+<form action="#" id="a">
+	<input type="hidden" id="name" name="name"/>
+	<input type="hidden" id="birth" name="birth"/>
+	<input type="hidden" id="sex" name="sex"/>
+	<input type="hidden" id="id" name="id"/>
+	<input type="hidden" id="pw" name="pw"/>
+	<input type="hidden" id="telcom" name="telcom"/>
+	<input type="hidden" id="phone" name="phone"/>
+	<input type="hidden" id="email" name="email"/>
+	<input type="hidden" id="email_confirm" name="email_confirm"/>
+	<input type="hidden" id="keyword" name="keyword"/>
+	<input type="hidden" id="marketing" name="marketing" value=""/> <%-- ${memVo.marketing} --%>
+	<input type="hidden" id="photo_path" name="photo_path" value=""/>
+	<input type="hidden" id="nic" name="nic" value=""/>
+</form>
+<body>
+	<div id="wrap">
+		<jsp:include page="../Frame/header.jsp"></jsp:include>
+			<div id="container">
+				<div class="profile">[프로필 설정]</div>
+
+				<div class="milestone">
+					<div class="milestone_title">
+						약관 동의
+					</div>
+					<div class="arrow_img"><img src="/static/images/milestone.png"></div>
+					<div class="milestone_title">
+						정보입력
+					</div>
+					<div class="arrow_img"><img src="/static/images/milestone.png"></div>
+					<div class="milestone_title" id="milestone_on">
+						프로필 설정
+					</div>
+					<div class="arrow_img"><img src="/static/images/milestone.png"></div>
+					<div class="milestone_title">
+						가입 완료
+					</div>
+				</div> <!-- milestone end -->
+
+				<div id="infoWrap">
 					<div id="photoArea">
 						<img id="photo" src="/static/images/profile.png">
-						<input type="hidden" id="photoPath" name="photoPath" value=""/>
 					</div>
-					<input type="button" value="사진찾기" id="findPhotoBtn"/><span id="fileName"></span>
-					
+					<input type="button" value="사진찾기" id="bnt_find_photo"/><span id="fileName"></span>
+
 					<div class="title">닉네임</div>
-					<input type="text" placeholder="닉네임을 입력하세요." id="inputNic" name="inputNic"/>
-					<input type="button" value="중복확인" id="nicDbCkBtn"/>
-					
+					<input type="text" placeholder="닉네임을 입력하세요." id="inp_nic"/>
+					<input type="button" value="중복확인" id="btn_nic_db_chk"/>
+
 					<div class="title">소개글</div>
-					<input type="text" placeholder="안녕하세요~ 잘 부탁드립니다." id="inputIntro" name="inputIntro"/>
-				</form>
-			</div> <!-- infoWrap end -->
-			
-			<div id="btnWrap">
-				<input id="preBtn" type="button" value="Prev"/>
-				<input id="nextBtn" type="button" value="Next"/>
-			</div> <!-- btnWrap -->
-		</div><!-- container end -->
-		<div id="footer">
-            <p>
-               POPJOURNEY<br/>
-               GDJ-35기 LEE Eun-Soo, LEE In-Bok, CHOI Jeong-Min<br/>
-               Copyright© POPJOURNEY. All Rights Reserved.
-            </p>
-        </div>  
-   </div> <!-- wrap end -->      
+					<textarea type="text" placeholder="안녕하세요~ 잘 부탁드립니다." id="inp_intro"></textarea>
+				</div> <!-- infoWrap end -->
+
+				<div id="btnWrap">
+					<input id="btn_pre" type="button" value="Prev"/>
+					<input id="btn_next" type="button" value="Next"/>
+				</div> <!-- btnWrap -->
+			</div><!-- container end -->
+		<jsp:include page="../Frame/footer.jsp"></jsp:include>
+	</div> <!-- wrap end -->
 </body>
 </html>
