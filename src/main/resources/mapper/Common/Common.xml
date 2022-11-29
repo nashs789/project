@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.re.popJourney.dao.IPJCommonDao">
+	<select id="login" parameterType="memVo" resultType="memVo">
+		SELECT M.INTRO											/* 소개글 */
+			 , M.MEM_NO											/* 회원번호 */
+			 , G.GRADE_NO										/* 등급 */
+			 , M.PHOTO_PATH										/* 사진경로 */
+			 , M.NIC											/* 닉네임 */
+			 , TO_CHAR(M.LAST_DATE, 'YYYY-MM-DD')AS LAST_DATE	/* 마지막접속일  */
+			 , TO_CHAR(SYSDATE(), 'YYYY-MM-DD') AS TODAY		/* 당일날짜 */
+		FROM MEM M	/* 유저 테이블 */
+		LEFT OUTER JOIN GRADE G /* 등급관리 테이블 */
+		  ON M.MEM_NO = G.MEM_NO
+		 AND M.LEAVE_DATE IS NULL
+		WHERE M.ID = #{id}
+		  AND M.PW = #{pw}
+	</select>
+</mapper>
