@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.re.popJourney.dao.IPJCommonDao">
-	<select id="login" parameterType="memVo" resultType="memVo">
+	<select id="login" parameterType="com.re.popJourney.model.MemVo" resultType="com.re.popJourney.model.MemVo">
 		SELECT M.INTRO											/* 소개글 */
 			 , M.MEM_NO											/* 회원번호 */
 			 , G.GRADE_NO										/* 등급 */

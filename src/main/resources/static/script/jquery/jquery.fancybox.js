@@ -1201,7 +1201,7 @@
 				iframe,
 				body;
 
-			// Reset dimensions so we could re-check actual size
+			// Reset dimensions so we could com.re-check actual size
 			wrap.add(skin).add(inner).width('auto').height('auto').removeClass('fancybox-tmp');
 
 			wPadding = getScalar(skin.outerWidth(true)  - skin.width());

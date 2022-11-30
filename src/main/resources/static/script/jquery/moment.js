@@ -3093,7 +3093,7 @@
         // converts floats to ints.
         // inp may be undefined, so careful calling replace on it.
         var res = inp && parseFloat(inp.replace(',', '.'));
-        // apply sign while we're at it
+        // apply sign while we'com.re at it
         return (isNaN(res) ? 0 : res) * sign;
     }
 
@@ -3188,7 +3188,7 @@
 
     function calendar$1 (time, formats) {
         // We want to compare the start of today, vs this.
-        // Getting start-of-today depends on whether we're local/utc/offset or not.
+        // Getting start-of-today depends on whether we'com.re local/utc/offset or not.
         var now = time || createLocal(),
             sod = cloneWithOffset(now, this).startOf('day'),
             format = hooks.calendarFormat(this, sod) || 'sameElse';

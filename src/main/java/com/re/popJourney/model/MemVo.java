@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 @Getter
 @Setter
-@Alias("memVo")
+//@Alias("memVo")
 public class MemVo {
     private String mem_no;                  /* 회원번호 */
     private String id;                      /* 아이디 */

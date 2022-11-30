@@ -116,7 +116,7 @@ $.widget = function( name, base, prototype ) {
 	basePrototype = new base();
 
 	// We need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
+	// otherwise we'll modify the options hash on the prototype that we'com.re
 	// inheriting from
 	basePrototype.options = $.widget.extend( {}, basePrototype.options );
 	$.each( prototype, function( prop, value ) {
@@ -165,7 +165,7 @@ $.widget = function( name, base, prototype ) {
 
 	// If this widget is being redefined then we need to find all widgets that
 	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
+	// the new version of this widget. We'com.re essentially trying to replace one
 	// level in the prototype chain.
 	if ( existingConstructor ) {
 		$.each( existingConstructor._childConstructors, function( i, child ) {
@@ -3826,7 +3826,7 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 	animation.clip = element.cssClip();
 	animation.clip[ map[ direction ][ 1 ] ] = animation.clip[ map[ direction ][ 0 ] ];
 
-	// Reverse the animation if we're showing
+	// Reverse the animation if we'com.re showing
 	if ( mode === "show" ) {
 		element.cssClip( animation.clip );
 		element.css( ref, animation[ ref ] );
@@ -4038,7 +4038,7 @@ var formResetMixin = $.ui.formResetMixin = {
 // need to detect <1.8, this is a simple check that should suffice. Checking
 // for "1.7." would be a bit safer, but the version string is 1.7, not 1.7.0
 // and we'll never reach 1.70.0 (if we do, we certainly won't be supporting
-// 1.7 anymore). See #11197 for why we're not using feature detection.
+// 1.7 anymore). See #11197 for why we'com.re not using feature detection.
 if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 
 	// Setters for .innerWidth(), .innerHeight(), .outerWidth(), .outerHeight()
@@ -4789,9 +4789,9 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			"aria-expanded": "false"
 		} );
 
-		// if we're switching panels, remove the old header from the tab order
-		// if we're opening from collapsed state, remove the previous header from the tab order
-		// if we're collapsing, then keep the collapsing header in the tab order
+		// if we'com.re switching panels, remove the old header from the tab order
+		// if we'com.re opening from collapsed state, remove the previous header from the tab order
+		// if we'com.re collapsing, then keep the collapsing header in the tab order
 		if ( toShow.length && toHide.length ) {
 			toHide.prev().attr( {
 				"tabIndex": -1,
@@ -5640,7 +5640,7 @@ $.widget( "ui.autocomplete", {
 		// Textareas are always multi-line
 		// Inputs are always single-line, even if inside a contentEditable element
 		// IE also treats inputs as contentEditable
-		// All other element types are determined by whether or not they're contentEditable
+		// All other element types are determined by whether or not they'com.re contentEditable
 		this.isMultiLine = isTextarea || !isInput && this._isContentEditable( this.element );
 
 		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
@@ -5880,7 +5880,7 @@ $.widget( "ui.autocomplete", {
 		this._addClass( this.liveRegion, null, "ui-helper-hidden-accessible" );
 
 		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
+		// value when navigating through history, so we com.re-enable autocomplete
 		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
@@ -9618,7 +9618,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			return false;
 		}
 
-		//Quit if we're not on a valid handle
+		//Quit if we'com.re not on a valid handle
 		this.handle = this._getHandle( event );
 		if ( !this.handle ) {
 			return false;
@@ -12772,7 +12772,7 @@ $.widget( "ui.dialog", {
 		}
 
 		// We use a delay in case the overlay is created from an
-		// event that we're going to be cancelling (#2804)
+		// event that we'com.re going to be cancelling (#2804)
 		var isOpening = true;
 		this._delay( function() {
 			isOpening = false;
@@ -15283,7 +15283,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		this._setHandleClassName();
 
-		//We're ready to go
+		//We'com.re ready to go
 		this.ready = true;
 
 	},
@@ -16014,7 +16014,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 			item = this.items[ i ];
 
-			//We ignore calculating positions of all connected containers when we're not over them
+			//We ignore calculating positions of all connected containers when we'com.re not over them
 			if ( item.instance !== this.currentContainer && this.currentContainer &&
 					item.item[ 0 ] !== this.currentItem[ 0 ] ) {
 				continue;
@@ -16813,7 +16813,7 @@ $.widget( "ui.spinner", {
 		this._refresh();
 
 		// Turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
+		// value when navigating through history, so we com.re-enable autocomplete
 		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
@@ -17085,7 +17085,7 @@ $.widget( "ui.spinner", {
 		var base, aboveMin,
 			options = this.options;
 
-		// Make sure we're at a valid step
+		// Make sure we'com.re at a valid step
 		// - find out where we are relative to the base (min or 0)
 		base = options.min !== null ? options.min : 0;
 		aboveMin = value - base;
@@ -17959,9 +17959,9 @@ $.widget( "ui.tabs", {
 			"aria-expanded": "false"
 		} );
 
-		// If we're switching tabs, remove the old tab from the tab order.
-		// If we're opening from collapsed state, remove the previous tab from the tab order.
-		// If we're collapsing, then keep the collapsing tab in the tab order.
+		// If we'com.re switching tabs, remove the old tab from the tab order.
+		// If we'com.re opening from collapsed state, remove the previous tab from the tab order.
+		// If we'com.re collapsing, then keep the collapsing tab in the tab order.
 		if ( toShow.length && toHide.length ) {
 			eventData.oldTab.attr( "tabIndex", -1 );
 		} else if ( toShow.length ) {
@@ -18230,7 +18230,7 @@ $.widget( "ui.tooltip", {
 			// .text() can't accept undefined, so coerce to a string
 			var title = $( this ).attr( "title" ) || "";
 
-			// Escape title, since we're going from an attribute to raw HTML
+			// Escape title, since we'com.re going from an attribute to raw HTML
 			return $( "<a>" ).text( title ).html();
 		},
 		hide: true,
@@ -18473,7 +18473,7 @@ $.widget( "ui.tooltip", {
 
 		// Support: Voiceover on OS X, JAWS on IE <= 9
 		// JAWS announces deletions even when aria-relevant="additions"
-		// Voiceover will sometimes re-read the entire log region's contents from the beginning
+		// Voiceover will sometimes com.re-read the entire log region's contents from the beginning
 		this.liveRegion.children().hide();
 		a11yContent = $( "<div>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
 		a11yContent.removeAttr( "name" ).find( "[name]" ).removeAttr( "name" );
@@ -18559,7 +18559,7 @@ $.widget( "ui.tooltip", {
 
 			// We set ui-tooltip-open immediately upon open (in open()), but only set the
 			// additional data once there's actually content to show (in _open()). So even if the
-			// tooltip doesn't have full data, we always remove ui-tooltip-open in case we're in
+			// tooltip doesn't have full data, we always remove ui-tooltip-open in case we'com.re in
 			// the period between open() and _open().
 			target.removeData( "ui-tooltip-open" );
 			return;
@@ -18567,7 +18567,7 @@ $.widget( "ui.tooltip", {
 
 		tooltip = tooltipData.tooltip;
 
-		// Disabling closes the tooltip, so we need to track when we're closing
+		// Disabling closes the tooltip, so we need to track when we'com.re closing
 		// to avoid an infinite loop in case the tooltip becomes disabled on close
 		if ( tooltipData.closing ) {
 			return;
