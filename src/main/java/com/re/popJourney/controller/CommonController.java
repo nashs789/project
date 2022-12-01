@@ -108,14 +108,15 @@ public class CommonController {
     // 공통 - 로그인
     // params로 넘어오는 키: inputID, inputPW
     @PostMapping(value = "/login", produces = "text/json;charset=UTF-8")
-    public String login(MemVo memVo, HttpSession session) throws Throwable {
+    public String login(MemVo inMemVo, HttpSession session) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
         // loginInfo로 넘어오는 키: MEM_NO, GRADE_NO, NIC, LAST_DATE, TODAY
         SimpleDateFormat simpleD = new SimpleDateFormat("yyyy-MM-dd");
 
-        log.info("########### controller ###########");
-        MemVo memVo1 = commonService.login(memVo);
+        MemVo outMemVo = commonService.login(inMemVo);
+
+        session.setAttribute("sMemVo", outMemVo);
 /*
         //암호화
         params.put("inputPW", Utils.encryptAES128(params.get("inputPW")));

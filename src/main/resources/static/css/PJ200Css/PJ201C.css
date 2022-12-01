@@ -35,7 +35,8 @@ input[type='text'], input[type='password']{
     margin-top: 15px;
     height: 30px;
 }
-input[type='button']{
+#btn_pre, #btn_next, #btn_id_db_chk, #btn_confirm,
+#btn_re_send, #btn_code {
     padding: 4px 0px;
     background-color: white;
     border: 2px solid #2e3459;

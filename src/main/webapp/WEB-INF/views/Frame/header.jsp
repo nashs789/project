@@ -14,8 +14,29 @@
 		$(document).ready(function(){
 			chkStat();
 			setHeaderEvent();
-
 			/*
+			$.ajax({
+					url: "notifications",
+					data: params,
+					dataType: "json",
+					type: "post",
+					success:function(result)
+					{
+						if(result.msg == "success")
+						{
+							makeNotification(result.notification);
+						}
+						else
+						{
+							popupText = "오류가 발생했습니다.";
+							commonPopup(popupText);
+						}
+					}, //success end
+					error: function(request, status, error) {
+						console.log(error);
+					} // error end
+				}); //ajax end
+
 			$("#notification tbody").on("click", "span, tr, img", function(){
 				if($(this).attr("class") == "notRead")
 				{
@@ -61,55 +82,34 @@
 					$("#btn_login").click();
 			});//inputPW, inputID
 			//keypress end 엔터시 로그인 버튼 클릭
-			*/
 
-			/* 로그아웃
-			$("#logoutBtn").on("click", function(){
-				$.ajax({
-					url: "logouts",
-					type: "post",
-					dataType: "json",
-					success: function(result) {
-						location.reload();
-					}, //success end
-					error: function(request, status, error) {
-						console.log(error);
-					} //error end
-				}); //ajax end
-			}); //logoutBtn click end
 			*/
 		}); // document ready end
 
 		function chkStat(){
-			/*
 			//로그인 상태 확인
-			if("{sMEM_NO}" != "")
-			{
+			if('${sMemVo.mem_no}' != ""){
 				$(".logins").css("display", "none");
 				$(".btns").css("display", "inline-block");
 				//로그인 상태에 따라서 우측 상단 제어
 
 				var path = ""; //사진경로 담아줄 변수
 
-				if("{sPHOTO_PATH}" != "")
-				{
-					path = "resources/upload/" + "{sPHOTO_PATH}";
+				if('${photo_path}' != "") {
+					//path = "resources/upload/" + "{sPHOTO_PATH}";
 
-					$("#profilePhoto").attr("src", path);
-				}
-				else
-				{
+					//$("#profilePhoto").attr("src", path);
+				} else {
 					path = "static/images/profile.png";
 
 					$("#profilePhoto").attr("src", path);
 				}//if ~ else end
-				//프로필 사진이 DB에 있는경우 저장된 사진으로, 없는 경우 기본 사진으로
 
-				if("{sGRADE_NO}" == "0")
-				{
+				if('${sMemVo.grade_no}' == "0") {
 					$("#admin").show();
 				}//등급에 따라서 내부 관리자 보이기
 
+				/*
 				var params = $("#memForm").serialize();
 
 				$.ajax({
@@ -133,20 +133,26 @@
 						console.log(error);
 					} // error end
 				}); //ajax end
+				 */
 			}//if end -> 로그인 상태여부에 따른 처리
-			*/
 		} // function chkStat end
 
 		function setHeaderEvent(){
-			$("#btn_login").on("click", function(){  //로그인 버튼 클릭
-				if(trim($("#inp_id")) == "") {
+			//로그인 버튼 클릭
+			$("#btn_login").on("click", function(){
+				if(trim($("#inp_header_id")) == "") {
 					commonPopup("아이디를 입력하세요.");
-				} else if(trim($("#inp_pw")) == "") {
+				} else if(trim($("#inp_header_pw")) == "") {
 					commonPopup("비밀번호를 입력하세요.");
 				} else {
 					commonLogin();
 				}
 			}); //btn_login click end
+
+			// 로그아웃 버튼 클릭
+			$("#logoutBtn").on("click", function(){
+				commonLogout();
+			}); //logoutBtn click end
 
 			$("#find").on("click", function(){
 				findBtnPopup();
@@ -154,12 +160,9 @@
 
 			$("#profilePhoto").on("click", function(){
 				$("#notification").css("display", "none");
-				if($("#profileSlidedown").css("display") == "block")
-				{
+				if($("#profileSlidedown").css("display") == "block") {
 					$("#profileSlidedown").css("display", "none");
-				}
-				else
-				{
+				} else {
 					$("#profileSlidedown").css("display", "block");
 				}
 			}); //profilePhoto click end
@@ -167,12 +170,9 @@
 
 			$("#notificationPhoto").on("click", function(){
 				$("#profileSlidedown").css("display", "none");
-				if($("#notification").css("display") == "block")
-				{
+				if($("#notification").css("display") == "block") {
 					$("#notification").css("display", "none");
-				}
-				else
-				{
+				} else {
 					$("#notification").css("display", "inline-block");
 				}
 			}); //notificationPhoto click end
@@ -308,8 +308,8 @@
 					<div class="sub_login1">
 						<form action="#" id="loginForm">
 							<input type="button" id="btn_login" value="로그인" />
-							<input type="password" id="inp_pw" name="inputPW" placeholder="PW" />
-							<input type="text" id="inp_id" name="inputID" placeholder="ID" />
+							<input type="password" id="inp_header_pw" name="inputPW" placeholder="PW" />
+							<input type="text" id="inp_header_id" name="inputID" placeholder="ID" />
 						</form>
 					</div>
 					<div class="sub_login2">

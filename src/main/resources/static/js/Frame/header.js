@@ -1,10 +1,9 @@
 function commonLogin(){
-
     $.ajax({
         url: "login",
         data: {
-                "id": $("#inp_id").val()
-              , "pw": $("#inp_pw").val()
+                "id": $("#inp_header_id").val()
+              , "pw": $("#inp_header_pw").val()
               },
         dataType: "json",
         type: "post",
@@ -20,6 +19,20 @@ function commonLogin(){
         } // error end
     }); //ajax end
 } // function commonLogin end
+
+function commonLogout(){
+    $.ajax({
+        url: "logouts",
+        type: "post",
+        dataType: "json",
+        success: function(result) {
+            location.reload();
+        }, //success end
+        error: function(request, status, error) {
+            console.log(error);
+        } //error end
+    }); //ajax end
+}
 
 function makeNotification(notification)
 {

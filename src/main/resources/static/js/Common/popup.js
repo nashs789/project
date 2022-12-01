@@ -25,8 +25,8 @@ function findBtnPopup()
     html +="<div class=\"popup\">";
     html +="	   <div class=\"popup_entity_txt\">무엇이 필요하십니까?</div>";
     html +="       <div class=\"btn_list\">";
-    html +="       		<a href=\"findID\">ID찾기</a>";
-    html +="      		<a href=\"findPW\">PW찾기</a>";
+    html +="       		<a href=\"PJ205M\">ID찾기</a>";
+    html +="      		<a href=\"PJ206M\">PW찾기</a>";
     html +="       <img src=\"static/images/cancel.png\" id=\"cancelImg\"/>";
     html +="    </div>";
     html +="</div>";

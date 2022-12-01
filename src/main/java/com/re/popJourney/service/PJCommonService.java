@@ -17,9 +17,6 @@ public class PJCommonService {
     }
 
     public MemVo login(MemVo memVo) {
-        log.info("########### service ###########");
-        MemVo memVo1 = commonDao.login(memVo);
-        log.info("memVo = {}", memVo1);
-        return memVo1;
+        return commonDao.login(memVo);
     }
 }

@@ -102,7 +102,7 @@
 .sub_login2 span:hover {
     color: #fcba03;
 }
-#inp_id, #inp_pw {
+#inp_header_id, #inp_header_pw {
     float: right;
     width: 100px;
     height: 25px;

@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
 
 @Getter
 @Setter
-//@Alias("memVo")
 public class MemVo {
     private String mem_no;                  /* 회원번호 */
     private String id;                      /* 아이디 */
@@ -31,7 +30,7 @@ public class MemVo {
     private String telcom;                  /* 통신사 */
     private String last_date;               /* 마지막접속일 */
     private String acc_cnt;                 /* 접속수 */
-    private String grade;                   /* 등급 */
+    private String grade_no;                /* 등급 */
     private String today;                   /* 당일날짜 */
 
     @Override

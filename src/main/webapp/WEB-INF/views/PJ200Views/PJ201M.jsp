@@ -29,16 +29,14 @@ $(document).ready(function(){
 	$("#IDDbCkBtn").on("click", function(){  //아이디 중복체크
 		$(".popup").remove();
 		$(".bg").remove();
-		if($.trim($("#inputID").val()) == "") //아이디가 비어있을경우
-		{
+		if($.trim($("#inputID").val()) == "") { //아이디가 비어있을경우
 			popupText = "아이디를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputID").focus();
 			return false;
 		}
 		
-		if(pattern3.test($("#inputID").val())) //아이디에 특수문자 금지
-		{
+		if(pattern3.test($("#inputID").val())) { //아이디에 특수문자 금지
 			popupText = "아이디에 특수문자는 불가능합니다.";
 			commonPopup(popupText);
 			$("#inputID").focus();
@@ -55,16 +53,12 @@ $(document).ready(function(){
 			data: params,
 			dataType:"json",
 			type: "post",
-			success:function(result)
-			{
-				if(result.msg == "success")
-				{
+			success:function(result) {
+				if(result.msg == "success") {
 					popupText = "사용 가능한 아이디입니다.";
 					commonPopup(popupText);
 					IDCheck = $("#inputID").val();
-				}
-				else
-				{
+				} else {
 					popupText = "사용 불가능한 아이디입니다.";
 					commonPopup(popupText);
 				}
@@ -79,8 +73,7 @@ $(document).ready(function(){
 		$(".popup").remove();
 		$(".bg").remove();
 		
-		if(event.keyCode < 48 || event.keyCode > 57)
-		{
+		if(event.keyCode < 48 || event.keyCode > 57) {
 			popupText = "숫자만 입력하세요.";
 			commonPopup(popupText);
 			return false;
@@ -96,16 +89,12 @@ $(document).ready(function(){
 			data: params,
 			dataType: "json",
 			type: "post",
-			success:function(result)
-			{
-				if(result.msg == "success")
-				{
+			success:function(result) {
+				if(result.msg == "success") {
 					popupText = "인증 되었습니다.";
 					commonPopup(popupText);
 					$("#approvalCode").val(1);
-				}
-				else
-				{
+				} else {
 					popupText = "인증에 실패하였습니다.";
 					commonPopup(popupText);
 				} 
@@ -122,168 +111,115 @@ $(document).ready(function(){
 	}); //selectDomain change end
 	
 	$("#nextBtn").on("click", function(){      //다음 버튼을 눌렀을때 필수 입력필드가 전부 채워졌는지 확인
-		if($.trim($("#inputName").val()) == "")
-		{
+		if($.trim($("#inputName").val()) == "") {
 			popupText = "이름을 입력하세요.";
 			commonPopup(popupText);
 			$("#inputName").focus();
-		}
-		else if(pattern3.test($("#inputName").val()))
-		{
+		} else if(pattern3.test($("#inputName").val())) {
 			popupText = "이름에 특수문자 사용 불가능합니다.";
 			commonPopup(popupText);
 			$("#inputName").val("");
 			$("#inputName").focus();
-		}
-		else if(pattern1.test($("#inputName").val()))
-		{
+		} else if(pattern1.test($("#inputName").val())) {
 			popupText = "이름에 숫자는 사용 불가능합니다.";
 			commonPopup(popupText);
 			$("#inputName").val("");
 			$("#inputName").focus();
-		}
-		else if($("#selectYear").val() == "연도")
-		{
+		} else if($("#selectYear").val() == "연도") {
 			popupText = "년도를 입력하세요.";
 			commonPopup(popupText);
-			$("#selectYear").focus(); 
-
-		}
-		else if($("#selectMonth").val() == "월")
-		{
+			$("#selectYear").focus();
+		} else if($("#selectMonth").val() == "월") {
 			popupText = "날짜를 입력하세요.";
 			commonPopup(popupText);
 			$("#selectMonth").focus(); 
-		}
-		else if($("#selectDay").val() == "일")
-		{
+		} else if($("#selectDay").val() == "일") {
 			popupText = "날짜를 입력하세요.";
 			commonPopup(popupText);
 			$("#selectDay").focus(); 
-		}
-		else if($(':radio[name="sex"]:checked').val() == 0)
-		{
+		} else if($(':radio[name="sex"]:checked').val() == 0) {
 			popupText = "성별을 선택하세요.";
 			commonPopup(popupText);
 			$(':radio[name="sex"]:checked').focus();
-		} 
-		else if($.trim($("#inputID").val()) == "")
-		{
+		} else if($.trim($("#inputID").val()) == "") {
 			popupText = "아이디를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputID").focus();
-		}
-		else if($("#inputID").val() != IDCheck)
-		{
+		} else if($("#inputID").val() != IDCheck) {
 			popupText = "아이디 중복확인을 해주세요.";
 			commonPopup(popupText);
-		}
-		else if($.trim($("#inputPW").val()) == "")
-		{
+		} else if($.trim($("#inputPW").val()) == "") {
 			popupText = "비밀번호를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputPW").focus();
-		}
-		else if($.trim($("#inputRePW").val()) == "")
-		{
+		} else if($.trim($("#inputRePW").val()) == "") {
 			popupText = "비밀번호 재확인을 입력하세요.";
 			commonPopup(popupText);
 			$("#inputRePW").focus();
-		}
-		else if($("#inputPW").val() != $("#inputRePW").val())
-		{
+		} else if($("#inputPW").val() != $("#inputRePW").val()) {
 			popupText = "비밀번호가 서로 일치하지 않습니다.";
 			commonPopup(popupText);
 			resetPW();
-		}
-		else if($("#inputPW").val().length < 8) //minlength가 안먹을경우를 대비한 8글자 미만 비밀번호 거르기
-		{
+		} else if($("#inputPW").val().length < 8) { //minlength가 안먹을경우를 대비한 8글자 미만 비밀번호 거르기
 			popupText = "비밀번호를 8~32자리로 해주세요.";
 			commonPopup(popupText);
 			resetPW();
-		}
-		else if(!pattern1.test($("#inputPW").val())||!pattern2.test($("#inputPW").val())||!pattern3.test($("#inputPW").val()))
-		{
+		} else if(!pattern1.test($("#inputPW").val())||!pattern2.test($("#inputPW").val())||!pattern3.test($("#inputPW").val())) {
 			popupText = "숫자/영문/특수문자를 조합하세요.";
 			commonPopup(popupText);
 			resetPW();
-		}
-		else if($("#selectTelcom").val() == 0)
-		{
+		} else if($("#selectTelcom").val() == 0) {
 			popupText = "통신사를 선택하세요";
 			commonPopup(popupText);
 			$("#selectTelcom").focus();
-		}
-		else if($.trim($("#inputPhone").val()) == "")
-		{
+		} else if($.trim($("#inputPhone").val()) == "") {
 			popupText = "전화번호를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputPhone").focus();
-		}
-		 else if($.trim($("#inputPhone").val().length) != 8)
-		{
+		} else if($.trim($("#inputPhone").val().length) != 8) {
 			popupText = "8자리를 입력하세요";
 			commonPopup(popupText);
 			$("#inputPhone").focus();
-		} 
-		else if($.trim($("#inputPhone").val().indexOf('-')) == 0)
-		{
+		} else if($.trim($("#inputPhone").val().indexOf('-')) == 0) {
 			popupText = "-를 제외하고 입력하세요.";
 			commonPopup(popupText);
 			$("#inputPhone").focus();
-		}
-		else if($.trim($("#inputEmail").val()) == "")
-		{
+		} else if($.trim($("#inputEmail").val()) == "") {
 			popupText = "이메일을 입력하세요.";
 			commonPopup(popupText);
 			$("#inputEmail").focus();
-		}
-		else if($.trim($("#inputDomain").val()) == "")
-		{
+		} else if($.trim($("#inputDomain").val()) == "") {
 			popupText = "이메일 주소를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputDomain").focus();
-		}
-		else if($("#approvalCode").val() != 1)
-		{
+		} else if($("#approvalCode").val() != 1) {
 			popupText = "이메일 인증을 진행해주세요.";
 			commonPopup(popupText);
 			$("#inputCode").focus();
-		}
- 		else if($("#selectKeyword").val() == 0)
-		{
+		} else if($("#selectKeyword").val() == 0) {
 			console.log($("#selectKeyword").val());
 			popupText = "키워드를 선택 하세요.";
 			commonPopup(popupText);
 			$("#selectKeyword").focus();
-		}
-		else if($.trim($("#inputKeyword").val()) == "")
-		{
+		} else if($.trim($("#inputKeyword").val()) == "") {
 			popupText = "키워드를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputKeyword").focus();
-		} 
-		else
-		{
+		} else {
 			$("#infoForm").submit();
 		}//if ~ else end
 	}); //nextBtn click end
 	
 	$("#sendCode").on("click", function(){
-		if($.trim($("#inputEmail").val()) == "")
-		{
+		if($.trim($("#inputEmail").val()) == "") {
 			popupText = "이메일을 입력하세요.";
 			commonPopup(popupText);
 			$("#inputEmail").focus();
-		}
-		else if($.trim($("#inputDomain").val()) == "")
-		{
+		} else if($.trim($("#inputDomain").val()) == "") {
 			popupText = "이메일 주소를 입력하세요.";
 			commonPopup(popupText);
 			$("#inputDomain").focus();
-		}
-		else
-		{
+		} else {
 			$("#codeWrap").show();
 			var params = $("#infoForm").serialize();
 			
@@ -292,15 +228,11 @@ $(document).ready(function(){
 				data: params,
 				dataType: "json",
 				type: "post",
-				success:function(result)
-				{
-					if(result.msg == "success")
-					{
+				success:function(result) {
+					if(result.msg == "success") {
 						popupText = "메일이 전송되었습니다.";
 						commonPopup(popupText);
-					}
-					else
-					{
+					} else {
 						popupText = "메일 전송에 실패 하였습니다.";
 						commonPopup(popupText);
 					} 
@@ -320,15 +252,11 @@ $(document).ready(function(){
 			data: params,
 			dataType: "json",
 			type: "post",
-			success:function(result)
-			{
-				if(result.msg == "success")
-				{
+			success:function(result) {
+				if(result.msg == "success") {
 					popupText = "메일이 전송되었습니다.";
 					commonPopup(popupText);
-				}
-				else
-				{
+				} else {
 					popupText = "메일 전송에 실패 하였습니다.";
 					commonPopup(popupText);
 				} 
@@ -454,7 +382,7 @@ $(document).ready(function(){
 
 				<div class="title">아이디</div>
 				<input type="text" id="inp_id" placeholder="아이디 입력를 입력해 주세요."/>
-				<input type="button" id="IDDbCkBtn" value="중복확인"/>
+				<input type="button" id="btn_id_db_chk" value="중복확인"/>
 
 				<div class="title">비밀번호</div>
 				<input type="password" id="inp_pw" placeholder="8~32자리 특수문자포함 입력해주세요 " minlength="8" maxlength="32"/>
@@ -486,11 +414,11 @@ $(document).ready(function(){
 						<option value="nate.com">nate.com</option>
 						<option value="gmail.com">gmail.com</option>
 					</select>
-					<input type="button" value="코드발송" id="sendCode"/>
+					<input type="button" value="코드발송" id="btn_code"/>
 					<div id="codeWrap">
 						<input type="text" id="inp_code" placeholder="인증번호를 입력하세요"/>
-						<input type="button" id="ckCode" value="확 인"/>
-						<input type="button" id="reSend" value="재발송"/>
+						<input type="button" id="btn_confirm" value="확 인"/>
+						<input type="button" id="btn_re_send" value="재발송"/>
 					</div>
 				</div>
 

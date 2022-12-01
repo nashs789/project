@@ -15,11 +15,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	/*
-	if("{sMEM_NO}" != "" || "{data.marketing}" == "")
-	{	
+	if("{sMEM_NO}" != "" || "{data.marketing}" == "") {
 		location.href="main";
 	}
-
 
 	var popupText = ""; //팝업 문구변경
 	var nicCheck = "";  //닉네임 중복 확인용
@@ -27,8 +25,7 @@ $(document).ready(function(){
 	$("#nicDbCkBtn").on("click", function(){  //닉네임 중복체크
 		$(".popup").remove();
 		$(".bg").remove();
-		if($.trim($("#inputNic").val()) == "")
-		{
+		if($.trim($("#inputNic").val()) == "") {
 			popupText = "닉네임을 입력하세요.";
 			commonPopup(popupText);
 			$("#inputNic").focus();
@@ -44,16 +41,12 @@ $(document).ready(function(){
 			data: params,
 			dataType:"json",
 			type: "post",
-			success:function(result)
-			{
-				if(result.msg == "success")
-				{
+			success:function(result) {
+				if(result.msg == "success") {
 					popupText = "사용 가능한 닉네임입니다.";
 					commonPopup(popupText);
 					nicCheck = $("#inputNic").val();
-				}
-				else
-				{
+				} else {
 					popupText = "사용 불가능한 닉네임입니다.";
 					commonPopup(popupText);
 				}
@@ -77,17 +70,14 @@ $(document).ready(function(){
 				success : function(res) {
 				if(res.result == "SUCCESS") {
 					// 올라간 파일명 저장
-					if(res.fileName.length > 0) 
-					{
+					if(res.fileName.length > 0)  {
 						$("#photoPath").val(res.fileName[0]);
 						
 						var path = "resources/upload/"+res.fileName[0];
 						
 						$("#photo").attr("src", path);
 					}
-				} 
-				else 
-				{
+				} else  {
 					alert("파일 업로드중 문제 발생");
 				}
 			},
@@ -103,19 +93,16 @@ $(document).ready(function(){
 		
 		fileForm.ajaxForm({
 			beforeSubmit : function() { // 파일이 있던 없던 유효성 체크.
-				if($.trim($("#inputIntro").val()) == "") //소개글 입력 없을 시
-				{
+				if($.trim($("#inputIntro").val()) == "") { //소개글 입력 없을 시
 					$("#inputIntro").val("안녕하세요~ 잘 부탁드립니다.");
 				}
-				if($.trim($("#inputNic").val()) == "")
-				{
+
+				if($.trim($("#inputNic").val()) == "") {
 					popupText = "닉네임을 입력하세요.";
 					commonPopup(popupText);
 					$("#inputNic").focus();
 					return false;
-				}
-				else if($("#inputNic").val() != nicCheck)
-				{
+				} else if($("#inputNic").val() != nicCheck) {
 					popupText = "닉네임 중복확인을 해주세요.";
 					commonPopup(popupText);
 					return false;
@@ -134,20 +121,14 @@ $(document).ready(function(){
 						data: params,
 						dataType:"json",
 						type: "post",
-						success:function(result)
-						{
-							if(result.msg = "success")
-							{
+						success:function(result) {
+							if(result.msg = "success") {
 								popupText = "회원가입 되셨습니다!!!";
 								endPopup(popupText);
-							}
-							else if(result.msg = "failed")
-							{
+							} else if(result.msg = "failed") {
 								popupText = "회원가입에 실패아였습니다.";
 								commonPopup(popupText);
-							}
-							else
-							{
+							} else {
 								popupText = "가입중 문제가 발생하였습니다.";
 								commonPopup(popupText);
 							}
@@ -180,7 +161,8 @@ $(document).ready(function(){
 <form action="#" id="Form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 </form>
-<form action="#" id="a">
+
+<form action="#" id="testForm">
 	<input type="hidden" id="name" name="name"/>
 	<input type="hidden" id="birth" name="birth"/>
 	<input type="hidden" id="sex" name="sex"/>

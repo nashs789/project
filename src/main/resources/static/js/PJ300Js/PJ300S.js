@@ -1,6 +1,6 @@
 function drawList(list) {
     var html = "";
-    console.log(list);
+
     for(var d of list){
         html += "<tr>";
 
@@ -173,43 +173,3 @@ function cmtWriteList() {
         }
     });
 }
-
-function commonPopup(txt) //공통적으로 쓰이는 팝업 , txt는 팝업에 들어갈 문자열
-{
-    var html = "";
-
-    html 	 +="<div class=\"popup2\">";
-    html	 +="	 <div class=\"popup_entity_txt2\">"+ txt +"</div>";
-    html	 +="     <div class=\"btn_list2\">";
-    html	 +="        <div id=\"yesBtn\">예</div>";
-    html	 +="     </div>";
-    html	 +="</div>";
-    html	 +="<div class=\"bg\"></div>";
-
-    $("body").append(html);
-
-    $("#yesBtn").on("click", function(){
-        $(".popup2").remove();
-        $(".bg").remove();
-    }); //yesBtn click end
-}//commonPopup end
-
-function commonPopup(txt) //공통적으로 쓰이는 팝업 , txt는 팝업에 들어갈 문자열
-{
-    var html = "";
-
-    html 	 +="<div class=\"popup1\">";
-    html	 +="	 <div class=\"popup1_entity_txt\">"+ txt +"</div>";
-    html	 +="     <div class=\"btn1_list\">";
-    html	 +="        <div id=\"yesBtn\">예</div>";
-    html	 +="     </div>";
-    html	 +="</div>";
-    html	 +="<div class=\"bg\"></div>";
-
-    $("body").append(html);
-
-    $("#yesBtn").on("click", function(){
-        $(".popup1").remove();
-        $(".bg").remove();
-    }); //yesBtn click end
-}//commonPopup end
