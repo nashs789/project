@@ -73,38 +73,6 @@ $(document).ready(function(){
 			location.href = "myPage";
 		}
 	});
-	
-	$(".login_btn").on("click", function(){  //로그인 버튼 클릭
-		if($.trim($("#inputID").val()) == "") {
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-		} else if($.trim($("#inputPW").val()) == "") {
-			popupText = "비밀번호를 입력하세요.";
-			commonPopup(popupText);
-		} else {
-			var params = $("#loginForm").serialize();
-			
-			$.ajax({
-				url: "logins",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result) {
-					if(result.msg == "failed") {
-						popupText = "ID와 PW가 일치하지 않습니다.";
-						commonPopup(popupText);
-						$("#inputID").val("");
-						$("#inputPW").val("");
-					} else {
-						location.reload();
-					}
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end 
-		}// if ~ else end
-	}); //loginBtn click end
 
 	$(".bnt_lists").on("click","#editBtn", function () {
 		$("#goForm").attr("action","postUpdate");
@@ -285,8 +253,8 @@ $(document).ready(function(){
 		html += "</div>";
 	
 		$(".cmt_cmt_contents_list[cmtcmtnos=" + cmtNo + "]").append(html);
-		
 	});
+
 	// 대댓글 수정 후 수정버튼 클릭 시
 	$("#cmtList").on("click", "#editBtn", function() {
 		if($.trim($("#editCmt").val()) == "") {
@@ -493,7 +461,7 @@ $(document).ready(function(){
 	 </form>
 	<div id="path_info">
 		<span>
-		<img alt="메인페이지" src="./resources/images/home.png" class="home_icon">
+		<img alt="메인페이지" src="static/images/home.png" class="home_icon">
 		</span>
 		&nbsp;&nbsp;>&nbsp;&nbsp;
 		<span> 자유게시판 </span>
@@ -556,17 +524,17 @@ $(document).ready(function(){
 					<div>
 						<c:choose>
 							<c:when test="${data.PHOTO_PATH eq null}">
-								<img alt="profile" src="./resources/images/profile3.png" class="profile_img">
+								<img alt="profile" src="static/images/profile3.png" class="profile_img">
 							</c:when>
 							<c:otherwise>
-								<img alt="profile" src="./resources/upload/${data.PHOTO_PATH}" class="profile_img">
+								<img alt="profile" src="static/upload/${data.PHOTO_PATH}" class="profile_img">
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="info">
 						<span>${data.NIC}</span>
 					<div class="grade">
-						<img alt="icon" src="./resources/images/grade.png">
+						<img alt="icon" src="static/images/grade.png">
 						<c:choose>
 						<c:when test="${data.GRADE_NO eq 0}">
 						<span>관리자</span>
@@ -591,7 +559,7 @@ $(document).ready(function(){
 		<div class="post_bottom">
 			<div class="bnt_lists"></div>
 			<div class="reaction">
-				<ul><li><img alt="좋아요" src="./resources/images/like.png" id="likeImg" class="like" like="0"><br/><span class="likeText">좋아요</span></li></ul>
+				<ul><li><img alt="좋아요" src="static/images/like.png" id="likeImg" class="like" like="0"><br/><span class="likeText">좋아요</span></li></ul>
 			</div>
 		</div>
 		<div class="cmt_area">

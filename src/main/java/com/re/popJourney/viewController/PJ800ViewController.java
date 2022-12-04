@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class PJ800ViewController {
     // 여행작가랭킹
     // PJ800M
+    // travelWriterRank
     @RequestMapping(value = "/PJ800M")
     public ModelAndView travelWriterRank(@RequestParam HashMap<String, String> params, ModelAndView mav)throws Throwable {
 

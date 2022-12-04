@@ -271,10 +271,10 @@ a {
     background-color: #2e3459;
     color: white;
 }
-.board_search>.filter {
+/*.board_search>.filter {
     float: right;
     margin: 20px 0px 20px 0px;
-}
+}*/
 .board_search>.search {
     float: right;
     margin: 20px 0px 20px 0px;

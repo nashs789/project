@@ -56,7 +56,7 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("PJ601Views/PJ601M");
+        mav.setViewName("PJ600Views/PJ601M");
 
         return mav;
     }
@@ -75,7 +75,7 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("PJ602Views/PJ602M");
+        mav.setViewName("PJ600Views/PJ602M");
 
         return mav;
     }
@@ -93,7 +93,7 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("PJ603Views/PJ603M");
+        mav.setViewName("PJ600Views/PJ603M");
 
         return mav;
     }
@@ -111,7 +111,7 @@ public class PJ600ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("PJ604Views/PJ604M");
+        mav.setViewName("PJ600Views/PJ604M");
 
         return mav;
     }

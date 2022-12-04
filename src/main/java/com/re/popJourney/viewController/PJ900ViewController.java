@@ -14,6 +14,7 @@ public class PJ900ViewController {
 
     // 고객센터-자주 묻는 질문
     // PJ900M
+    // clientCenterQuestion
     @RequestMapping(value = "/PJ900M")
     public ModelAndView clientCenterQuestion(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
@@ -24,7 +25,8 @@ public class PJ900ViewController {
 
     // 고객센터-문의사항
     // PJ901M
-    @RequestMapping(value = "/clientCenterMatter")
+    // clientCenterMatter
+    @RequestMapping(value = "/PJ901M")
     public ModelAndView clientCenterMatter(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int Pages = 1;
@@ -35,7 +37,7 @@ public class PJ900ViewController {
 
         mav.addObject("Pages", Pages);
 
-        mav.setViewName("CJM/clientCenterMatter");
+        mav.setViewName("PJ900Views/PJ901M");
 
         return mav;
 
@@ -43,17 +45,19 @@ public class PJ900ViewController {
 
     // 고객센터-문의사항(작성)
     // PJ902M
-    @RequestMapping(value = "/clientCenterMatterWrite")
+    // clientCenterMatterWrite
+    @RequestMapping(value = "/PJ902M")
     public ModelAndView testABWrite(ModelAndView mav) {
 
-        mav.setViewName("CJM/clientCenterMatterWrite");
+        mav.setViewName("PJ900Views/PJ902M");
 
         return mav;
     }
 
     // 고객센터(문의사항) - 세부
     // PJ903M
-    @RequestMapping(value = "/clientCenterMatterDetail")
+    // clientCenterMatterDetail
+    @RequestMapping(value = "/PJ903M")
     public ModelAndView clientCenterMatterDetail(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         // re-fact
@@ -63,14 +67,15 @@ public class PJ900ViewController {
         //mav.addObject("data", data);
         //mav.addObject("cmtDate", cmtDate);
 
-        mav.setViewName("CJM/clientCenterMatterDetail");
+        mav.setViewName("PJ900Views/PJ903M");
 
         return mav;
     }
 
     // 고객센터(문의사항) 회원작성글 수정
     // PJ904M
-    @RequestMapping(value = "/clientCenterMatterUpdate")
+    // clientCenterMatterUpdate
+    @RequestMapping(value = "/PJ904M")
     public ModelAndView clientCenterMatterUpdate(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         // re-fact
@@ -78,7 +83,7 @@ public class PJ900ViewController {
 
         // mav.addObject("data", data);
 
-        mav.setViewName("CJM/clientCenterMatterUpdate");
+        mav.setViewName("PJ900Views/PJ904M");
 
         return mav;
     }

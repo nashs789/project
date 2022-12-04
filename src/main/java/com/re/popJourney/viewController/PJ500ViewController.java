@@ -25,10 +25,11 @@ public class PJ500ViewController {
 
     // 마이페이지 북마크
     // PJ501M
+    // myPageBMK
     @RequestMapping(value = "/PJ501M")
     public ModelAndView myPageBMK(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("PJ501Views/PJ501M");
+        mav.setViewName("PJ500Views/PJ501M");
 
         return mav;
 
@@ -36,10 +37,10 @@ public class PJ500ViewController {
 
     // 마이페이지 팔로워
     // PJ502M
-    @RequestMapping(value = "/myPageFollower")
+    @RequestMapping(value = "/PJ502M")
     public ModelAndView myPageFollower(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("LES/myPageFollower");
+        mav.setViewName("PJ500Views/PJ502M");
 
         return mav;
 
@@ -47,10 +48,11 @@ public class PJ500ViewController {
 
     // 마이페이지 팔로잉
     // PJ503M
-    @RequestMapping(value = "/myPageFollowing")
+    // myPageFollowing
+    @RequestMapping(value = "/PJ503M")
     public ModelAndView myPageFollowing(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
-        mav.setViewName("LES/myPageFollowing");
+        mav.setViewName("PJ500Views/PJ503M");
 
         return mav;
 
@@ -58,31 +60,34 @@ public class PJ500ViewController {
 
     //북마크 상세보기
     // PJ504M
-    @RequestMapping(value = "/myPageBMKDetail")
+    // myPageBMKDetail
+    @RequestMapping(value = "/PJ504M")
     public ModelAndView myPageBMKDetail(@RequestParam HashMap<String, String> params, ModelAndView mav) {
         // re-fact
         // int cnt = ipjs.BMKDetailCnt(params);
 
         // mav.addObject("cnt", cnt);
-        mav.addObject("BMKNo", params.get("BMKNo"));
-        mav.setViewName("LIB/myPageBMKDetail");
+        // mav.addObject("BMKNo", params.get("BMKNo"));
+        mav.setViewName("PJ500Views/PJ504M");
 
         return mav;
     }
 
-    //지역별 사진
+    // 지역별 사진
     // PJ505M
-    @RequestMapping(value = "/myPageMap")
+    // myPageMap
+    @RequestMapping(value = "/PJ505M")
     public ModelAndView myPageMap(ModelAndView mav) {
 
-        mav.setViewName("LES/myPageMap");
+        mav.setViewName("PJ500Views/PJ505M");
 
         return mav;
     }
 
     //지역별 사진 모아보기
     // PJ506M
-    @RequestMapping(value = "/myPageMapDetail")
+    // myPageMapDetail
+    @RequestMapping(value = "/PJ506M")
     public ModelAndView myPageMapDetail(ModelAndView mav, @RequestParam HashMap<String, String> params) {
 
         // re-facr
@@ -90,14 +95,15 @@ public class PJ500ViewController {
 
         mav.addObject("regionNo", params.get("regionNo"));
         // mav.addObject("cnt", cnt);
-        mav.setViewName("LIB/myPageMapDetail");
+        mav.setViewName("PJ500Views/PJ506M");
 
         return mav;
     }
 
     // 다른 사용자 페이지
     // PJ507M
-    @RequestMapping(value = "/userPage")
+    // userPage
+    @RequestMapping(value = "/PJ507M")
     public ModelAndView userPage(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         // re-fact
@@ -118,7 +124,7 @@ public class PJ500ViewController {
         mav.addObject("userNo", params.get("userNo"));
         */
 
-        mav.setViewName("LES/userPage");
+        mav.setViewName("PJ500Views/PJ507M");
 
         return mav;
     }

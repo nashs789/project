@@ -65,7 +65,7 @@ $(document).ready(function() {
   		
   	});
 	
-	$("#searchBtn").on("click", function () {
+	$("#btn_search").on("click", function () {
 		$("#Pages").val(1);
 		reloadList();
 		makePathInfo();
@@ -170,7 +170,17 @@ $(document).ready(function() {
 </form>
 
 <form action="#" id="testForm">
+	<input type="hidden" id="nfirstPage" name="nfirstPage" value="1"/> <!-- n이 붙은건 공지 페이지 -->
+	<input type="hidden" id="nlastPage" name="nlastPage" value="5"/> <%-- n이 붙은게 무슨 뜻인지 몰라서 id는 그대로 나둠--%>
 
+	<input type="hidden" id="Pages" name="Pages" value="${Pages}"/>
+	<input type="hidden" id="categoryNo" name="categoryNo" value=""/>
+	<input type="hidden" id="gradeNo" name="gradeNo" value=""/>
+	<input type="hidden" id="MEM_NO" name="MEM_NO" value="${sMEM_NO}"/>
+	<input type="hidden" id="memGradeNo" name="memGradeNo" value="${sGRADE_NO}"/>
+
+	<input type="hidden" id="categoryNo" name="boardSearchTxt" value=""/> <%-- <input type="text" class="search" name="boardSearchTxt" placeholder="검색" value="${param.searchTxt}"> --%>
+	<input type="hidden" id="boardSearchFilter" name="boardSearchFilter" value=""/>
 </form>
 
 <body>
@@ -178,7 +188,8 @@ $(document).ready(function() {
 		<jsp:include page="../Frame/header.jsp"></jsp:include>
 
 		<div id="path_info">
-			<span> <img alt="메인페이지" src="static/images/home.png" class="home_icon">
+			<span>
+				<img alt="메인페이지" src="static/images/home.png" class="home_icon">
 			</span> &nbsp;&nbsp;>&nbsp;&nbsp; <span> 자유게시판 </span>
 			<div class="make_path_info">
 				 &nbsp;&nbsp;>&nbsp;&nbsp;
@@ -189,6 +200,7 @@ $(document).ready(function() {
 			<span>다른 사용자들과 의견을 나누세요.</span>
 		</div>
 		<img id="comBg" src="static/images/board2.png">
+
 		<div class="sub_area">
 
 		</div>
@@ -236,15 +248,38 @@ $(document).ready(function() {
 				<div class="board_menu">
 					<nav class="left_nav">
 						<ul>
-							<li id="postAll"><span class="gradeNo" gradeNo="0"><img alt="bookmark" src="static/images/all.png"></span><br />전체보기</li>
-							<li id="postGrade2"><span class="gradeNo" gradeNo="2"><img alt="bookmark" src="static/images/writer.png"></span><br />여행작가</li>
-							<li id="postGrade1"><span class="gradeNo" gradeNo="1"><img alt="작성자" src="static/images/user2.png"></span><br />여행꾼</li>
+							<li id="postAll">
+								<span class="gradeNo" gradeNo="0">
+									<img alt="bookmark" src="static/images/all.png">
+								</span>
+								<br />전체보기
+							</li>
+							<li id="postGrade2">
+								<span class="gradeNo" gradeNo="2">
+									<img alt="bookmark" src="static/images/writer.png">
+								</span>
+								<br />여행작가
+							</li>
+							<li id="postGrade1">
+								<span class="gradeNo" gradeNo="1">
+									<img alt="작성자" src="static/images/user2.png">
+								</span>
+								<br />여행꾼
+							</li>
 						</ul>
 					</nav>
 					<nav class="right_nav">
 						<ul>
-							<li><span class="gradeNo" gradeNo="3"><img alt="bookmark" src="static/images/doc.png"></span><br />내가 쓴 글</li>
-							<li id="newPost"><img alt="bookmark" src="static/images/pen.png"><br />글쓰기</li>
+							<li>
+								<span class="gradeNo" gradeNo="3">
+									<img alt="bookmark" src="static/images/doc.png">
+								</span>
+								<br />내가 쓴 글
+							</li>
+							<li id="newPost">
+								<img alt="bookmark" src="static/images/pen.png">
+								<br />글쓰기
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -275,28 +310,20 @@ $(document).ready(function() {
 					</thead>
 					<tbody></tbody>
 				</table>
+
 				<div class="paging_wrap">
 					<div class="paging"></div>
-					<div class="board_search">
-					<form action="#" id="boardForm">
-						<img alt="search" src="static/images/search.png" class="search_icon" id="searchBtn"/>
-							<input type="hidden" id="Pages" name="Pages" value="${Pages}"/>
-							<input type="hidden" id="nfirstPage" name="nfirstPage" value="1"/> <!-- n이 붙은건 공지 페이지 -->
-							<input type="hidden" id="nlastPage" name="nlastPage" value="5"/>
-							<input type="hidden" id="categoryNo" name="categoryNo" value=""/>
-							<input type="hidden" id="gradeNo" name="gradeNo" value=""/>
-							<input type="hidden" id="MEM_NO" name="MEM_NO" value="${sMEM_NO}"/>
-							<input type="hidden" id="memGradeNo" name="memGradeNo" value="${sGRADE_NO}"/>
-				<input type="text" class="search" name="boardSearchTxt" placeholder="검색" value="${param.searchTxt}"> 
-						<select class="filter" id="boardSearchFilter" name="boardSearchFilter">
-							<option value="0">통합검색</option>
-							<option value="1">제목</option>
-							<option value="2">닉네임</option>
-						</select>
-						</form>
-		
+						<div class="board_search">
+							<img alt="search" src="static/images/search.png" class="search_icon" id="btn_search"/>
+							<input type="text" class="search" placeholder="검색" value="{param.searchTxt}"> 
+							<select class="filter" id="sel_board_search_filter">
+								<option value="0">통합검색</option>
+								<option value="1">제목</option>
+								<option value="2">닉네임</option>
+							</select>
 					</div>
 				</div> <!-- PAGING_WRAP END -->
+
 			</div>
 		</div>
 	</div>

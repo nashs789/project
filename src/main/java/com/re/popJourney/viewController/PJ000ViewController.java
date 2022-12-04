@@ -15,6 +15,7 @@ public class PJ000ViewController {
 
     // 내부관리자-회원관리
     // PJ000M
+    // memAdmin
     @RequestMapping(value = "/PJ000M")
     public ModelAndView memAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
@@ -41,7 +42,8 @@ public class PJ000ViewController {
 
     // 내부관리자-자유게시판
     // PJ001
-    @RequestMapping(value = "/communityAdmin")
+    // communityAdmin
+    @RequestMapping(value = "/PJ001M")
     public ModelAndView communityAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int page = 1;
@@ -52,14 +54,15 @@ public class PJ000ViewController {
 
         mav.addObject("page", page);
 
-        mav.setViewName("CJM/communityAdmin");
+        mav.setViewName("PJ000Views/PJ001M");
 
         return mav;
     }
 
     // 내부관리자-여행일지
     // PJ002
-    @RequestMapping(value = "/TravelDiaryAdmin")
+    // TravelDiaryAdmin
+    @RequestMapping(value = "/PJ002M")
     public ModelAndView TravelDiaryAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int page = 1;
@@ -70,14 +73,15 @@ public class PJ000ViewController {
 
         mav.addObject("page", page);
 
-        mav.setViewName("CJM/TravelDiaryAdmin");
+        mav.setViewName("PJ000Views/PJ002M");
 
         return mav;
     }
 
     // 내부관리자-공지관리
     // PJ003
-    @RequestMapping(value = "/noticeAdmin")
+    // noticeAdmin
+    @RequestMapping(value = "/PJ003M")
     public ModelAndView noticeAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int page = 1;
@@ -88,14 +92,15 @@ public class PJ000ViewController {
 
         mav.addObject("page", page);
 
-        mav.setViewName("CJM/noticeAdmin");
+        mav.setViewName("PJ000Views/PJ003M");
 
         return mav;
     }
 
     // 내부관리자-신고관리
     // PJ004
-    @RequestMapping(value = "/reportAdmin")
+    // reportAdmin
+    @RequestMapping(value = "/PJ004M")
     public ModelAndView reportAdmin(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
 
         int page = 1;
@@ -106,7 +111,7 @@ public class PJ000ViewController {
 
         mav.addObject("page", page);
 
-        mav.setViewName("CJM/reportAdmin");
+        mav.setViewName("PJ000Views/PJ004M");
 
         return mav;
     }

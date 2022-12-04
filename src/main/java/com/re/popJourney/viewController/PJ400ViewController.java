@@ -26,7 +26,7 @@ public class PJ400ViewController {
     // 여행일지 세부페이지
     // PJ401M
     // journal
-    @RequestMapping(value = "/journal")
+    @RequestMapping(value = "/PJ401M")
     public ModelAndView journal(@RequestParam HashMap<String, String> params, ModelAndView mav) throws Throwable {
         // re-fact
         // 여행일지 세부페이지의 메인데이터
@@ -61,7 +61,7 @@ public class PJ400ViewController {
         mav.addObject("journalWriterMemNo", data.get("MEM_NO"));
         */
 
-        mav.setViewName("CJM/journal");
+        mav.setViewName("PJ400Views/PJ401M");
 
         return mav;
     }
@@ -69,24 +69,27 @@ public class PJ400ViewController {
     // 여행일지 작성페이지
     // PJ402M
     // journalWrite
-    @RequestMapping(value = "/journalWrite")
+    @RequestMapping(value = "/PJ402M")
     public ModelAndView journalWrite(@RequestParam HashMap<String, String> params, ModelAndView mav)  {
 
+        /*
         mav.addObject("startDate", params.get("startDate"));
         mav.addObject("endDate", params.get("endDate"));
         mav.addObject("regionNo", params.get("regionNo"));
-        mav.setViewName("LES/journalWrite");
+        */
+        mav.setViewName("PJ400Views/PJ402M");
 
         return mav;
     }
 
     // 여행일지 수정
     // PJ403M
-    @RequestMapping(value = "/journalUpdate")
+    // journalUpdate
+    @RequestMapping(value = "/PJ403M")
     public ModelAndView journalUpdate(@RequestParam HashMap<String, String> params, ModelAndView mav) {
 
-        mav.addObject("journalNo", params.get("journalNo"));
-        mav.setViewName("LIB/journalUpdate");
+        //mav.addObject("journalNo", params.get("journalNo"));
+        mav.setViewName("PJ400Views/PJ403M");
 
         return mav;
     }

@@ -5,106 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>지도</title>
-	<%--<link href="static/css/common.css" rel="stylesheet" type="text/css">--%>
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ500Css/PJ505C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/script/jquery/jquery.form.js"/></script>
-	<script type="text/javascript" src="static/js/callServer.js"></script>
-	<script type="text/javascript" src="static/js/callPopup.js"></script>
 	<script type="text/javascript" src="static/js/common.js"></script>
 	<script type="text/javascript" src="static/js/PJ500Js/PJ505S.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	var path = "";
-	var html = "";  
-	
-	if("${sPHOTO_PATH}" != "")
-	{
-		path = "resources/upload/" + "${sPHOTO_PATH}";
-		
-		$("#profilePhoto").attr("src", path);
-		html += "<img alt=\"profile\" src=\"" + path + "\"class=\"profile_img\">";
-	}
-	else
-	{
-		path = "./resources/images/profile.png";
-		$("#profilePhoto").attr("src", path);
-		path = "./resources/images/profile3.png";
-		html += "<img alt=\"profile\" src=\"" + path + "\"class=\"profile_img\">";
-	}
-	if("${sGRADE_NO}" == "0")
-	{
-		$("#admin").show();
-	}
-	
-	var params = $("#memForm").serialize();
-	
-	$.ajax({
-		url: "notifications",
-		data: params,
-		dataType: "json",
-		type: "post",
-		success:function(result)
-		{
-			if(result.msg == "success")
-			{
-				makeNotification(result.notification);
-			}
-			else
-			{
-				popupText = "오류가 발생했습니다.";
-				commonPopup(popupText);
-			}
-		}, //success end
-		error: function(request, status, error) {
-			console.log(error);
-		} // error end
-	}); //ajax end 
+	var html = "";
 	
 	$.ajax({
 		url: "checkPoints",
 		data: params,
 		dataType: "json",
 		type: "post",
-		success:function(result)
-		{
-			if(result.msg == "success")
-			{
+		success:function(result) {
+			if(result.msg == "success") {
 				$("#point").val(result.data.TOTAL_POINT);
 				
 				var html = "";
 				
-				if("${sPHOTO_PATH}" != "")
-				{
-					path = "resources/upload/" + "${sPHOTO_PATH}";
-					
-					$("#profilePhoto").attr("src", path);
-					html += "<img alt=\"profile\" src=\"" + path + "\"class=\"profile_img\">";
-				}
-				else
-				{
-					path = "./resources/images/profile.png";
-					$("#profilePhoto").attr("src", path);
-					path = "./resources/images/profile3.png";
-					html += "<img alt=\"profile\" src=\"" + path + "\"class=\"profile_img\">";
-				}
-				
-				if("${sGRADE_NO}" == "0")
-				{
-					$("#admin").show();
-				}
-				
 				html += "<div>${sNIC}";
-				if("${sGRADE_NO}" == "0")
-				{
+				if("${sGRADE_NO}" == "0") {
 					html += "[관리자]";
-				}
-				else if("${sGRADE_NO}" == "1")
-				{
+				} else if("${sGRADE_NO}" == "1") {
 					html += "[여행꾼]";
-				}
-				else
-				{
+				} else {
 					html += "[여행작가]";
 				}
 				
@@ -116,22 +44,21 @@ $(document).ready(function() {
 				
 				html = "";
 				
-				html += "<li><img alt=\"thumbnail\" id=\"myPageImg\" src=\"./resources/images/flag.png\"><br />여행일지</li>";
-				html += "<li><img alt=\"map\" id=\"map\" src=\"./resources/images/map.png\"><br />&nbsp;&nbsp;" + result.data.JOURNAL_CNT + "</li>";
+				html += "<li><img alt=\"thumbnail\" id=\"myPageImg\" src=\"static/images/flag.png\"><br />여행일지</li>";
+				html += "<li><img alt=\"map\" id=\"map\" src=\"static/images/map.png\"><br />&nbsp;&nbsp;" + result.data.JOURNAL_CNT + "</li>";
 				
 				$("#left_group").html(html);
 				
 				
 				html = "";
 				
-				html += "<li><img alt=\"bookmark\" id=\"bookmark\" src=\"./resources/images/bmrk.png\"><br />북마크" + result.data.BMK_JOURNAL_CNT + "</li>";
-				html += "<li><img alt=\"follower\" id=\"follower\" src=\"./resources/images/follower.png\"><br />팔로워" + result.data.FOLLOWER_CNT + "</li>";
-				html += "<li><img alt=\"following\" id=\"following\" src=\"./resources/images/following.png\"><br />팔로잉" + result.data.FOLLOWING_CNT + "</li>";
+				html += "<li><img alt=\"bookmark\" id=\"bookmark\" src=\"static/images/bmrk.png\"><br />북마크" + result.data.BMK_JOURNAL_CNT + "</li>";
+				html += "<li><img alt=\"follower\" id=\"follower\" src=\"static/images/follower.png\"><br />팔로워" + result.data.FOLLOWER_CNT + "</li>";
+				html += "<li><img alt=\"following\" id=\"following\" src=\"static/images/following.png\"><br />팔로잉" + result.data.FOLLOWING_CNT + "</li>";
 						
 				$(".right_group").html(html);
 			}
-			else
-			{
+			else {
 				popupText = "오류가 발생했습니다.";
 				commonPopup(popupText);
 			}
@@ -142,8 +69,7 @@ $(document).ready(function() {
 	}); //ajax end 
 	
 	$(".info").on("click", "#upgradeBtn", function(){
-		if("${sGRADE_NO}" == 2)
-		{
+		if("${sGRADE_NO}" == 2) {
 			popupText = "이미 여행작가 입니다.";
 			commonPopup(popupText);
 			return false;
@@ -156,20 +82,14 @@ $(document).ready(function() {
 			data: params,
 			dataType: "json",
 			type: "post",
-			success:function(result)
-			{
-				if(result.msg == "success")
-				{
+			success:function(result) {
+				if(result.msg == "success") {
 					popupText = "신청 완료.";
 					commonPopup(popupText);
-				}
-				else if(result.msg == "notEnough")
-				{
+				} else if(result.msg == "notEnough") {
 					popupText = "100점 이상되어야 합니다.";
 					commonPopup(popupText);
-				}
-				else
-				{
+				} else {
 					popupText = "오류가 발생 했습니다.";
 					commonPopup(popupText);
 				}
@@ -179,68 +99,6 @@ $(document).ready(function() {
 			} // error end
 		}); //ajax end 
 	}); //info upgradeBtn click end
-	
-	$("#profilePhoto").on("click", function(){
-		$("#notification").css("display", "none");
-		if($("#profileSlidedown").css("display") == "block")
-		{
-			$("#profileSlidedown").css("display", "none");
-		}
-		else
-		{
-			$("#profileSlidedown").css("display", "block");
-		}
-	}); //profilePhoto click end
-	
-	$("#notificationPhoto").on("click", function(){
-		$("#profileSlidedown").css("display", "none");
-		if($("#notification").css("display") == "block")
-		{
-			$("#notification").css("display", "none");
-		}
-		else
-		{
-			$("#notification").css("display", "inline-block");
-		}
-	}); //notificationPhoto click end
-	
-	$("#notification tbody").on("click", "span, tr, img", function(){
-		if($(this).attr("class") == "notRead")
-		{
-			$("#NOTF_NO").val($(this).attr($(this).attr("class")));
-	
-		    var params = $("#notificationForm").serialize();
-			
-			$.ajax({
-				url: "reads",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result)
-				{
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end  
-		} //if end 알람 팝업에서 아이디, 글 제목, 프로필 사진 눌렸을 경우에 읽음표시
-		
-		if($(this).attr("class") == "user")
-		{
-			$("#userNo").val($(this).attr($(this).attr("class")));
-			$("#userForm").submit();
-		}
-		else if($(this).attr("class") == "journal")
-		{
-			$("#journalNo").val($(this).attr($(this).attr("class")));
-			$("#journalForm").submit();
-		}
-		else if($(this).attr("class") == "post")
-		{
-			$("#postNo").val($(this).attr($(this).attr("class")));
-			$("#postForm").submit();
-		}//if ~ else end 클릭된 것에 따라서 해당 프로필 or 글로 이동
-	}); //notification tbody span tr click end
 	
 	$("article").on("click",function(){
 		$("#regionNo").val($(this).attr("id").substring(1));
@@ -262,84 +120,10 @@ $(document).ready(function() {
 	$(".right_group").on("click", "#following", function(){
 		location.href = "myPageFollowing";
 	}); //following click end
-	
-	 $("#journalBoard").on("click", function(){
-    	location.href = "journalBoard";
-    });//postBoard click end
-    
-    $("#community").on("click", function(){
-    	location.href = "community";
-    });//community click end
-  
-   	$("#travelWriter").on("click", function() {
-  		location.href = "travelWriterRank";
-  	}); //travelWriter click end
-   	
-	$("#clientCenter").on("click", function() {
-  		location.href = "clientCenterQuestion";
-  	}); //clientCenter click end
-	
-  	$("#admin").on("click", function() {
-  		location.href = "memAdmin";
-  	}); //admin click end
-  	
-  	$("#timeline").on("click", function(){
-  		location.href = "timeline";
-  	}); //timeline click end
-  	
-  	$("#editProfile").on("click", function(){
-  		location.href = "editProfile";
-  	}); //editProfile click end
-  	
-	$("#editInfo").on("click", function(){
-		location.href = "editInfo";
-  	}); //editInfo click end
-
-  	$("#notificationMore").on("click", function(){
-		location.href="notification";
-	}); //notificationMore click end
-	
-	$("#bookmarkPhoto").on("click", function(){
-		location.href = "myPageBMK";
-	}); //bookmarkPhoto click end
-  	
-  	$("#logoutBtn").on("click", function(){
-		$.ajax({
-			url: "logouts",
-			type: "post",
-			dataType: "json",
-			success: function(result) {
-				location.reload();
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} //error end
-		}); //ajax end
-  	}); //logoutBtn click end
-  	
- 	// 메인검색창 넘어가는 부분
-	$(".search_icon").on("click", function() {
-		if($("#mainSearchFilter").val() == 0) {
-			$("#goSearch").attr("action", "search");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 1) {
-			$("#goSearch").attr("action", "searchTravelDiary");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 2) {
-			$("#goSearch").attr("action", "searchHashtag");
-			$("#goSearch").submit();
-		} else if($("#mainSearchFilter").val() == 3) {
-			$("#goSearch").attr("action", "searchCommunity");
-			$("#goSearch").submit();
-		} else {
-			$("#goSearch").attr("action", "searchNic");
-			$("#goSearch").submit();
-		}
-	});
 });//document ready end
 </script>
 </head>
-<body>
+
 <form action="myPageMapDetail" id="detailForm" method="post">
 	<input type="hidden" id="MEM_NO" name="MEM_NO" value=${sMEM_NO }>
 	<input type="hidden" id="regionNo" name="regionNo">
@@ -356,7 +140,7 @@ $(document).ready(function() {
 </form>
 <form action="journal" id="journalForm" method="post">
 	<input type="hidden" id="journalNo" name="journalNo" value=""/>
-   <input type="hidden" id="memNo" name="memNo" value="${sMEM_NO}"/>
+	<input type="hidden" id="memNo" name="memNo" value="${sMEM_NO}"/>
 </form>
 <form action="post" id="postForm" method="post">
 	<input type="hidden" id="postNo" name="postNo" value=""/>
@@ -366,72 +150,10 @@ $(document).ready(function() {
 <form action="#" id="notificationForm">
 	<input type="hidden" id="NOTF_NO" name="NOTF_NO" value=""/>
 </form>
+
+<body>
 	<div id="wrap">
-		<!-- header부분 고정 -->
-		<div id="header">
-			<div class="banner">
-				<div class="top">
-					<div class="logo_area">
-						<a href="main"><img alt="로고" src="./resources/images/logo.png" class="logo_photo"></a>
-						<div class="site_name">우리들의 여행일지</div>
-					</div>
-					<div class="btns">
-                     <ul>
-						<li><img alt="bell" src="./resources/images/bell.png" id="notificationPhoto">
-							<div id="cnt"></div>
-							<div id="notification">
-								<table border="1">
-									<colgroup>
-										<col width="100px">
-										<col width="350px">
-										<col width="150px">
-									</colgroup>
-									<tbody>	
-
-									</tbody>
-
-									<tfoot>
-										<tr>
-											<th colspan="3" id="notificationMore">...더보기</th>
-										</tr>
-									</tfoot>
-								</table>
-							</div></li>
-							<li><img alt="bookmark" src="./resources/images/bmk.png" id="bookmarkPhoto"></li>
-							<li><img alt="프로필" src="" id="profilePhoto">
-								<ul id="profileSlidedown">
-									<li id="myPage">마이 페이지</li>
-									<li id="timeline">타임라인</li>
-									<li id="editProfile">프로필 수정</li>
-									<li id="editInfo">회원정보 수정</li>
-									<li id="logoutBtn">로그아웃</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<nav class="menu">
-				<ul>
-					<li id="journalBoard">여행게시판</li>
-					<li id="community">자유게시판</li>
-					<li id="travelWriter">여행작가</li>
-					<li id="clientCenter">고객센터</li>
-					<li id="admin">내부관리자</li>
-				</ul>
-			</nav>
-			<form action="#" id="goSearch" method="post" >
-				<img alt="search" src="./resources/images/search.png" class="search_icon"/>
-				<input type="text" class="search" id="mainSearchTxt" name="mainSearchTxt" value="${param.mainSearchTxt}" placeholder="검색">
-				<select class="filter" id="mainSearchFilter" name="mainSearchFilter" >
-					<option value="0" selected="selected">통합검색</option>
-					<option value="1">여행일지</option>
-					<option value="2">해시태그</option>
-					<option value="3">자유게시판</option>
-					<option value="4">닉네임</option>
-				</select>
-			</form>
-		</div>
+		<jsp:include page="../Frame/header.jsp"></jsp:include>		
 		<div class="sub_profile">
 			<div class="info">
 			</div>
@@ -449,7 +171,7 @@ $(document).ready(function() {
 					</nav>
 				</div>
 				<div id="path_info">
-					<span> <img alt="메인페이지" src="./resources/images/home.png" class="home_icon">
+					<span> <img alt="메인페이지" src="static/images/home.png" class="home_icon">
 					</span> &nbsp;&nbsp;>&nbsp;&nbsp; <span> 마이페이지 </span>
 					&nbsp;&nbsp;>&nbsp;&nbsp; <span> 여행일지 </span> &nbsp;>&nbsp;&nbsp;지도
 				</div>
@@ -460,42 +182,42 @@ $(document).ready(function() {
 			    <article id="r0" class="location-listing">
 			      <a class="location-title">SEOUL(서울)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/seoul.jpg"></a>
+			        <a ><img src="static/images/seoul.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r1" class="location-listing">
 			      <a class="location-title" >BUSAN(부산)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/busan.jpg">  </a>
+			        <a ><img src="static/images/busan.jpg">  </a>
 			      </div>
 			    </article>
 			
 			    <article id="r2" class="location-listing">
 			      <a class="location-title" >DAEGU(대구)</a>
 			      <div class="location-image"> 
-			             <a ><img  src="./resources/images/daegu.jpg">  </a>
+			             <a ><img  src="static/images/daegu.jpg">  </a>
 			      </div>
 			    </article>
 			
 			    <article id="r3" class="location-listing">
 			      <a class="location-title" >INCHEON(인천)</a>
 			      <div class="location-image">
-			        <a ><img  src="./resources/images/incheon.jpg">  </a>
+			        <a ><img  src="static/images/incheon.jpg">  </a>
 			      </div>
 			    </article>
 			
 			    <article id="r4" class="location-listing">
 			    	<a class="location-title" >GWANGJU(광주)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/gwangju.jpg"></a>
+			        <a ><img src="static/images/gwangju.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r5" class="location-listing">
 			      <a class="location-title" >DAEJEON(대전)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/daejeon.jpg">          
+			        <a ><img src="static/images/daejeon.jpg">          
 			          </a>
 			      </div>
 			    </article>
@@ -503,77 +225,77 @@ $(document).ready(function() {
 			
 			      <a class="location-title" >ULSAN(울산)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/ulsan.jpg">    </a>
+			        <a ><img src="static/images/ulsan.jpg">    </a>
 			      </div>
 			    </article>
 			
 			    <article id="r7" class="location-listing">
 			      <a class="location-title" >SEJONG(세종)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/sejong.jpg">  </a>
+			        <a ><img src="static/images/sejong.jpg">  </a>
 			      </div>
 			    </article>
 			
 			    <article id="r8" class="location-listing">
 			      <a class="location-title" >GYEONGGI-DO(경기도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/gyeonggi.jpg">  </a>
+			        <a ><img src="static/images/gyeonggi.jpg">  </a>
 			      </div>
 			    </article>
 			    <article id="r9" class="location-listing">
 			
 			      <a class="location-title" >GANGWON-DO(강원도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/gangwon.jpg"> </a>
+			        <a ><img src="static/images/gangwon.jpg"> </a>
 			      </div>
 			    </article>
 			
 			    <article id="r10" class="location-listing">
 			      <a class="location-title" >CHUNGBUK-DO(충청북도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/chungbuk.jpg"></a>
+			        <a ><img src="static/images/chungbuk.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r11" class="location-listing">
 			      <a class="location-title" >CHUNGNAM-DO(충청남도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/chungnam.jpg"></a>
+			        <a ><img src="static/images/chungnam.jpg"></a>
 			      </div>
 			    </article>
 			    
 			    <article id="r12" class="location-listing">
 			      <a class="location-title" >JEONBUK-DO(전라북도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/jeonbuk.jpg"></a>
+			        <a ><img src="static/images/jeonbuk.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r13" class="location-listing">
 			      <a class="location-title" >JEONNAM-DO(전라남도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/jeonnam.jpg">  </a>
+			        <a ><img src="static/images/jeonnam.jpg">  </a>
 			      </div>
 			    </article>
 			
 			    <article id="r14" class="location-listing">
 			      <a class="location-title" >GYEONGSANGBUK-DO(경상북도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/gyeongsangbuk.jpg"></a>
+			        <a ><img src="static/images/gyeongsangbuk.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r15" class="location-listing">
 			      <a class="location-title" >GYEONGSANGNAM-DO(경상남도)</a>
 			      <div class="location-image">
-			        <a><img src="./resources/images/gyeongsangnam.jpg"></a>
+			        <a><img src="static/images/gyeongsangnam.jpg"></a>
 			      </div>
 			    </article>
 			
 			    <article id="r16" class="location-listing">
 			      <a class="location-title" >JEJU-DO(제주도)</a>
 			      <div class="location-image">
-			        <a ><img src="./resources/images/jeju.jpg"></a>
+			        <a ><img src="static/images/jeju.jpg"></a>
 			      </div>
 			    </article>
 			  </div>
@@ -581,12 +303,6 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	<div id="footer">
-		<p>
-			POPJOURNEY<br /> GDJ-35기 LEE Eun-Soo, LEE In-Bok, CHOI Jeong-Min<br />
-			Copyright© POPJOURNEY. All Rights Reserved.
-		</p>
-	</div>
-
+	<jsp:include page="../Frame/footer.jsp"></jsp:include>
 </body>
 </html>
