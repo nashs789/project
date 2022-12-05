@@ -35,14 +35,10 @@ function sendServer(urlName, params, callback){
            , contentType: "application/json; charset=utf-8"
            , data: JSON.stringify(params)
            , success: function(result) {
-
+                return callback(result);
            } // callback success end
            , error: function(request, status, error) {
                 return false;
            } // callback error end
     });
 } // function callServer
-
-function callback(result){
-
-}

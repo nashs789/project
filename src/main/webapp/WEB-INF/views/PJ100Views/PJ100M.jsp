@@ -8,24 +8,30 @@
 	<link href="static/css/PJ100Css/PJ100C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ100Js/PJ100S.js"></script>
+	<script type="text/javascript" src="static/js/Common/callServer.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			/*
-			var popupText = ""; //공통 팝업에 들어가는 문구 담아줄 변수
+		let obj = {};
 
+		$(document).ready(function(){
+
+			// chkStat();
+			setEvent();
+
+			// var popupText = ""; //공통 팝업에 들어가는 문구 담아줄 변수
+			sendServer("selectPJ100Notices", obj, function callback(result){
+				console.log(result);
+				makeNoticeBoard(result);
+			});
+/*
 			$.ajax({ //공지사항 5개  만들기
 				url: "selectPJ100Notices",
 				dataType: "json",
 				type: "post",
-				success:function(result)
-				{
-					if(result.msg == "success")
-					{
+				success:function(result) {
+					if(result.msg == "success") {
 						makeNoticeBoard(result.noticeData);
 						$("#CD0").click();
-					}
-					else
-					{
+					} else {
 						popupText = "오류가 발생했습니다.";
 						commonPopup(popupText);
 					}//if ~ else end
@@ -34,6 +40,14 @@
 					console.log(error);
 				} // error end
 			}); //ajax end
+ */
+		}); // document ready end
+
+		function chkStat(){
+
+		}
+
+		function setEvent(){
 
 			var LCD = "#L"; // CD -> LCD
 			var CD = "#"; // LCD -> CD
@@ -42,8 +56,7 @@
 
 			//지도에 호버시 해당 지역의 이름은 검은색 글씨로, 해당 지역 지도는 #c2c2d6색으로 변경
 			$("svg").on("mouseover", "path", function(){
-				if($(this).css("fill") != "rgb(194, 194, 214)")
-				{
+				if($(this).css("fill") != "rgb(194, 194, 214)") {
 					CDColor = $(this).css("fill");
 				}
 				$(this).css("fill", "#c2c2d6");
@@ -65,8 +78,7 @@
 			$("svg").on("mouseover", ".TEXT", function(){
 				$(this).css("fill", "#000");
 				CD += $(this).attr("id").substr(1);
-				if($(CD).css("fill") != "rgb(194, 194, 214)" || $(CD).css("fill") != "rgb(255, 255, 255)")
-				{
+				if($(CD).css("fill") != "rgb(194, 194, 214)" || $(CD).css("fill") != "rgb(255, 255, 255)") {
 					CDColor = $(CD).css("fill");
 				}
 				$(CD).css("fill", "#c2c2d6");
@@ -128,27 +140,21 @@
 
 			//랭킹 게시판에서 게시글 제목 클릭 시 해당 게시글로, 닉네임 클릭 시 해당 유저 페이지로
 			$("#boardWrap").on("click", "tr td", function(){
-				if($(this).attr("class") == "user")
-				{
+				if($(this).attr("class") == "user") {
 					$("#userNo").val($(this).attr($(this).attr("class")));
 					$("#userForm").submit();
-				}
-				else if($(this).attr("class") == "journal")
-				{
+				} else if($(this).attr("class") == "journal") {
 					$("#journalNo").val($(this).attr($(this).attr("class")));
 					$("#journalForm").submit();
-				}
-				else if($(this).attr("class") == "post")
-				{
+				} else if($(this).attr("class") == "post") {
 					$("#postNo").val($(this).attr($(this).attr("class")));
 					$("#postForm").submit();
 				}
 			}); // 상세보기 페이지 구현하면 만들기
-			*/
-		}); // document ready end
+		}
 	</script>
 </head>
-<body>
+
 <form action="#" id="regionForm">
 	<input type="hidden" id="regionNo" name="regionNo" value="1"/>
 </form>
@@ -173,6 +179,8 @@
 	<input type="hidden" id="newPostNo" name="newPostNo" value="1"/>
 	<input type="hidden" id="loginUserNo" name="loginUserNo" value="${sMEM_NO}" />
 </form>
+
+<body>
 	<div id="wrap">
 		<jsp:include page="../Frame/header.jsp"></jsp:include>
 		<div id="container">
@@ -234,7 +242,9 @@
 					</g>
 				</svg>
 				</div> <!-- mapWrap end -->	
-			<div class="space"></div>
+			<div class="space">
+
+			</div> <%-- space end --%>
 		</div> <!-- container end -->
 		<jsp:include page="../Frame/footer.jsp"></jsp:include>
 	</div> <!-- wrap end -->

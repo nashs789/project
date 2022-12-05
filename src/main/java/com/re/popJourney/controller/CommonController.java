@@ -3,6 +3,7 @@ package com.re.popJourney.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.re.popJourney.model.MemVo;
 import com.re.popJourney.service.PJCommonService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +15,10 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class CommonController {
 
     private final PJCommonService commonService;
-
-    @Autowired
-    public CommonController(PJCommonService commonService) {
-        this.commonService = commonService;
-    }
 
     // 공통 - 로그아읏
     @PostMapping(value = "/logouts", produces = "text/json;charset=UTF-8")
@@ -113,7 +110,7 @@ public class CommonController {
         Map<String, Object> modelMap = new HashMap<String, Object>();
         // loginInfo로 넘어오는 키: MEM_NO, GRADE_NO, NIC, LAST_DATE, TODAY
         SimpleDateFormat simpleD = new SimpleDateFormat("yyyy-MM-dd");
-
+        log.info(inMemVo.toString());
         MemVo outMemVo = commonService.login(inMemVo);
 
         session.setAttribute("sMemVo", outMemVo);

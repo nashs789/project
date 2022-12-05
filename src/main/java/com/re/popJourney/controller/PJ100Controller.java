@@ -1,7 +1,10 @@
 package com.re.popJourney.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.service.PJ100Service;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,17 +13,21 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class PJ100Controller {
 
+    private final PJ100Service pj100Service;
+
     // 메인화면 - 공지사항
+    // notices
     @PostMapping(value = "/selectPJ100Notices", produces = "text/json;charset=UTF-8")
-    public String notices() throws Throwable {
+    public String selectPJ100Notices() throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
 
-        // List<HashMap<String, String>> noticeData = ipjs.notice();
+        List<HashMap<String, String>> outListData = pj100Service.selectPJ100Notices();
 
-        return mapper.writeValueAsString(modelMap);
+        return mapper.writeValueAsString(outListData);
     }
 
     // 메인화면 - 지역별 랭킹
