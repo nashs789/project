@@ -14,8 +14,8 @@
 
 		$(document).ready(function(){
 
-			// chkStat();
 			setEvent();
+			// chkStat();
 
 			// var popupText = ""; //공통 팝업에 들어가는 문구 담아줄 변수
 			sendServer("selectPJ100Notices", obj, function callback(result){

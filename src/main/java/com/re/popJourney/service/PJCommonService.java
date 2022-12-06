@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class PJCommonService {
-    private IPJCommonDao commonDao;
+    private final IPJCommonDao commonDao;
 
     public MemVo login(MemVo memVo) {
         return commonDao.login(memVo);

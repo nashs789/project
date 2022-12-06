@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.re.popJourney.dao.IPJ100Dao">
+	<select id="selectPJ100Notices" parameterType="HashMap" resultType="HashMap">
+		SELECT a.POST_NO
+			 , a.HIT
+			 , TO_CHAR(a.BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE
+			 , b.CMT
+			 , a.TITLE
+		FROM (
+			   SELECT POST_NO
+				    , TITLE
+				    , CONTENTS
+				    , HIT
+				    , BOARD_DATE
+				    , RANK() OVER(ORDER BY BOARD_DATE DESC) AS RK
+			     FROM BOARD
+			    WHERE CATEGORY_NO = 1
+			      AND DEL = 1
+			 ) a
+		LEFT OUTER JOIN (
+						 SELECT POST_NO
+							  , COUNT(POST_NO) AS CMT
+						 FROM BOARD_CMT
+						 GROUP BY POST_NO
+					     ) b
+	      ON a.POST_NO = b.POST_NO
+	   WHERE a.RK BETWEEN 1 AND 5
+	   ORDER BY a.BOARD_DATE DESC
+	</select>
+</mapper>
