@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <!-- Appenders -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %5p [%c] %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %5p %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger -->
+    <logger name="com.re.popJourney" level="DEBUG" appender-ref="console" />
+    <logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog" />
+    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog" />
+
+    <!-- Root Logger -->
+    <root level="off">
+        <appender-ref ref="console" />
+    </root>
+</configuration>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+        &lt;!&ndash; 15초마다 설정 파일의 변경을 확인 하여 변경시 갱신 &ndash;&gt;
+<configuration scan="true" scanPeriod="15 seconds">
+    &lt;!&ndash; Server Log Config &ndash;&gt;
+    <springProfile name="dev">
+        <property resource="application.properties"/>
+        &lt;!&ndash; log file path &ndash;&gt;
+        <property name="LOG_PATH" value="${log.config.path}"/>
+        &lt;!&ndash; log file name &ndash;&gt;
+        <property name="LOG_FILE_NAME" value="${log.config.filename}"/>
+        &lt;!&ndash; err log file name &ndash;&gt;
+        <property name="ERR_LOG_FILE_NAME" value="${error.log.config.filename}"/>
+        &lt;!&ndash; log pattern &ndash;&gt;
+        <property name="LOG_PATTERN" value="%-5level %d{yy-MM-dd HH:mm:ss} [%thread] [%logger{0}-%M:%line] - %msg%n "/>
+
+        <appender name="DEV_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            &lt;!&ndash; 파일경로 설정 &ndash;&gt;
+            <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+            &lt;!&ndash; 출력패턴 설정&ndash;&gt;
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+            &lt;!&ndash; Rolling 정책 (파일 관리설정) &ndash;&gt;
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                &lt;!&ndash; .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 &ndash;&gt;
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+                &lt;!&ndash;    파일 크기 지정할떄 사용 &ndash;&gt;
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    &lt;!&ndash; 파일당 최고 용량 kb, mb, gb &ndash;&gt;
+                    <maxFileSize>10MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+                &lt;!&ndash; 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거&ndash;&gt;
+                <maxHistory>30</maxHistory>
+                &lt;!&ndash;<MinIndex>1</MinIndex> <MaxIndex>10</MaxIndex>&ndash;&gt;
+            </rollingPolicy>
+        </appender>
+
+        <appender name="Error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                &lt;!&ndash; 에러로그를 설정하고 로그의 레벨이 맞으면 onMatch, 아니라면 onMismatch  &ndash;&gt;
+                <level>error</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <file>${LOG_PATH}/${ERR_LOG_FILE_NAME}.log</file>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+            &lt;!&ndash; Rolling 정책 &ndash;&gt;
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+                <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+
+                    <maxFileSize>10MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+
+                <maxHistory>30</maxHistory>
+            </rollingPolicy>
+        </appender>
+        <root>
+            <appender-ref ref="DEV_CONSOLE"/>
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="Error"/>
+        </root>
+
+    </springProfile>
+</configuration>-->

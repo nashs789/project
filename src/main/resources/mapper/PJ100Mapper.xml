@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.re.popJourney.dao.IPJ100Dao">
 	<select id="selectPJ100Notices" parameterType="HashMap" resultType="HashMap">
-		SELECT a.POST_NO
-			 , a.HIT
-			 , TO_CHAR(a.BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE
-			 , b.CMT
-			 , a.TITLE
+		SELECT a.POST_NO												/* 게시글번호 */
+			 , a.HIT													/* 조회수 */
+			 , TO_CHAR(a.BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE		/* 게시글작성일자 */
+			 , b.CMT													/* 댓글수 */
+			 , a.TITLE													/* 게시글제목 */
 		FROM (
 			   SELECT POST_NO
 				    , TITLE
@@ -27,5 +27,59 @@
 	      ON a.POST_NO = b.POST_NO
 	   WHERE a.RK BETWEEN 1 AND 5
 	   ORDER BY a.BOARD_DATE DESC
+	</select>
+
+	<select id="selectPJ100RegionYearRank" parameterType="String" resultType="HashMap">
+		SELECT a.JOURNAL_NO												/* 여행일지번호 */
+			 , a.NIC													/* 유저닉네임 */
+			 , a.MEM_NO													/* 유저번호 */
+			 , a.HIT													/* 조회수 */
+			 , TO_CHAR(a.JOURNAL_DATE, 'YYYY-MM-DD')AS JOURNAL_DATE		/* 여행일지작성일자 */
+			 , a.REGION_NAME											/* 지역명 */
+			 , CASE WHEN a.MONTH >= 10
+					THEN a.MONTH
+					ELSE SUBSTR(a.MONTH, 2)
+			    END AS MONTH											/* 당월 */
+     		 , b.CMT													/* 댓글수 */
+     		 , a.TITLE													/* 여행일지제목  */
+		  FROM (
+				SELECT a.JOURNAL_NO
+					  , a.TITLE
+					  , c.NIC
+					  , c.MEM_NO
+					  , a.HIT
+					  , a.JOURNAL_DATE
+					  , RANK() OVER(PARTITION BY b.SUB_CATEGORY_NO ORDER BY a.HIT DESC)AS RK
+					  , b.SUB_CATEGORY_NAME AS REGION_NAME
+					  , a.REGION_NO
+					  , TO_CHAR(SYSDATE(), 'MM') AS MONTH
+				    FROM JOURNAL a
+				   INNER JOIN JOURNAL_CATEGORY b
+				      ON b.CATEGORY_NO = 1
+				     AND a.REGION_NO = b.SUB_CATEGORY_NO
+				   INNER JOIN MEM c
+				      ON c.MEM_NO = a.MEM_NO
+				     AND c.LEAVE_DATE IS NULL
+				   WHERE TO_CHAR(a.JOURNAL_DATE, 'YY') = TO_CHAR(SYSDATE(), 'YY')
+				   <if test='month eq "Y"'>
+					   AND TO_CHAR(a.JOURNAL_DATE, 'MM') = TO_CHAR(SYSDATE(), 'MM')
+				   </if>
+				   <if test='month eq "Y" and week eq "Y"'>
+					   AND DATE_FORMAT(a.JOURNAL_DATE, '%U') = DATE_FORMAT(SYSDATE(), '%U')
+				   </if>
+			    ) a
+		  LEFT OUTER JOIN (
+							SELECT a.JOURNAL_NO
+								 , COUNT(*) AS CMT
+							  FROM JOURNAL a
+							 INNER JOIN JOURNAL_CMT b
+							    ON a.JOURNAL_NO = b.JOURNAL_NO
+							   AND b.DEL = 1
+							 GROUP BY a.JOURNAL_NO
+						  ) b
+		      ON a.JOURNAL_NO = b.JOURNAL_NO
+		 WHERE a.RK BETWEEN 1 AND 10
+		   AND a.REGION_NO = #{region_no}
+		 ORDER BY a.HIT DESC
 	</select>
 </mapper>

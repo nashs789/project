@@ -26,7 +26,7 @@ function sendData(urlName, params){
 }
 
 function sendServer(urlName, params, callback){
-    // var params = $("#regionForm").serialize();
+    console.log(params);
 
     $.ajax({
              url: urlName

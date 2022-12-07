@@ -10,37 +10,14 @@
 	<script type="text/javascript" src="static/js/PJ100Js/PJ100S.js"></script>
 	<script type="text/javascript" src="static/js/Common/callServer.js"></script>
 	<script type="text/javascript">
-		let obj = {};
+		let paramObj = {
+			        "region_no": "1"
+		};
 
 		$(document).ready(function(){
-
 			setEvent();
-			// chkStat();
-
-			// var popupText = ""; //공통 팝업에 들어가는 문구 담아줄 변수
-			sendServer("selectPJ100Notices", obj, function callback(result){
-				console.log(result);
-				makeNoticeBoard(result);
-			});
-/*
-			$.ajax({ //공지사항 5개  만들기
-				url: "selectPJ100Notices",
-				dataType: "json",
-				type: "post",
-				success:function(result) {
-					if(result.msg == "success") {
-						makeNoticeBoard(result.noticeData);
-						$("#CD0").click();
-					} else {
-						popupText = "오류가 발생했습니다.";
-						commonPopup(popupText);
-					}//if ~ else end
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end
- */
+			chkStat();
+			setNoticeBoard();
 		}); // document ready end
 
 		function chkStat(){
@@ -52,7 +29,6 @@
 			var LCD = "#L"; // CD -> LCD
 			var CD = "#"; // LCD -> CD
 			var CDColor = ""; //본래의 배경색 유지
-			var region = ""; //어느 지역을 클릭하는지
 
 			//지도에 호버시 해당 지역의 이름은 검은색 글씨로, 해당 지역 지도는 #c2c2d6색으로 변경
 			$("svg").on("mouseover", "path", function(){
@@ -96,46 +72,14 @@
 
 			//지도영역 클릭시 해당 지역에 해당하는 년/월/주간 랭킹을 가져온다
 			$("svg").on("click", "path", function(){
-				region = $(this).attr("id").substr(2);
-				$("#regionNo").val(region);
-
-				var params = $("#regionForm").serialize();
-
-				$.ajax({
-					url: "selectPJ100regionBoards",
-					type: "post",
-					dataType: "json",
-					data: params,
-					success: function(result) {
-						makeRankBoard(result.yearData, result.monthData, result.weekData);
-						$("#yearBoard, #monthBoard, #weekBoard").css("display", "inline-block");
-					}, //success end
-					error: function(request, status, error) {
-						console.log(error);
-					} //error end
-				}); //ajax end
+				paramObj.region_no = $(this).attr("id").substr(2);
+				setRankBoard();
 			}); //svg path click end
 
 			//지도영역에 있는 글자 클릭시 해당 지역에 해당하는 년/월/주간 랭킹을 가져온다
 			$("svg").on("click", ".TEXT", function(){
-				region = $(this).attr("id").substr(3);
-				$("#regionNo").val(region);
-
-				var params = $("#regionForm").serialize();
-
-				$.ajax({
-					url: "selectPJ100regionBoards",
-					type: "post",
-					dataType: "json",
-					data: params,
-					success: function(result) {
-						makeRankBoard(result.yearData, result.monthData, result.weekData);
-						$("#yearBoard, #monthBoard, #weekBoard").css("display", "inline-block");
-					}, //success end
-					error: function(request, status, error) {
-						console.log(error);
-					} //error end
-				}); //ajax end
+				paramObj.region_no = $(this).attr("id").substr(3);
+				setRankBoard();
 			}); //svg .TEXT click end
 
 			//랭킹 게시판에서 게시글 제목 클릭 시 해당 게시글로, 닉네임 클릭 시 해당 유저 페이지로
@@ -150,14 +94,11 @@
 					$("#postNo").val($(this).attr($(this).attr("class")));
 					$("#postForm").submit();
 				}
-			}); // 상세보기 페이지 구현하면 만들기
+			});
 		}
 	</script>
 </head>
 
-<form action="#" id="regionForm">
-	<input type="hidden" id="regionNo" name="regionNo" value="1"/>
-</form>
 <form action="#" id="memForm">
 	<input type="hidden" id="MEM_NO" name="MEM_NO" value="${sMEM_NO }"/>
 	<input type="hidden" id="page" name="page" value="${page}"/>

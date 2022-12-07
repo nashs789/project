@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -17,5 +18,9 @@ public class PJ100Service {
 
     public List<HashMap<String, String>> selectPJ100Notices() {
         return ipj100Dao.selectPJ100Notices();
+    }
+
+    public List<HashMap<String, String>> selectPJ100RegionYearRank(Map<String, Object> paramMap) {
+        return ipj100Dao.selectPJ100RegionYearRank(paramMap);
     }
 }
