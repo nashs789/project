@@ -1,6 +1,6 @@
 package com.re.popJourney.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.common.PJUtils;
 import com.re.popJourney.service.PJ100Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,33 +21,24 @@ public class PJ100Controller {
     // notices
     @PostMapping(value = "/selectPJ100Notices", produces = "text/json;charset=UTF-8")
     public String selectPJ100Notices() throws Throwable {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-
-        List<HashMap<String, String>> outListData = pj100Service.selectPJ100Notices();
-
-        return mapper.writeValueAsString(outListData);
+        return PJUtils.getModelToJson("noticeList", pj100Service.selectPJ100Notices());
     }
 
     // 메인화면 - 지역별 랭킹
     // regionBoards
     @PostMapping(value = "/selectPJ100regionBoards", produces = "text/json;charset=UTF-8")
     public String selectPJ100regionBoards(@RequestBody HashMap<String, String> params) throws Throwable {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        Map<String, Object> modelMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap();
 
         paramMap.put("region_no", params.get("region_no"));
-        List<HashMap<String, String>> YearRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
+        List<HashMap<String, Object>> YearRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
         paramMap.put("month", "Y");
-        List<HashMap<String, String>> MonthRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
+        List<HashMap<String, Object>> MonthRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
         paramMap.put("week", "Y");
-        List<HashMap<String, String>> WeekRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
+        List<HashMap<String, Object>> WeekRankList = pj100Service.selectPJ100RegionYearRank(paramMap);
 
-        modelMap.put("YearRankList", YearRankList);
-        modelMap.put("MonthRankList", MonthRankList);
-        modelMap.put("WeekRankList", WeekRankList);
+        String[] nameList = {"YearRankList", "MonthRankList", "WeekRankList"};
 
-        return mapper.writeValueAsString(modelMap);
+        return PJUtils.getModelToJson(nameList, YearRankList, MonthRankList, WeekRankList);
     }
 }

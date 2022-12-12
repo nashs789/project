@@ -16,11 +16,11 @@ public class PJ100Service {
 
     private final IPJ100Dao ipj100Dao;
 
-    public List<HashMap<String, String>> selectPJ100Notices() {
+    public List<HashMap<String, Object>> selectPJ100Notices() {
         return ipj100Dao.selectPJ100Notices();
     }
 
-    public List<HashMap<String, String>> selectPJ100RegionYearRank(Map<String, Object> paramMap) {
+    public List<HashMap<String, Object>> selectPJ100RegionYearRank(Map<String, Object> paramMap) {
         return ipj100Dao.selectPJ100RegionYearRank(paramMap);
     }
 }

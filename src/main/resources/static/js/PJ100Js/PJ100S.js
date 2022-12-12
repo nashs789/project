@@ -1,3 +1,17 @@
+function setNoticeBoard(){
+    sendServer("selectPJ100Notices", paramObj, function callback(result){
+        makeNoticeBoard(result.noticeList);
+        $("#CD0").click();
+    });
+}
+
+function setRankBoard(){
+    sendServer("selectPJ100regionBoards", paramObj, function callback(result){
+        makeRankBoard(result.YearRankList, result.MonthRankList, result.WeekRankList);
+        $("#yearBoard, #monthBoard, #weekBoard").css("display", "inline-block");
+    });
+}
+
 function makeNoticeBoard(noticeData)
 {
     var html = "";
@@ -22,8 +36,7 @@ function makeNoticeBoard(noticeData)
     html +=" 		</tr>";
     html +=" 	</thead>";
 
-    for(var data of noticeData)
-    {
+    for(var data of noticeData) {
         html +=" 	<tbody>";
         html +=" 		<tr>";
         html +=" 			<td>" + data.POST_NO + "</td>";
@@ -167,17 +180,3 @@ function makeRankBoard(yearData, monthData, weekData)
 
     $("#rankWrap").html(html);
 }//makeRankBoard end
-
-function setNoticeBoard(){
-    sendServer("selectPJ100Notices", paramObj, function callback(result){
-        makeNoticeBoard(result);
-        $("#CD0").click();
-    });
-}
-
-function setRankBoard(){
-    sendServer("selectPJ100regionBoards", paramObj, function callback(result){
-        makeRankBoard(result.YearRankList, result.MonthRankList, result.WeekRankList);
-        $("#yearBoard, #monthBoard, #weekBoard").css("display", "inline-block");
-    });
-}

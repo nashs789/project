@@ -14,40 +14,27 @@
 	<script type="text/javascript" src="static/js/Common/popup.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	/*
-	if("{sMEM_NO}" != ""){
+	if("${sMemVo.mem_no}" != ""){
 		location.href="PJ100M";
 	}
-	*/
-	
+
 	$("#chk_all").change(function(){ //전체선택 체크박스 클릭
-		if($("#chk_all").prop("checked") == true)
-		{
+		if($("#chk_all").prop("checked") == true) {
 			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", true);
-		}
-		else
-		{
+		} else {
 			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", false);
 		}
 	});
 	
 	$("#btn_next").on("click", function(){ //다음으로 가기버튼 클릭
-		if($("#chk_q1").prop("checked") == false)
-		{
-			popupText = "약관에 동의해주세요.";
-			commonPopup(popupText);
+		if($("#chk_q1").prop("checked") == false) {
+			commonPopup("약관에 동의해주세요.");
 			$("#chk_q1").focus();
-		}
-		else if($("#chk_q2").prop("checked") == false)
-		{
-			popupText = "약관에 동의해주세요.";
-			commonPopup(popupText);
+		} else if($("#chk_q2").prop("checked") == false) {
+			commonPopup("약관에 동의해주세요.");
 			$("#chk_q2").focus();
-		}
-		else
-		{
-			if($("#chk_q3").prop("checked") == true)
-			{
+		} else {
+			if($("#chk_q3").prop("checked") == true) {
 				$("#marketing").val(1);
 			}
 			$("#form_marketing").submit();
@@ -56,7 +43,7 @@ $(document).ready(function(){
 
 	// 메인화면 페이지
 	$("#btn_pre").on("click", function(){
-		location.href = "PJ100M";
+		location.href="PJ100M";
 	});
 
 }); //document ready end
