@@ -6,273 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>약관</title>
-	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ201C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ201S.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	console.log("${memVo.marketing}");
-	/*
-	if("{sMEM_NO}" != "" || "{data.marketing}" == "")
-	{	
-		location.href="main";
-	}
-	*/
+	/*if("{sMemVo.mem_no}" != "" || "{sMemVo.marketing}" == "") {
+		//location.href="PJ100M";
+	}*/
+
+	setEvent();
+	chkStat();
+
 	/*
 	var popupText = ""; //팝업 문구변경
 	var IDCheck = "";  //아이디 중복 확인용
-	var pattern1 = /[0-9]/;
-    var pattern2 = /[a-zA-Z]/;
-	var pattern3 = /[~!@\#$%<>^&*]/; //특수문자 확인용 정규식
-	
-	$("#IDDbCkBtn").on("click", function(){  //아이디 중복체크
-		$(".popup").remove();
-		$(".bg").remove();
-		if($.trim($("#inputID").val()) == "") { //아이디가 비어있을경우
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputID").focus();
-			return false;
-		}
-		
-		if(pattern3.test($("#inputID").val())) { //아이디에 특수문자 금지
-			popupText = "아이디에 특수문자는 불가능합니다.";
-			commonPopup(popupText);
-			$("#inputID").focus();
-			$("#inputID").val("");
-			return false;
-		}
-		
-		$("#valueStorage").val($("#inputID").val());
-		
-		var params = $("#Form").serialize();
-		
-		$.ajax({
-			url: "IDDbCk",
-			data: params,
-			dataType:"json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "사용 가능한 아이디입니다.";
-					commonPopup(popupText);
-					IDCheck = $("#inputID").val();
-				} else {
-					popupText = "사용 불가능한 아이디입니다.";
-					commonPopup(popupText);
-				}
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end 
-	}); //IdDbCkBtn click end
-	
-	$("#inputPhone").on("keypress", function(){  //핸드폰 번호 숫자만 받기
-		$(".popup").remove();
-		$(".bg").remove();
-		
-		if(event.keyCode < 48 || event.keyCode > 57) {
-			popupText = "숫자만 입력하세요.";
-			commonPopup(popupText);
-			return false;
-		}
-	}); //inputPhone keypress end
-	
-	$("#ckCode").on("click", function(){ //이메일 인증 확인버튼 클릭
-		
-		var params = $("#infoForm").serialize();
-		
-		$.ajax({
-			url: "checkCodes",
-			data: params,
-			dataType: "json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "인증 되었습니다.";
-					commonPopup(popupText);
-					$("#approvalCode").val(1);
-				} else {
-					popupText = "인증에 실패하였습니다.";
-					commonPopup(popupText);
-				} 
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end 
-	});
-	
-	$("#selectDomain").change(function(){  //도메인 셀렉터 선택시 텍스트창으로 값 이동
-		$("#inputDomain").val("");
-		$("#inputDomain").val($("#selectDomain").val());
-	}); //selectDomain change end
-	
-	$("#nextBtn").on("click", function(){      //다음 버튼을 눌렀을때 필수 입력필드가 전부 채워졌는지 확인
-		if($.trim($("#inputName").val()) == "") {
-			popupText = "이름을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputName").focus();
-		} else if(pattern3.test($("#inputName").val())) {
-			popupText = "이름에 특수문자 사용 불가능합니다.";
-			commonPopup(popupText);
-			$("#inputName").val("");
-			$("#inputName").focus();
-		} else if(pattern1.test($("#inputName").val())) {
-			popupText = "이름에 숫자는 사용 불가능합니다.";
-			commonPopup(popupText);
-			$("#inputName").val("");
-			$("#inputName").focus();
-		} else if($("#selectYear").val() == "연도") {
-			popupText = "년도를 입력하세요.";
-			commonPopup(popupText);
-			$("#selectYear").focus();
-		} else if($("#selectMonth").val() == "월") {
-			popupText = "날짜를 입력하세요.";
-			commonPopup(popupText);
-			$("#selectMonth").focus(); 
-		} else if($("#selectDay").val() == "일") {
-			popupText = "날짜를 입력하세요.";
-			commonPopup(popupText);
-			$("#selectDay").focus(); 
-		} else if($(':radio[name="sex"]:checked').val() == 0) {
-			popupText = "성별을 선택하세요.";
-			commonPopup(popupText);
-			$(':radio[name="sex"]:checked').focus();
-		} else if($.trim($("#inputID").val()) == "") {
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputID").focus();
-		} else if($("#inputID").val() != IDCheck) {
-			popupText = "아이디 중복확인을 해주세요.";
-			commonPopup(popupText);
-		} else if($.trim($("#inputPW").val()) == "") {
-			popupText = "비밀번호를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputPW").focus();
-		} else if($.trim($("#inputRePW").val()) == "") {
-			popupText = "비밀번호 재확인을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputRePW").focus();
-		} else if($("#inputPW").val() != $("#inputRePW").val()) {
-			popupText = "비밀번호가 서로 일치하지 않습니다.";
-			commonPopup(popupText);
-			resetPW();
-		} else if($("#inputPW").val().length < 8) { //minlength가 안먹을경우를 대비한 8글자 미만 비밀번호 거르기
-			popupText = "비밀번호를 8~32자리로 해주세요.";
-			commonPopup(popupText);
-			resetPW();
-		} else if(!pattern1.test($("#inputPW").val())||!pattern2.test($("#inputPW").val())||!pattern3.test($("#inputPW").val())) {
-			popupText = "숫자/영문/특수문자를 조합하세요.";
-			commonPopup(popupText);
-			resetPW();
-		} else if($("#selectTelcom").val() == 0) {
-			popupText = "통신사를 선택하세요";
-			commonPopup(popupText);
-			$("#selectTelcom").focus();
-		} else if($.trim($("#inputPhone").val()) == "") {
-			popupText = "전화번호를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputPhone").focus();
-		} else if($.trim($("#inputPhone").val().length) != 8) {
-			popupText = "8자리를 입력하세요";
-			commonPopup(popupText);
-			$("#inputPhone").focus();
-		} else if($.trim($("#inputPhone").val().indexOf('-')) == 0) {
-			popupText = "-를 제외하고 입력하세요.";
-			commonPopup(popupText);
-			$("#inputPhone").focus();
-		} else if($.trim($("#inputEmail").val()) == "") {
-			popupText = "이메일을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputEmail").focus();
-		} else if($.trim($("#inputDomain").val()) == "") {
-			popupText = "이메일 주소를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputDomain").focus();
-		} else if($("#approvalCode").val() != 1) {
-			popupText = "이메일 인증을 진행해주세요.";
-			commonPopup(popupText);
-			$("#inputCode").focus();
-		} else if($("#selectKeyword").val() == 0) {
-			console.log($("#selectKeyword").val());
-			popupText = "키워드를 선택 하세요.";
-			commonPopup(popupText);
-			$("#selectKeyword").focus();
-		} else if($.trim($("#inputKeyword").val()) == "") {
-			popupText = "키워드를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputKeyword").focus();
-		} else {
-			$("#infoForm").submit();
-		}//if ~ else end
-	}); //nextBtn click end
-	
-	$("#sendCode").on("click", function(){
-		if($.trim($("#inputEmail").val()) == "") {
-			popupText = "이메일을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputEmail").focus();
-		} else if($.trim($("#inputDomain").val()) == "") {
-			popupText = "이메일 주소를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputDomain").focus();
-		} else {
-			$("#codeWrap").show();
-			var params = $("#infoForm").serialize();
-			
-			$.ajax({
-				url: "sendCodes",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result) {
-					if(result.msg == "success") {
-						popupText = "메일이 전송되었습니다.";
-						commonPopup(popupText);
-					} else {
-						popupText = "메일 전송에 실패 하였습니다.";
-						commonPopup(popupText);
-					} 
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end 
-		}
-	}); //sendCode click end
-	
-	$("#reSend").on("click", function(){
-		var params = $("#infoForm").serialize();
-		
-		$.ajax({
-			url: "sendCodes",
-			data: params,
-			dataType: "json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "메일이 전송되었습니다.";
-					commonPopup(popupText);
-				} else {
-					popupText = "메일 전송에 실패 하였습니다.";
-					commonPopup(popupText);
-				} 
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end 
-	});//reSend click end
-	
-	$("#btn_pre").on("click", function(){ //이전버튼 클릭
-		location.href = "terms";
-	}); //preBtn click end
-*/
 
-	$("#btn_next").on("click", function(){
+	*/
+
+/*	$("#btn_next").on("click", function(){
 		let params = {
 			           "name": $("#inp_name").val()
 					 , "birth": $("#sel_year").val()
@@ -304,8 +56,169 @@ $(document).ready(function(){
 		$("#marketing").val(params.marketing);
 
 		$("#form_test").submit();
-	});
+	});*/
 });//document ready end
+
+function setEvent(){
+	$("#btn_id_db_chk").on("click", function(){  //아이디 중복체크
+		// $(".popup").remove();
+		// $(".bg").remove();
+		/*if($.trim($("#inputID").val()) == "") { //아이디가 비어있을경우
+			popupText = "아이디를 입력하세요.";
+			commonPopup(popupText);
+			$("#inputID").focus();
+			return false;
+		}*/
+
+		if(isEmpty($("#inp_id"), "아이디를 입력하세요.")){
+			return;
+		}
+
+		if(pattern3.test($("#inputID").val())) { //아이디에 특수문자 금지
+			popupText = "아이디에 특수문자는 불가능합니다.";
+			commonPopup(popupText);
+			$("#inputID").focus();
+			$("#inputID").val("");
+			return false;
+		}
+
+		$("#valueStorage").val($("#inputID").val());
+
+		var params = $("#Form").serialize();
+
+		$.ajax({
+			url: "IDDbCk",
+			data: params,
+			dataType:"json",
+			type: "post",
+			success:function(result) {
+				if(result.msg == "success") {
+					popupText = "사용 가능한 아이디입니다.";
+					commonPopup(popupText);
+					IDCheck = $("#inputID").val();
+				} else {
+					popupText = "사용 불가능한 아이디입니다.";
+					commonPopup(popupText);
+				}
+			}, //success end
+			error: function(request, status, error) {
+				console.log(error);
+			} // error end
+		}); //ajax end
+	}); //IdDbCkBtn click end
+
+	$("#inputPhone").on("keypress", function(){  //핸드폰 번호 숫자만 받기
+		$(".popup").remove();
+		$(".bg").remove();
+
+		if(event.keyCode < 48 || event.keyCode > 57) {
+			popupText = "숫자만 입력하세요.";
+			commonPopup(popupText);
+			return false;
+		}
+	}); //inputPhone keypress end
+
+	$("#ckCode").on("click", function(){ //이메일 인증 확인버튼 클릭
+
+		var params = $("#infoForm").serialize();
+
+		$.ajax({
+			url: "checkCodes",
+			data: params,
+			dataType: "json",
+			type: "post",
+			success:function(result) {
+				if(result.msg == "success") {
+					popupText = "인증 되었습니다.";
+					commonPopup(popupText);
+					$("#approvalCode").val(1);
+				} else {
+					popupText = "인증에 실패하였습니다.";
+					commonPopup(popupText);
+				}
+			}, //success end
+			error: function(request, status, error) {
+				console.log(error);
+			} // error end
+		}); //ajax end
+	});
+
+	$("#selectDomain").change(function(){  //도메인 셀렉터 선택시 텍스트창으로 값 이동
+		$("#inputDomain").val("");
+		$("#inputDomain").val($("#selectDomain").val());
+	}); //selectDomain change end
+
+	$("#btn_next").on("click", function(){      //다음 버튼을 눌렀을때 필수 입력필드가 전부 채워졌는지 확인
+		if(!checkEmptyComponent()){
+			$("#memForm").submit();
+		}
+	}); //nextBtn click end
+
+	$("#sendCode").on("click", function(){
+		if($.trim($("#inputEmail").val()) == "") {
+			popupText = "이메일을 입력하세요.";
+			commonPopup(popupText);
+			$("#inputEmail").focus();
+		} else if($.trim($("#inputDomain").val()) == "") {
+			popupText = "이메일 주소를 입력하세요.";
+			commonPopup(popupText);
+			$("#inputDomain").focus();
+		} else {
+			$("#codeWrap").show();
+			var params = $("#infoForm").serialize();
+
+			$.ajax({
+				url: "sendCodes",
+				data: params,
+				dataType: "json",
+				type: "post",
+				success:function(result) {
+					if(result.msg == "success") {
+						popupText = "메일이 전송되었습니다.";
+						commonPopup(popupText);
+					} else {
+						popupText = "메일 전송에 실패 하였습니다.";
+						commonPopup(popupText);
+					}
+				}, //success end
+				error: function(request, status, error) {
+					console.log(error);
+				} // error end
+			}); //ajax end
+		}
+	}); //sendCode click end
+
+	$("#reSend").on("click", function(){
+		var params = $("#infoForm").serialize();
+
+		$.ajax({
+			url: "sendCodes",
+			data: params,
+			dataType: "json",
+			type: "post",
+			success:function(result) {
+				if(result.msg == "success") {
+					popupText = "메일이 전송되었습니다.";
+					commonPopup(popupText);
+				} else {
+					popupText = "메일 전송에 실패 하였습니다.";
+					commonPopup(popupText);
+				}
+			}, //success end
+			error: function(request, status, error) {
+				console.log(error);
+			} // error end
+		}); //ajax end
+	});//reSend click end
+
+	$("#btn_pre").on("click", function(){ //이전버튼 클릭
+		//location.href = "terms";
+	}); //preBtn click end
+}
+
+function chkStat(){
+
+}
 
 </script>
 </head>
@@ -314,7 +227,7 @@ $(document).ready(function(){
 <form action="#" id="Form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 </form>
-<form action="PJ202M" id="form_test" method="post">
+<form action="PJ202M" id="memForm" method="post">
 	<input type="hidden" id="name" name="name"/>
 	<input type="hidden" id="birth" name="birth"/>
 	<input type="hidden" id="sex" name="sex"/>

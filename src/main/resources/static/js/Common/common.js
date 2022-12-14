@@ -10,3 +10,42 @@
 function trim(obj){
     return $.trim(obj.val());
 }
+
+/**
+ *
+ * @param obj
+ * @returns {boolean}
+ */
+function isEmpty(obj){
+    if(trim(obj) == ""){
+        obj.focus();
+        return true;
+    }
+    return false;
+}
+
+/**
+ *
+ * @param obj
+ * @param msg
+ * @returns {boolean}
+ */
+function isEmpty(obj, msg){
+    if(trim(obj) == ""){
+        commonPopup(msg);
+        obj.focus();
+        return true;
+    }
+    return false;
+}
+
+function isUndefined(){
+
+}
+
+// ====================================================
+// 정규식
+
+var regNum = /[0-9]/;
+var regEng = /[a-zA-Z]/;
+var regSpeCh = /[~!@\#$%<>^&*]/;

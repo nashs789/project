@@ -2,6 +2,7 @@ package com.re.popJourney.viewController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.common.PJUtils;
 import com.re.popJourney.model.MemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -23,33 +24,15 @@ public class PJ200ViewController {
     // terms
     @GetMapping(value = "/PJ200M")
     public ModelAndView PJ200M() {
-        return new ModelAndView("PJ200Views/PJ200M");
+        return PJUtils.getModelAndView("PJ200Views/PJ200M");
     }
 
     // 회원가입 페이지 - 이인복
     // PJ201M
     // join
     @PostMapping(value = "/PJ201M")
-    // MemVo memVo
-    // HttpServletRequest req, HttpServletResponse res
-    public ModelAndView PJ201M(MemVo memVo) throws IOException, ServletException {
-        // ObjectMapper mapper = new ObjectMapper();
-        // String jsonStringData = mapper.writeValueAsString(memVo);
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("memVo", memVo);
-        mav.setViewName("PJ200Views/PJ201M");
-
-        //String viewName = mav.getViewName();
-
-        //RequestDispatcher dispatcher = req.getRequestDispatcher(viewName);
-        //dispatcher.forward(req, res);
-
-        // String viewPath = "/WEB-INF/views/PJ200Views/PJ201M.jsp";
-        // RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
-        // dispatcher.forward(req, res);
-        //return mav;
-        return mav;
+    public ModelAndView PJ201M(MemVo memVo){
+        return PJUtils.getModelAndView("PJ200Views/PJ201M", "memVo", memVo);
     }
 
     // 프로필 작성- 이인복
@@ -71,7 +54,6 @@ public class PJ200ViewController {
 
         mav.setViewName("PJ200Views/PJ202M");
          */
-        log.info("memVo = {}", memVo);
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("PJ200Views/PJ202M");
@@ -106,18 +88,14 @@ public class PJ200ViewController {
     // 아이디 찾기 페이지- 이인복
     // PJ205M
     @GetMapping(value = "/PJ205M")
-    public ModelAndView findID(ModelAndView mav) {
-        mav.setViewName("PJ200Views/PJ205M");
-
-        return mav;
+    public ModelAndView findID() {
+        return new ModelAndView("PJ200Views/PJ205M");
     }
 
     // 비밀번호 찾기 페이지- 이인복
     // PJ206M
     @GetMapping(value = "/PJ206M")
-    public ModelAndView findPW(ModelAndView mav) {
-        mav.setViewName("PJ200Views/PJ206M");
-
-        return mav;
+    public ModelAndView findPW() {
+        return new ModelAndView("PJ200Views/PJ206M");
     }
 }

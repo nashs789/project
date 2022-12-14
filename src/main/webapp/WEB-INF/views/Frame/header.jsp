@@ -4,11 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
-	<link href="static/css/Frame/header.css" rel="stylesheet" type="text/css">
+	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/Common/popup.css" rel="stylesheet" type="text/css">
+	<link href="static/css/Frame/header.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/Common/popup.js"></script>
 	<script type="text/javascript" src="static/js/Common/common.js"></script>
+	<script type="text/javascript" src="static/js/Common/callServer.js"></script>
 	<script type="text/javascript" src="static/js/Frame/header.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
