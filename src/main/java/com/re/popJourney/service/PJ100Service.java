@@ -16,8 +16,8 @@ public class PJ100Service {
 
     private final IPJ100Dao ipj100Dao;
 
-    public List<HashMap<String, Object>> selectPJ100Notices() {
-        return ipj100Dao.selectPJ100Notices();
+    public List<HashMap<String, Object>> selectPJ100NoticeList() {
+        return ipj100Dao.selectPJ100NoticeList();
     }
 
     public List<HashMap<String, Object>> selectPJ100RegionYearRank(Map<String, Object> paramMap) {

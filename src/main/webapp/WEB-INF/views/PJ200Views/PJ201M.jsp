@@ -20,28 +20,30 @@ $(document).ready(function(){
 
 	/*
 	var popupText = ""; //팝업 문구변경
-	var IDCheck = "";  //아이디 중복 확인용
-
 	*/
 
-/*	$("#btn_next").on("click", function(){
+	$("#btn_next").on("click", function(){
 		let params = {
-			           "name": $("#inp_name").val()
-					 , "birth": $("#sel_year").val()
-			         , "sex": $("#rad_sex").val()
-					 , "id": $("#inp_id").val()
-					 , "pw": $("#inp_pw").val()
-			   	 	 , "telcom": $("#sel_telcom").val()
-					 , "phone": $("#inp_phone").val()
-					 , "email": $("#inp_email").val()
-					 , "domain": $("#inp_domain").val()
-					 , "email_confirm": $("#inp_code").val()
-					 , "keyword_no": $("#sel_keyword").val()
-					 , "keyword": $("#inp_keyword").val()
-				     , "marketing": ${memVo.marketing}
+			           "name"				: $("#inp_name").val()
+					 , "birth"				: $("#sel_year").val()
+			         , "sex" 				: $("#rad_sex").val()
+					 , "id"					: $("#inp_id").val()
+					 , "pw"					: $("#inp_pw").val()
+			   	 	 , "telcom" 			: $("#sel_telcom").val()
+					 , "phone"				: $("#inp_phone").val()
+					 , "email"				: $("#inp_email").val()
+					 , "domain"				: $("#inp_domain").val()
+					 , "email_confirm"		: $("#inp_code").val()
+					 , "keyword_no"			: $("#sel_keyword").val()
+					 , "keyword"			: $("#inp_keyword").val()
+				     , "marketing"			: ${memVo.marketing}
 		}
 
-		$("#name").val(params.name);
+		if(!checkEmptyComponent()){
+			$("#memForm").submit();
+		}
+
+		/*$("#name").val(params.name);
 		$("#birth").val(params.birth);
 		$("#sex").val(params.sex);
 		$("#id").val(params.id);
@@ -53,37 +55,28 @@ $(document).ready(function(){
 		$("#email_confirm").val(params.email_confirm);
 		$("#keyword_no").val(params.keyword_no);
 		$("#keyword").val(params.keyword);
-		$("#marketing").val(params.marketing);
+		$("#marketing").val(params.marketing);*/
 
 		$("#form_test").submit();
-	});*/
+	});
 });//document ready end
 
 function setEvent(){
 	$("#btn_id_db_chk").on("click", function(){  //아이디 중복체크
-		// $(".popup").remove();
-		// $(".bg").remove();
-		/*if($.trim($("#inputID").val()) == "") { //아이디가 비어있을경우
-			popupText = "아이디를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputID").focus();
-			return false;
-		}*/
-
 		if(isEmpty($("#inp_id"), "아이디를 입력하세요.")){
 			return;
 		}
 
-		if(pattern3.test($("#inputID").val())) { //아이디에 특수문자 금지
-			popupText = "아이디에 특수문자는 불가능합니다.";
-			commonPopup(popupText);
-			$("#inputID").focus();
-			$("#inputID").val("");
-			return false;
+		if(isExitSpeChar($("#inp_id"), "아이디에 특수문자는 불가능합니다.")){
+			return;
 		}
 
+		sendServer("selectPJ200DupId", {"id": $("#inp_id").val()}, function callback(result){
+			console.log(result);
+			// $("#idDupChkYn").val();
+		});
+/*
 		$("#valueStorage").val($("#inputID").val());
-
 		var params = $("#Form").serialize();
 
 		$.ajax({
@@ -95,7 +88,7 @@ function setEvent(){
 				if(result.msg == "success") {
 					popupText = "사용 가능한 아이디입니다.";
 					commonPopup(popupText);
-					IDCheck = $("#inputID").val();
+					//IDCheck = $("#inputID").val();
 				} else {
 					popupText = "사용 불가능한 아이디입니다.";
 					commonPopup(popupText);
@@ -105,12 +98,10 @@ function setEvent(){
 				console.log(error);
 			} // error end
 		}); //ajax end
+		*/
 	}); //IdDbCkBtn click end
 
 	$("#inputPhone").on("keypress", function(){  //핸드폰 번호 숫자만 받기
-		$(".popup").remove();
-		$(".bg").remove();
-
 		if(event.keyCode < 48 || event.keyCode > 57) {
 			popupText = "숫자만 입력하세요.";
 			commonPopup(popupText);
@@ -147,12 +138,6 @@ function setEvent(){
 		$("#inputDomain").val("");
 		$("#inputDomain").val($("#selectDomain").val());
 	}); //selectDomain change end
-
-	$("#btn_next").on("click", function(){      //다음 버튼을 눌렀을때 필수 입력필드가 전부 채워졌는지 확인
-		if(!checkEmptyComponent()){
-			$("#memForm").submit();
-		}
-	}); //nextBtn click end
 
 	$("#sendCode").on("click", function(){
 		if($.trim($("#inputEmail").val()) == "") {
@@ -222,11 +207,8 @@ function chkStat(){
 
 </script>
 </head>
-<body>
+
 <input type="hidden" id="approvalCode" value="0"/>
-<form action="#" id="Form">
-	<input type="hidden" id="valueStorage" name="storage"/>
-</form>
 <form action="PJ202M" id="memForm" method="post">
 	<input type="hidden" id="name" name="name"/>
 	<input type="hidden" id="birth" name="birth"/>
@@ -239,7 +221,10 @@ function chkStat(){
 	<input type="hidden" id="email_confirm" name="email_confirm"/>
 	<input type="hidden" id="keyword" name="keyword"/>
 	<input type="hidden" id="marketing" name="marketing" value="${memVo.marketing}"/>
+	<input type="hidden" id="idDupChkYn"/>
 </form>
+
+<body>
 <div id="wrap">
 		<jsp:include page="../Frame/header.jsp"></jsp:include>
 		<div id="container">

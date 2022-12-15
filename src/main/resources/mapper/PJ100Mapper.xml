@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.re.popJourney.dao.IPJ100Dao">
-	<select id="selectPJ100Notices" parameterType="HashMap" resultType="HashMap">
+	<select id="selectPJ100NoticeList" parameterType="HashMap" resultType="HashMap">
 		SELECT a.POST_NO												/* 게시글번호 */
 			 , a.HIT													/* 조회수 */
 			 , TO_CHAR(a.BOARD_DATE, 'YYYY-MM-DD') AS BOARD_DATE		/* 게시글작성일자 */

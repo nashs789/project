@@ -10,7 +10,7 @@ import java.util.Map;
 @Mapper
 @Repository
 public interface IPJ100Dao {
-    List<HashMap<String, Object>> selectPJ100Notices();
+    List<HashMap<String, Object>> selectPJ100NoticeList();
 
     List<HashMap<String, Object>> selectPJ100RegionYearRank(Map<String, Object> paramMap);
 }

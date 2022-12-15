@@ -1,6 +1,10 @@
 package com.re.popJourney.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.common.PJUtils;
+import com.re.popJourney.model.MemVo;
+import com.re.popJourney.service.PJ200Service;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,43 +14,20 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class PJ200Controller {
 
+    private final PJ200Service pj200Service;
+
     // 아이디 중복확인 - 이인복 201
-    // params에 넘어오는 키: storage(ID)
-    @PostMapping(value = "/IDDbCk", produces = "text/json;charset=UTF-8")
-    public String IDDbCk(@RequestParam HashMap<String, String> params) throws Throwable {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-/*
-        if (params.get("MEM_NO") != null) {
-            HashMap<String, String> doubleCheck = ipjs.IDDbCk2(params);
+    // IDDbCk
+    @PostMapping(value="/selectPJ200DupId", produces="text/json;charset=UTF-8")
+    public String selectPJ200DupId(MemVo memVo) throws Throwable {
+        Map<String, Object> noDupId = pj200Service.selectPJ200DupId(memVo);
 
-            try {
-                if (doubleCheck == null) {
-                    modelMap.put("msg", "success");
-                } else {
-                    modelMap.put("msg", "failed");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            // doubleCheck로 넘어오는 키: MEM_NO
-            HashMap<String, String> doubleCheck = ipjs.IDDbCk(params);
+        noDupId.put("dup", "N");
 
-            try {
-                if (doubleCheck == null) {
-                    modelMap.put("msg", "success");
-                } else {
-                    modelMap.put("msg", "failed");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-*/
-        return mapper.writeValueAsString(modelMap);
+        return PJUtils.getModelToJson("noDupId", noDupId);
     }
 
     //이메일 인증코드확인 201

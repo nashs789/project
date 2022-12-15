@@ -43,6 +43,10 @@ public class PJUtils {
         return mapper.writeValueAsString(modelMap);
     }
 
+    public static String getModelToJson(String name, Map<String, Object> map) throws JsonProcessingException {
+        return mapper.writeValueAsString(map);
+    }
+
     /**
      * Method: getModelAndView
      * @param viewName: 화면명 ('/WEB-INF/views/' 경로 밑에있는 jsp파일명)

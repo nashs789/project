@@ -1,12 +1,12 @@
 function setNoticeBoard(){
-    sendServer("selectPJ100Notices", paramObj, function callback(result){
+    sendServer("selectPJ100NoticeList", paramObj, function callback(result){
         makeNoticeBoard(result.noticeList);
         $("#CD0").click();
     });
 }
 
 function setRankBoard(){
-    sendServer("selectPJ100regionBoards", paramObj, function callback(result){
+    sendServer("selectPJ100regionBoardList", paramObj, function callback(result){
         makeRankBoard(result.YearRankList, result.MonthRankList, result.WeekRankList);
         $("#yearBoard, #monthBoard, #weekBoard").css("display", "inline-block");
     });

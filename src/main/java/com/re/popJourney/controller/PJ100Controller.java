@@ -19,15 +19,15 @@ public class PJ100Controller {
 
     // 메인화면 - 공지사항
     // notices
-    @PostMapping(value = "/selectPJ100Notices", produces = "text/json;charset=UTF-8")
-    public String selectPJ100Notices() throws Throwable {
-        return PJUtils.getModelToJson("noticeList", pj100Service.selectPJ100Notices());
+    @PostMapping(value="/selectPJ100NoticeList", produces="text/json;charset=UTF-8")
+    public String selectPJ100NoticeList() throws Throwable {
+        return PJUtils.getModelToJson("noticeList", pj100Service.selectPJ100NoticeList());
     }
 
     // 메인화면 - 지역별 랭킹
     // regionBoards
-    @PostMapping(value = "/selectPJ100regionBoards", produces = "text/json;charset=UTF-8")
-    public String selectPJ100regionBoards(@RequestBody HashMap<String, String> params) throws Throwable {
+    @PostMapping(value="/selectPJ100regionBoardList", produces="text/json;charset=UTF-8")
+    public String selectPJ100regionBoardList(@RequestBody HashMap<String, String> params) throws Throwable {
         Map<String, Object> paramMap = new HashMap();
 
         paramMap.put("region_no", params.get("region_no"));
