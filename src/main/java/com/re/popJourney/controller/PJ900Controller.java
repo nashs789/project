@@ -14,7 +14,7 @@ public class PJ900Controller {
 
     // 900
     // clientCenterFAQCnt
-    @RequestMapping(value = "/clientCenterFAQCnt", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterFAQCnt", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterFAQCnt(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -55,7 +55,7 @@ public class PJ900Controller {
 
     // 900
     // clientCenterFAQList
-    @RequestMapping(value = "/clientCenterFAQList", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterFAQList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterFAQList(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -80,7 +80,7 @@ public class PJ900Controller {
 
     // 901
     // clientCenterMatters
-    @RequestMapping(value="/clientCenterMatters", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/clientCenterMatters", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatters(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -109,7 +109,7 @@ public class PJ900Controller {
     // 고객센터-문의사항(작성)
     // 902
     // clientCenterMatterWrites
-    @RequestMapping(value = "/clientCenterMatterWrites", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterWrites", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterWrites(@RequestParam HashMap<String, String> params) throws Throwable {
         System.out.println("wParams >> " + params);
@@ -138,7 +138,7 @@ public class PJ900Controller {
     // 고객센터(문의사항) - 답변
     // clientCenterMatterDetailCmt
     // 903
-    @RequestMapping(value = "/clientCenterMatterDetailCmt", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterDetailCmt", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterDetailCmt(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -169,7 +169,7 @@ public class PJ900Controller {
 
     // 903
     // clientCenterMatterDeletes
-    @RequestMapping(value = "/clientCenterMatterDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -196,7 +196,7 @@ public class PJ900Controller {
     // 고객센터(문의사항) - 답변수정
     // 903
     // clientCenterMatterDetailCmtUpdates
-    @RequestMapping(value = "/clientCenterMatterDetailCmtUpdates", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterDetailCmtUpdates", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterDetailCmtUpdates(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -227,7 +227,7 @@ public class PJ900Controller {
     // 매니저 답변 삭제
     // 903
     // clientCenterMatterDetailCmtDeletes
-    @RequestMapping(value = "/clientCenterMatterDetailCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterDetailCmtDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterDetailCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -255,7 +255,7 @@ public class PJ900Controller {
 
     // 904
     // clientCenterMatterUpdates
-    @RequestMapping(value = "/clientCenterMatterUpdates", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/clientCenterMatterUpdates", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String clientCenterMatterUpdates(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();

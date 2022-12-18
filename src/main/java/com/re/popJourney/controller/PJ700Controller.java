@@ -15,7 +15,7 @@ public class PJ700Controller {
     // 타임라인 페이지 게시글 카운트 - 이인복
     // 700
     // timelinePageCnts
-    @RequestMapping(value = "/timelinePageCnts", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/timelinePageCnts", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String timelinePageCnts(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -46,7 +46,7 @@ public class PJ700Controller {
     // 타임라인 가져오기 - 이인복
     // 700
     // timelines
-    @RequestMapping(value = "/timelines", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/timelines", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String timelines(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -86,7 +86,7 @@ public class PJ700Controller {
     // 타임라인 페이지 게시글 카운트 - 이인복
     // 700
     // miniProfiles
-    @RequestMapping(value = "/miniProfiles", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/miniProfiles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String miniProfiles(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -117,7 +117,7 @@ public class PJ700Controller {
     // 알림페이지 게시글 카운트 - 이인복
     // 701
     // pageCnts
-    @RequestMapping(value = "/pageCnts", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/pageCnts", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String pageCnts(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();

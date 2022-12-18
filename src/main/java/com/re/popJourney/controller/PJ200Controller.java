@@ -21,19 +21,20 @@ public class PJ200Controller {
 
     // 아이디 중복확인 - 이인복 201
     // IDDbCk
+    // null과 중복예외 처리가 추가되어야함 2022.12.18 (추가처리)
     @PostMapping(value="/selectPJ200DupId", produces="text/json;charset=UTF-8")
-    public String selectPJ200DupId(MemVo memVo) throws Throwable {
+    public String selectPJ200DupId(@RequestBody MemVo memVo) throws Throwable {
         Map<String, Object> noDupId = pj200Service.selectPJ200DupId(memVo);
 
-        noDupId.put("dup", "N");
+        noDupId.put("dup", "Y");
 
         return PJUtils.getModelToJson("noDupId", noDupId);
     }
 
     //이메일 인증코드확인 201
-    @RequestMapping(value = "/checkCodes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/checkCodes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String checkCodes(@RequestParam HashMap<String, String> params) throws Throwable {
+    public String checkCodes(HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
 
@@ -131,7 +132,7 @@ public class PJ200Controller {
 
     // 닉네임 중복확인 - 이인복 202
     // params에 넘어오는 키: storage(ID)
-    @RequestMapping(value = "/nicDbCk", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/nicDbCk", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String nicDbCk(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -168,7 +169,7 @@ public class PJ200Controller {
     }
 
     // 회원등록 - 이인복 202
-    @RequestMapping(value = "/joins", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/joins", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String joins(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -199,7 +200,7 @@ public class PJ200Controller {
     }
 
     // 회원정보 가져오기 - 이인복 203
-    @RequestMapping(value = "/getInfo", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/getInfo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getInfo(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -221,7 +222,7 @@ public class PJ200Controller {
     }
 
     // 회원정보 수정 - 이 인복 203
-    @RequestMapping(value = "/editInfos", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/editInfos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String editInfos(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -256,7 +257,7 @@ public class PJ200Controller {
     }
 
     // 회원정보 삭제 - 이인복 203
-    @RequestMapping(value = "/deletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/deletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deletes(HttpSession session, @RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -286,7 +287,7 @@ public class PJ200Controller {
     }
 
     // 회원정보 가져오기 - 이인복 204
-    @RequestMapping(value = "/getInfo2", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/getInfo2", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getInfo2(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -307,7 +308,7 @@ public class PJ200Controller {
     }
 
     //세션 프로필값 변경 - 이인복 204
-    @RequestMapping(value = "/changeProfiles", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/changeProfiles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String changeProfiles(HttpSession session,@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -324,7 +325,7 @@ public class PJ200Controller {
     }
 
     //프로필 수정 - 이 인복 204
-    @RequestMapping(value = "/editProfiles", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/editProfiles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String editProfiles(@RequestParam HashMap<String, String> params) throws Throwable
     {
         ObjectMapper mapper = new ObjectMapper();
@@ -351,7 +352,7 @@ public class PJ200Controller {
     }
 
     // 아이디 찾기 - 이인복 205
-    @RequestMapping(value = "findIDs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "findIDs", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String findIDs(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -428,7 +429,7 @@ public class PJ200Controller {
     }
 
     // 비밀번호 찾기 - 이인복 206
-    @RequestMapping(value = "findPWs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "findPWs", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String findPWs(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -450,7 +451,7 @@ public class PJ200Controller {
     }
 
     // 비밀번호 재설정 - 이인복
-    @RequestMapping(value = "updateInputPWs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "updateInputPWs", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String updateInputPWs(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();

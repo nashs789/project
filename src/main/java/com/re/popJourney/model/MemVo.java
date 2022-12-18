@@ -2,6 +2,7 @@ package com.re.popJourney.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,6 +10,7 @@ import java.lang.reflect.Method;
 
 @Getter
 @Setter
+@ToString
 public class MemVo {
     private String mem_no;                  /* 회원번호 */
     private String id;                      /* 아이디 */
@@ -33,7 +35,10 @@ public class MemVo {
     private String grade_no;                /* 등급 */
     private String today;                   /* 당일날짜 */
 
-    @Override
+    public MemVo() {
+    }
+
+/*    @Override
     public String toString() {
 
         Class cls = this.getClass();
@@ -60,5 +65,5 @@ public class MemVo {
             e.printStackTrace();
         }
         return sb.toString().substring(0, sb.length() - 2);
-    }
+    }*/
 }

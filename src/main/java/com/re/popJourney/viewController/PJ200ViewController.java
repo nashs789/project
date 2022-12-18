@@ -37,8 +37,10 @@ public class PJ200ViewController {
 
     // 프로필 작성- 이인복
     // PJ202M
+    // writeProfile
     @PostMapping(value = "/PJ202M")
-    public ModelAndView writeProfile(MemVo memVo) {
+    public ModelAndView PJ202M(MemVo memVo) {
+        log.info("memVo = {}", memVo.toString());
         /*
         String birth = params.get("inputYear") + "-" + params.get("inputMonth") + "-" + params.get("inputDay");
         String phone = "010" + params.get("inputPhone");

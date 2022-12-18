@@ -142,9 +142,9 @@
 		function setHeaderEvent(){
 			//로그인 버튼 클릭
 			$("#btn_login").on("click", function(){
-				if(trim($("#inp_header_id")) == "") {
+				if(trim("inp_header_id") == "") {
 					commonPopup("아이디를 입력하세요.");
-				} else if(trim($("#inp_header_pw")) == "") {
+				} else if(trim("inp_header_pw") == "") {
 					commonPopup("비밀번호를 입력하세요.");
 				} else {
 					commonLogin();

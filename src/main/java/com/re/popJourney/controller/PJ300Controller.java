@@ -16,7 +16,7 @@ public class PJ300Controller {
     //자유게시판- (기본)전체보기
     // 300
     // communityLists
-    @RequestMapping(value = "/communityLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/communityLists", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String communityLists(@RequestParam HashMap<String, String>params) throws Throwable{
         ObjectMapper mapper = new ObjectMapper();
@@ -53,7 +53,7 @@ public class PJ300Controller {
     //자유게시판- 공지사항
     // 300
     // communityNLists
-    @RequestMapping(value = "/communityNLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/communityNLists", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String communityNLists(@RequestParam HashMap<String, String>params) throws Throwable{
         ObjectMapper mapper = new ObjectMapper();
@@ -89,7 +89,7 @@ public class PJ300Controller {
 
     // 300
     // communityCMTLists
-    @RequestMapping(value = "/communityCMTLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/communityCMTLists", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String communityCMTLists(@RequestParam HashMap<String, String>params) throws Throwable{
         ObjectMapper mapper = new ObjectMapper();
@@ -151,7 +151,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value = "/postDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/postDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String testABDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -175,7 +175,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value = "/postLikes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/postLikes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postLikes(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -200,7 +200,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value = "/postLikeCancles", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/postLikeCancles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postLikeCancles(@RequestParam HashMap<String, String> params, ModelAndView modelAndView) throws Throwable {
 
@@ -224,7 +224,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value="/postCmtAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmtAdds", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmtAdds(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -254,7 +254,7 @@ public class PJ300Controller {
 
     // 301
     // postCmtCmtDeletes
-    @RequestMapping(value="/postCmtCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmtCmtDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmtCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -280,7 +280,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value="/postCmts", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmts", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmts(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -307,7 +307,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value="/postCmtEdits", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmtEdits", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmtEdits(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -331,7 +331,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value="/postCmtCmtAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmtCmtAdds", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmtCmtAdds(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -357,7 +357,7 @@ public class PJ300Controller {
     }
 
     // 301
-    @RequestMapping(value="/postCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/postCmtDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -382,7 +382,7 @@ public class PJ300Controller {
     }
 
     // 302
-    @RequestMapping(value = "/postWrites", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/postWrites", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postWrites(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -410,7 +410,7 @@ public class PJ300Controller {
     }
 
     // 303
-    @RequestMapping(value = "/postUpdates", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/postUpdates", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String postUpdates(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();

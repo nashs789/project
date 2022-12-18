@@ -14,7 +14,7 @@ public class PJ600Controller {
 
     // 600
     // searchs
-    @RequestMapping(value="/searchs", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/searchs", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String searchs(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -80,7 +80,7 @@ public class PJ600Controller {
 
     // 601
     // searchTravelDiarys
-    @RequestMapping(value="/searchTravelDiarys", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/searchTravelDiarys", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String searchTravelDiarys(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -107,7 +107,7 @@ public class PJ600Controller {
 
     // 602
     // searchHashtags
-    @RequestMapping(value="/searchHashtags", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/searchHashtags", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String searchHashtags(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -141,7 +141,7 @@ public class PJ600Controller {
 
     // 603
     // searchCommunitys
-    @RequestMapping(value="/searchCommunitys", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/searchCommunitys", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String searchCommunitys(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -169,7 +169,7 @@ public class PJ600Controller {
 
     // 604
     // searchNics
-    @RequestMapping(value="/searchNics", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/searchNics", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String searchNics(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();

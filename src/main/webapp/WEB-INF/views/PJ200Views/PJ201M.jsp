@@ -10,199 +10,115 @@
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ201S.js"></script>
 <script type="text/javascript">
+	let paramObj = {
+		"id":""
+	};
+
 $(document).ready(function(){
-	/*if("{sMemVo.mem_no}" != "" || "{sMemVo.marketing}" == "") {
-		//location.href="PJ100M";
-	}*/
-
-	setEvent();
 	chkStat();
-
-	/*
-	var popupText = ""; //팝업 문구변경
-	*/
+	setEvent();
 
 	$("#btn_next").on("click", function(){
-		let params = {
-			           "name"				: $("#inp_name").val()
-					 , "birth"				: $("#sel_year").val()
-			         , "sex" 				: $("#rad_sex").val()
-					 , "id"					: $("#inp_id").val()
-					 , "pw"					: $("#inp_pw").val()
-			   	 	 , "telcom" 			: $("#sel_telcom").val()
-					 , "phone"				: $("#inp_phone").val()
-					 , "email"				: $("#inp_email").val()
-					 , "domain"				: $("#inp_domain").val()
-					 , "email_confirm"		: $("#inp_code").val()
-					 , "keyword_no"			: $("#sel_keyword").val()
-					 , "keyword"			: $("#inp_keyword").val()
-				     , "marketing"			: ${memVo.marketing}
-		}
+		/*if(checkEmptyComponent()){
+			return;
+		}*/
 
-		if(!checkEmptyComponent()){
-			$("#memForm").submit();
-		}
+		/*if(  isExitSpeChar("inp_name", "이름에 특수문자 사용 불가능합니다.")
+		  || isExitEngChar("inp_name", "이름에 영어 사용 불가능합니다.")
+		  || isExitNumChar("inp_name", "이름에 숫자 사용 불가능합니다.")){
+			return;
+		}*/
 
-		/*$("#name").val(params.name);
-		$("#birth").val(params.birth);
-		$("#sex").val(params.sex);
-		$("#id").val(params.id);
-		$("#pw").val(params.pw);
-		$("#telcom").val(params.telcom);
-		$("#phone").val(params.phone);
-		$("#email").val(params.email);
-		$("#domain").val(params.domain);
-		$("#email_confirm").val(params.email_confirm);
-		$("#keyword_no").val(params.keyword_no);
-		$("#keyword").val(params.keyword);
-		$("#marketing").val(params.marketing);*/
+		/*let pwComment = "비밀번호 조합 메세지"; // 해당 메세지는 실행되지 않음
 
-		$("#form_test").submit();
+		if(  !isExitSpeChar("inp_pw", pwComment)
+		  || !isExitEngChar("inp_pw", pwComment)
+		  || !isExitNumChar("inp_pw", pwComment)){
+			commonPopup("숫자/영문/특수문자를 조합하세요.");
+			return;
+		}*/
+
+		$("#form_name").val($("#inp_name").val());
+		$("#form_birth").val($("#sel_year").val());
+		$("#form_sex").val($("#rad_sex").val());
+		$("#form_id").val($("#inp_id").val());
+		$("#form_pw").val($("#inp_pw").val());
+		$("#form_telcom").val($("#sel_telcom").val());
+		$("#form_phone").val($("#inp_phone").val());
+		$("#form_email").val($("#inp_email").val());
+		$("#form_domain").val($("#inp_domain").val());
+		$("#form_email_confirm").val("1");
+		$("#form_keyword_no").val($("#sel_keyword").val());
+		$("#form_keyword").val($("#inp_keyword").val());
+
+		$("#memForm").submit();
 	});
 });//document ready end
 
 function setEvent(){
-	$("#btn_id_db_chk").on("click", function(){  //아이디 중복체크
-		if(isEmpty($("#inp_id"), "아이디를 입력하세요.")){
+	$("#btn_id_db_chk").on("click", function(){
+		if(isEmpty("inp_id", "아이디를 입력하세요.") || isExitSpeChar("inp_id", "아이디에 특수문자는 불가능합니다.")){
 			return;
 		}
 
-		if(isExitSpeChar($("#inp_id"), "아이디에 특수문자는 불가능합니다.")){
-			return;
-		}
+		paramObj.id = $("#inp_id").val();
 
-		sendServer("selectPJ200DupId", {"id": $("#inp_id").val()}, function callback(result){
-			console.log(result);
-			// $("#idDupChkYn").val();
+		sendServer("selectPJ200DupId", paramObj, function callback(result){
+			// 서버 수정과 함께 변경된 가능성이 있음 2022.12.18 (추가처리)
+			if(result.dup == "Y"){
+				commonPopup("중복된 아이디 입니다.");
+				$("#form_idDupChkYn").val("N");
+				return;
+			}
+			$("#form_idDupChkYn").val("Y");
+			$("#form_id").val($("#inp_id").val());
 		});
-/*
-		$("#valueStorage").val($("#inputID").val());
-		var params = $("#Form").serialize();
-
-		$.ajax({
-			url: "IDDbCk",
-			data: params,
-			dataType:"json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "사용 가능한 아이디입니다.";
-					commonPopup(popupText);
-					//IDCheck = $("#inputID").val();
-				} else {
-					popupText = "사용 불가능한 아이디입니다.";
-					commonPopup(popupText);
-				}
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end
-		*/
 	}); //IdDbCkBtn click end
 
-	$("#inputPhone").on("keypress", function(){  //핸드폰 번호 숫자만 받기
-		if(event.keyCode < 48 || event.keyCode > 57) {
-			popupText = "숫자만 입력하세요.";
-			commonPopup(popupText);
-			return false;
+	$("#inp_phone").on("keyup", function(e){  //핸드폰 번호 숫자만 받기
+		if(e.keyCode < 48 || e.keyCode > 57) {
+			commonPopup("숫자만 입력하세요.");
+			$("#inp_phone").val("");
+			return;
 		}
 	}); //inputPhone keypress end
 
-	$("#ckCode").on("click", function(){ //이메일 인증 확인버튼 클릭
-
-		var params = $("#infoForm").serialize();
-
-		$.ajax({
-			url: "checkCodes",
-			data: params,
-			dataType: "json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "인증 되었습니다.";
-					commonPopup(popupText);
-					$("#approvalCode").val(1);
-				} else {
-					popupText = "인증에 실패하였습니다.";
-					commonPopup(popupText);
-				}
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end
-	});
-
-	$("#selectDomain").change(function(){  //도메인 셀렉터 선택시 텍스트창으로 값 이동
-		$("#inputDomain").val("");
-		$("#inputDomain").val($("#selectDomain").val());
+	$("#sel_domain").change(function(){  //도메인 셀렉터 선택시 텍스트창으로 값 이동
+		$("#inp_domain").val($("#sel_domain").val());
 	}); //selectDomain change end
 
-	$("#sendCode").on("click", function(){
-		if($.trim($("#inputEmail").val()) == "") {
-			popupText = "이메일을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputEmail").focus();
-		} else if($.trim($("#inputDomain").val()) == "") {
-			popupText = "이메일 주소를 입력하세요.";
-			commonPopup(popupText);
-			$("#inputDomain").focus();
-		} else {
-			$("#codeWrap").show();
-			var params = $("#infoForm").serialize();
+	$("#btn_confirm").on("click", function(){ //이메일 인증 확인버튼 클릭
+		// 미구현 2022.12.18 (추가처리)
+		// 기존 url: checkCodes
+		// 처리내용: 인증 성공 or 실패
+	});
 
-			$.ajax({
-				url: "sendCodes",
-				data: params,
-				dataType: "json",
-				type: "post",
-				success:function(result) {
-					if(result.msg == "success") {
-						popupText = "메일이 전송되었습니다.";
-						commonPopup(popupText);
-					} else {
-						popupText = "메일 전송에 실패 하였습니다.";
-						commonPopup(popupText);
-					}
-				}, //success end
-				error: function(request, status, error) {
-					console.log(error);
-				} // error end
-			}); //ajax end
+	$("#btn_code").on("click", function(){
+		if(isEmpty("inp_email", "이메일을 입력하세요.") || isEmpty("inp_domain", "이메일 주소를 입력하세요.")){
+			return;
 		}
+
+		$("#codeWrap").show();
+		// 미구현 2022.12.18 (추가처리)
+		// 기존 url: sendCodes
+		// 처리내용: 메징전송 성공 or 실패
 	}); //sendCode click end
 
-	$("#reSend").on("click", function(){
-		var params = $("#infoForm").serialize();
-
-		$.ajax({
-			url: "sendCodes",
-			data: params,
-			dataType: "json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "메일이 전송되었습니다.";
-					commonPopup(popupText);
-				} else {
-					popupText = "메일 전송에 실패 하였습니다.";
-					commonPopup(popupText);
-				}
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end
+	$("#btn_re_send").on("click", function(){
+		// 미구현 2022.12.18 (추가처리)
+		// 기존 url: sendCodes
+		// 처리내용: 메징전송 성공 or 실패
 	});//reSend click end
 
 	$("#btn_pre").on("click", function(){ //이전버튼 클릭
-		//location.href = "terms";
+		location.href = "PJ200M";
 	}); //preBtn click end
 }
 
 function chkStat(){
-
+	if("${sMemVo.mem_no}" != "" || "${memVo.marketing}" == "") {
+		//location.href="PJ100M";
+	}
 }
 
 </script>
@@ -210,18 +126,18 @@ function chkStat(){
 
 <input type="hidden" id="approvalCode" value="0"/>
 <form action="PJ202M" id="memForm" method="post">
-	<input type="hidden" id="name" name="name"/>
-	<input type="hidden" id="birth" name="birth"/>
-	<input type="hidden" id="sex" name="sex"/>
-	<input type="hidden" id="id" name="id"/>
-	<input type="hidden" id="pw" name="pw"/>
-	<input type="hidden" id="telcom" name="telcom"/>
-	<input type="hidden" id="phone" name="phone"/>
-	<input type="hidden" id="email" name="email"/>
-	<input type="hidden" id="email_confirm" name="email_confirm"/>
-	<input type="hidden" id="keyword" name="keyword"/>
-	<input type="hidden" id="marketing" name="marketing" value="${memVo.marketing}"/>
-	<input type="hidden" id="idDupChkYn"/>
+	<input type="hidden" id="form_name" name="name"/>
+	<input type="hidden" id="form_birth" name="birth"/>
+	<input type="hidden" id="form_sex" name="sex"/>
+	<input type="hidden" id="form_id" name="id"/>
+	<input type="hidden" id="form_pw" name="pw"/>
+	<input type="hidden" id="form_telcom" name="telcom"/>
+	<input type="hidden" id="form_phone" name="phone"/>
+	<input type="hidden" id="form_email" name="email"/>
+	<input type="hidden" id="form_email_confirm" name="email_confirm"/>
+	<input type="hidden" id="form_keyword" name="keyword"/>
+	<input type="hidden" id="form_marketing" name="marketing" value="${memVo.marketing}"/>
+	<input type="hidden" id="form_idDupChkYn"/>
 </form>
 
 <body>

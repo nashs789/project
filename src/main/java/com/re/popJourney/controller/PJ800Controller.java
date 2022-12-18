@@ -12,7 +12,7 @@ import java.util.Map;
 @Slf4j
 public class PJ800Controller {
 
-    @RequestMapping(value="/travelWriterRanks", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/travelWriterRanks", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String travelWriterRanks(@RequestParam HashMap<String, String> params) throws Throwable {
 

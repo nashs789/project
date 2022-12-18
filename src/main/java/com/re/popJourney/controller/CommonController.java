@@ -21,7 +21,7 @@ public class CommonController {
     private final PJCommonService commonService;
 
     // 공통 - 로그아읏
-    @PostMapping(value = "/logouts", produces = "text/json;charset=UTF-8")
+    @PostMapping(value = "/logouts", produces = "application/json;charset=UTF-8")
     public String logouts(HttpSession session) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -32,7 +32,7 @@ public class CommonController {
     }
 
     // 공통 - 알람 팝업
-    @PostMapping(value = "/selectCommonNotifications", produces = "text/json;charset=UTF-8")
+    @PostMapping(value = "/selectCommonNotifications", produces = "application/json;charset=UTF-8")
     public String notifications(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -104,13 +104,12 @@ public class CommonController {
 
     // 공통 - 로그인
     // params로 넘어오는 키: inputID, inputPW
-    @PostMapping(value = "/login", produces = "text/json;charset=UTF-8")
+    @PostMapping(value="/login", produces="application/json;charset=UTF-8")
     public String login(MemVo inMemVo, HttpSession session) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
         // loginInfo로 넘어오는 키: MEM_NO, GRADE_NO, NIC, LAST_DATE, TODAY
-        SimpleDateFormat simpleD = new SimpleDateFormat("yyyy-MM-dd");
-        log.info(inMemVo.toString());
+        //SimpleDateFormat simpleD = new SimpleDateFormat("yyyy-MM-dd");
         MemVo outMemVo = commonService.login(inMemVo);
 
         session.setAttribute("sMemVo", outMemVo);
@@ -157,7 +156,7 @@ public class CommonController {
     }
 
     // 알람 팝업창에 읽음표시 - 이인복
-    @PostMapping(value = "/updateCommonReads", produces = "text/json;charset=UTF-8")
+    @PostMapping(value = "/updateCommonReads", produces = "application/json;charset=UTF-8")
     public String updateCommonReads(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();

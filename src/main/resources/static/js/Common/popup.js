@@ -1,5 +1,8 @@
 function commonPopup(txt) //공통적으로 쓰이는 팝업 , txt는 팝업에 들어갈 문자열
 {
+    $(".popup").remove();
+    $(".bg").remove();
+
     var html = "";
 
     html 	 +="<div class=\"popup\">";

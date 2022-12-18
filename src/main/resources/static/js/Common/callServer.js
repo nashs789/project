@@ -26,7 +26,9 @@ function sendData(urlName, params){
 }
 
 function sendServer(urlName, params, callback){
-    console.log(params);
+    console.log("params = " + params);
+    console.log("urlName = " + urlName);
+    console.log("jsonParams = " + JSON.stringify(params));
 
     $.ajax({
              url: urlName

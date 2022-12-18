@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="static/js/PJ100Js/PJ100S.js"></script>
 	<script type="text/javascript">
 		let paramObj = {
-			        "region_no": "1"
+			"region_no": "1"
 		};
 
 		$(document).ready(function(){

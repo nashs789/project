@@ -15,7 +15,7 @@ public class PJ400Controller {
 
     // 일지 리스트 그리기
     // 400
-    @RequestMapping(value = "/journalListCnts", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalListCnts", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalListCnts(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -51,7 +51,7 @@ public class PJ400Controller {
 
     //일지 리스트 그리기
     // 400
-    @RequestMapping(value = "/journalLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalLists", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalLists(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -80,7 +80,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmtCmtAdds
-    @RequestMapping(value="/journalCmtCmtAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmtCmtAdds", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmtCmtAdds(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -109,7 +109,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmtDeletes
-    @RequestMapping(value="/journalCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmtDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -137,7 +137,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmtCmtDeletes
-    @RequestMapping(value="/journalCmtCmtDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmtCmtDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmtCmtDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -164,7 +164,7 @@ public class PJ400Controller {
 
     // 401
     // journalDeletes
-    @RequestMapping(value="/journalDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -192,7 +192,7 @@ public class PJ400Controller {
 
     // 401
     // journalLikes
-    @RequestMapping(value = "/journalLikes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalLikes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalLikes(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -218,7 +218,7 @@ public class PJ400Controller {
 
     // 401
     // journalLikeCancles
-    @RequestMapping(value = "/journalLikeCancles", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalLikeCancles", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalLikeCancles(@RequestParam HashMap<String, String> params, ModelAndView modelAndView) throws Throwable {
 
@@ -243,7 +243,7 @@ public class PJ400Controller {
 
     // 401
     // journalBmkDeletes
-    @RequestMapping(value = "/journalBmkDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalBmkDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalBmkDeletes(@RequestParam HashMap<String, String> params, ModelAndView modelAndView) throws Throwable {
 
@@ -268,7 +268,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmtAdds
-    @RequestMapping(value="/journalCmtAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmtAdds", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmtAdds(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -296,7 +296,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmtEdits
-    @RequestMapping(value="/journalCmtEdits", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmtEdits", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmtEdits(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -322,7 +322,7 @@ public class PJ400Controller {
 
     // 401
     // journalGetBmkNos
-    @RequestMapping(value="/journalGetBmkNos", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalGetBmkNos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalGetBmkNos(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -353,7 +353,7 @@ public class PJ400Controller {
 
     // 401
     // journalCmts
-    @RequestMapping(value="/journalCmts", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalCmts", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalCmts(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -383,7 +383,7 @@ public class PJ400Controller {
 
     // 401
     // journalgetSequences
-    @RequestMapping(value="/journalgetSequences", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalgetSequences", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalgetSequences(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -401,7 +401,7 @@ public class PJ400Controller {
 
     // 401
     // journalBmkLists
-    @RequestMapping(value="/journalBmkLists", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/journalBmkLists", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalBmkLists(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -418,7 +418,7 @@ public class PJ400Controller {
 
     // 401
     // journalBmkAdds
-    @RequestMapping(value = "/journalBmkAdds", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/journalBmkAdds", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String journalBmkAdds(@RequestParam HashMap<String, String> params, ModelAndView modelAndView) throws Throwable {
 
@@ -443,7 +443,7 @@ public class PJ400Controller {
 
     //신고 401
     // reports
-    @RequestMapping(value = "/reports", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/reports", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String reports(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -472,7 +472,7 @@ public class PJ400Controller {
     //여행일지 작성
     // 402
     // addJournals
-    @RequestMapping(value = "/addJournals", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/addJournals", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String addJournals(@RequestParam HashMap<String, String> params,
                               @RequestParam List<String> contents,
@@ -546,7 +546,7 @@ public class PJ400Controller {
     //여행일지 수정
     // 403
     // updateJournals
-    @RequestMapping(value = "/updateJournals", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/updateJournals", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String updateJournals(@RequestParam HashMap<String, String> params,
                                  @RequestParam List<String> contents,

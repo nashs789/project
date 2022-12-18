@@ -13,7 +13,7 @@ public class PJ000Controller {
 
     // 000
     // memAdmins
-    @RequestMapping(value="/memAdmins", method = RequestMethod.POST, produces =	"text/json;charset=UTF-8")
+    @RequestMapping(value="/memAdmins", method = RequestMethod.POST, produces =	"application/json;charset=UTF-8")
     @ResponseBody
     public String memAdmins(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -49,7 +49,7 @@ public class PJ000Controller {
 
     // 000
     // memAdminDeletes
-    @RequestMapping(value = "/memAdminDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/memAdminDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String memAdminDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
@@ -82,7 +82,7 @@ public class PJ000Controller {
 
     // 000
     // memGrades
-    @RequestMapping(value="/memGrades", method = RequestMethod.POST, produces =	"text/json;charset=UTF-8")
+    @RequestMapping(value="/memGrades", method = RequestMethod.POST, produces =	"application/json;charset=UTF-8")
     @ResponseBody public String memGrade(@RequestParam HashMap<String, String>	params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -105,7 +105,7 @@ public class PJ000Controller {
 
     // 000
     // memDownGrades
-    @RequestMapping(value="/memDownGrades", method = RequestMethod.POST, produces =	"text/json;charset=UTF-8")
+    @RequestMapping(value="/memDownGrades", method = RequestMethod.POST, produces =	"application/json;charset=UTF-8")
     @ResponseBody public String memDownGrades(@RequestParam HashMap<String, String>	params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -128,7 +128,7 @@ public class PJ000Controller {
 
     // 001
     // communityAdminsDeletes
-    @RequestMapping(value = "/communityAdminsDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/communityAdminsDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String communityAdminsDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -164,7 +164,7 @@ public class PJ000Controller {
 
     // 001
     // communityAdmins
-    @RequestMapping(value="/communityAdmins", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/communityAdmins", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String communityAdmins(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -199,7 +199,7 @@ public class PJ000Controller {
 
     // 002
     // TravelDiaryAdminsDeletes
-    @RequestMapping(value = "/TravelDiaryAdminsDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/TravelDiaryAdminsDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String TravelDiaryAdminsDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -236,7 +236,7 @@ public class PJ000Controller {
 
     // 002
     // TravelDiaryAdmins
-    @RequestMapping(value="/TravelDiaryAdmins", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/TravelDiaryAdmins", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String TravelDiaryAdmins(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -271,7 +271,7 @@ public class PJ000Controller {
 
     // 003
     // noticeAdminsDeletes
-    @RequestMapping(value = "/noticeAdminsDeletes", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value = "/noticeAdminsDeletes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String noticeAdminsDeletes(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -308,7 +308,7 @@ public class PJ000Controller {
 
     // 003
     // noticeAdmins
-    @RequestMapping(value="/noticeAdmins", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/noticeAdmins", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody public String noticeAdmins(@RequestParam HashMap<String, String> params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -342,7 +342,7 @@ public class PJ000Controller {
 
     // 004
     // reportApprovals
-    @RequestMapping(value="/reportApprovals", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/reportApprovals", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String reportApprovals(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -367,7 +367,7 @@ public class PJ000Controller {
 
     // 004
     // unReportApprovals
-    @RequestMapping(value="/unReportApprovals", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
+    @RequestMapping(value="/unReportApprovals", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String unReportApprovals(@RequestParam HashMap<String, String> params) throws Throwable {
 
@@ -392,7 +392,7 @@ public class PJ000Controller {
 
     // 004
     // reportAdmins
-    @RequestMapping(value="/reportAdmins", method = RequestMethod.POST, produces =	"text/json;charset=UTF-8")
+    @RequestMapping(value="/reportAdmins", method = RequestMethod.POST, produces =	"application/json;charset=UTF-8")
     @ResponseBody public String reportAdmins(@RequestParam HashMap<String, String>	params) throws Throwable {
 
         ObjectMapper mapper = new ObjectMapper();
