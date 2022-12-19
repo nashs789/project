@@ -24,9 +24,17 @@ public class PJ200Controller {
     // null과 중복예외 처리가 추가되어야함 2022.12.18 (추가처리)
     @PostMapping(value="/selectPJ200DupId", produces="text/json;charset=UTF-8")
     public String selectPJ200DupId(@RequestBody MemVo memVo) throws Throwable {
-        Map<String, Object> noDupId = pj200Service.selectPJ200DupId(memVo);
+        Map<String, Object> noDupId;
+        noDupId = pj200Service.selectPJ200DupId(memVo);
 
-        noDupId.put("dup", "Y");
+        // 임시코드 null 체크 2022.12.20 (추가처리)
+        if(noDupId == null){
+            noDupId = new HashMap<>();
+            noDupId.put("dup", "N");
+        } else {
+            noDupId.put("dup", "Y");
+        }
+
 
         return PJUtils.getModelToJson("noDupId", noDupId);
     }

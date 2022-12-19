@@ -17,45 +17,10 @@
 $(document).ready(function(){
 	chkStat();
 	setEvent();
-
-	$("#btn_next").on("click", function(){
-		/*if(checkEmptyComponent()){
-			return;
-		}*/
-
-		/*if(  isExitSpeChar("inp_name", "이름에 특수문자 사용 불가능합니다.")
-		  || isExitEngChar("inp_name", "이름에 영어 사용 불가능합니다.")
-		  || isExitNumChar("inp_name", "이름에 숫자 사용 불가능합니다.")){
-			return;
-		}*/
-
-		/*let pwComment = "비밀번호 조합 메세지"; // 해당 메세지는 실행되지 않음
-
-		if(  !isExitSpeChar("inp_pw", pwComment)
-		  || !isExitEngChar("inp_pw", pwComment)
-		  || !isExitNumChar("inp_pw", pwComment)){
-			commonPopup("숫자/영문/특수문자를 조합하세요.");
-			return;
-		}*/
-
-		$("#form_name").val($("#inp_name").val());
-		$("#form_birth").val($("#sel_year").val());
-		$("#form_sex").val($("#rad_sex").val());
-		$("#form_id").val($("#inp_id").val());
-		$("#form_pw").val($("#inp_pw").val());
-		$("#form_telcom").val($("#sel_telcom").val());
-		$("#form_phone").val($("#inp_phone").val());
-		$("#form_email").val($("#inp_email").val());
-		$("#form_domain").val($("#inp_domain").val());
-		$("#form_email_confirm").val("1");
-		$("#form_keyword_no").val($("#sel_keyword").val());
-		$("#form_keyword").val($("#inp_keyword").val());
-
-		$("#memForm").submit();
-	});
 });//document ready end
 
 function setEvent(){
+	// 아이디 중복화인 버튼 클릭 이벤트
 	$("#btn_id_db_chk").on("click", function(){
 		if(isEmpty("inp_id", "아이디를 입력하세요.") || isExitSpeChar("inp_id", "아이디에 특수문자는 불가능합니다.")){
 			return;
@@ -65,6 +30,7 @@ function setEvent(){
 
 		sendServer("selectPJ200DupId", paramObj, function callback(result){
 			// 서버 수정과 함께 변경된 가능성이 있음 2022.12.18 (추가처리)
+			console.log(result);
 			if(result.dup == "Y"){
 				commonPopup("중복된 아이디 입니다.");
 				$("#form_idDupChkYn").val("N");
@@ -75,7 +41,8 @@ function setEvent(){
 		});
 	}); //IdDbCkBtn click end
 
-	$("#inp_phone").on("keyup", function(e){  //핸드폰 번호 숫자만 받기
+	//핸드폰 번호 숫자만 받기
+	$("#inp_phone").on("keyup", function(e){
 		if(e.keyCode < 48 || e.keyCode > 57) {
 			commonPopup("숫자만 입력하세요.");
 			$("#inp_phone").val("");
@@ -83,11 +50,13 @@ function setEvent(){
 		}
 	}); //inputPhone keypress end
 
-	$("#sel_domain").change(function(){  //도메인 셀렉터 선택시 텍스트창으로 값 이동
+	//도메인 셀렉터 선택시 텍스트창으로 값 이동
+	$("#sel_domain").change(function(){
 		$("#inp_domain").val($("#sel_domain").val());
 	}); //selectDomain change end
 
-	$("#btn_confirm").on("click", function(){ //이메일 인증 확인버튼 클릭
+	//이메일 인증 확인버튼 클릭
+	$("#btn_confirm").on("click", function(){
 		// 미구현 2022.12.18 (추가처리)
 		// 기존 url: checkCodes
 		// 처리내용: 인증 성공 or 실패
@@ -113,6 +82,27 @@ function setEvent(){
 	$("#btn_pre").on("click", function(){ //이전버튼 클릭
 		location.href = "PJ200M";
 	}); //preBtn click end
+
+	$("#btn_next").on("click", function(){
+		if(!checkAllConditionForJoin()){
+			return;
+		}
+
+		$("#form_name").val($("#inp_name").val());
+		$("#form_birth").val($("#sel_year").val());
+		$("#form_sex").val($("#rad_sex").val());
+		$("#form_id").val($("#inp_id").val());
+		$("#form_pw").val($("#inp_pw").val());
+		$("#form_telcom").val($("#sel_telcom").val());
+		$("#form_phone").val($("#inp_phone").val());
+		$("#form_email").val($("#inp_email").val());
+		$("#form_domain").val($("#inp_domain").val());
+		$("#form_email_confirm").val("1");
+		$("#form_keyword_no").val($("#sel_keyword").val());
+		$("#form_keyword").val($("#inp_keyword").val());
+
+		$("#memForm").submit();
+	});
 }
 
 function chkStat(){
@@ -137,7 +127,7 @@ function chkStat(){
 	<input type="hidden" id="form_email_confirm" name="email_confirm"/>
 	<input type="hidden" id="form_keyword" name="keyword"/>
 	<input type="hidden" id="form_marketing" name="marketing" value="${memVo.marketing}"/>
-	<input type="hidden" id="form_idDupChkYn"/>
+	<input type="hidden" id="form_idDupChkYn" value="N"/>
 </form>
 
 <body>
@@ -170,28 +160,28 @@ function chkStat(){
 
 				<div class="title">생일/성별</div>
 				<select id="sel_year">
-					<option>연도</option>
+					<option value="0">연도</option>
 					<c:forEach var="i" begin="1900" end="2021" step="1" >
 						<option value="${i}">${i}</option>
 					</c:forEach>
 				</select>
 				<select id="sel_month">
-					<option>월</option>
+					<option value="0">월</option>
 					<c:forEach var="i" begin="1" end="12" step="1" >
 						<option value="${i}">${i}</option>
 					</c:forEach>
 				</select>
 				<select id="sel_day">
-					<option>일</option>
+					<option value="0">일</option>
 					<c:forEach var="i" begin="1" end="31" step="1" >
 						<option value="${i}">${i}</option>
 					</c:forEach>
 				</select><br/>
 
 				<div id="rad_sex">
-					<label><input type="radio" value="0" checked/>선택없음</label>
-					<label><input type="radio" value="1"/>남자</label>
-					<label><input type="radio" value="2"/>여자</label>
+					<label><input type="radio" name="rad_name_sex" value="0" checked/>선택없음</label>
+					<label><input type="radio" name="rad_name_sex" value="1"/>남자</label>
+					<label><input type="radio" name="rad_name_sex" value="2"/>여자</label>
 				</div>
 
 				<div class="title">아이디</div>
