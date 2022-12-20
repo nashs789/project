@@ -10,8 +10,9 @@
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ201S.js"></script>
 <script type="text/javascript">
+
 	let paramObj = {
-		"id":""
+		"id": ""
 	};
 
 $(document).ready(function(){
@@ -28,9 +29,8 @@ function setEvent(){
 
 		paramObj.id = $("#inp_id").val();
 
-		sendServer("selectPJ200DupId", paramObj, function callback(result){
+		sendServer("selectPJ200DupInfoCheck", paramObj, function callback(result){
 			// 서버 수정과 함께 변경된 가능성이 있음 2022.12.18 (추가처리)
-			console.log(result);
 			if(result.dup == "Y"){
 				commonPopup("중복된 아이디 입니다.");
 				$("#form_idDupChkYn").val("N");
@@ -84,23 +84,10 @@ function setEvent(){
 	}); //preBtn click end
 
 	$("#btn_next").on("click", function(){
-		if(!checkAllConditionForJoin()){
+		/*if(!checkAllConditionForJoin()){
 			return;
-		}
-
-		$("#form_name").val($("#inp_name").val());
-		$("#form_birth").val($("#sel_year").val());
-		$("#form_sex").val($("#rad_sex").val());
-		$("#form_id").val($("#inp_id").val());
-		$("#form_pw").val($("#inp_pw").val());
-		$("#form_telcom").val($("#sel_telcom").val());
-		$("#form_phone").val($("#inp_phone").val());
-		$("#form_email").val($("#inp_email").val());
-		$("#form_domain").val($("#inp_domain").val());
-		$("#form_email_confirm").val("1");
-		$("#form_keyword_no").val($("#sel_keyword").val());
-		$("#form_keyword").val($("#inp_keyword").val());
-
+		}*/
+		setValToForm();
 		$("#memForm").submit();
 	});
 }
@@ -114,7 +101,6 @@ function chkStat(){
 </script>
 </head>
 
-<input type="hidden" id="approvalCode" value="0"/>
 <form action="PJ202M" id="memForm" method="post">
 	<input type="hidden" id="form_name" name="name"/>
 	<input type="hidden" id="form_birth" name="birth"/>
@@ -126,6 +112,7 @@ function chkStat(){
 	<input type="hidden" id="form_email" name="email"/>
 	<input type="hidden" id="form_email_confirm" name="email_confirm"/>
 	<input type="hidden" id="form_keyword" name="keyword"/>
+	<input type="hidden" id="form_keyword_no" name="keyword_no"/>
 	<input type="hidden" id="form_marketing" name="marketing" value="${memVo.marketing}"/>
 	<input type="hidden" id="form_idDupChkYn" value="N"/>
 </form>

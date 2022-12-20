@@ -1,5 +1,5 @@
 /**
- * function trim()
+ * function trim(objName)
  *
  * @author 이 인복
  * @date 2022-11-29
@@ -12,7 +12,7 @@ function trim(objName){
 }
 
 /**
- * function getLength()
+ * function getLength(objName)
  *
  * @author 이 인복
  * @date 2022-12-20
@@ -25,7 +25,7 @@ function getLength(objName){
 }
 
 /**
- * function isEmpty()
+ * function isEmpty(objName, msg){
  *
  * @author: 이 인복
  * @date: 2022-12-14
@@ -43,7 +43,7 @@ function isEmpty(objName, msg){
 }
 
 /**
- * function isZeroIndex()
+ * function isSelectBoxZeroIndex(objName, msg)
  *
  * @author 이 인복
  * @date 2022-12-20
@@ -60,7 +60,7 @@ function isSelectBoxZeroIndex(objName, msg){
 }
 
 /**
- * function isRadioZeroIndex()
+ * function isRadioZeroIndex(objName, msg)
  *
  * @author 이 인복
  * @date 2022-12-20
@@ -79,7 +79,7 @@ function isRadioZeroIndex(objName, msg){
 }
 
 /**
- * function openPopupAndFocus()
+ * function openPopupAndFocus(objName, msg)
  *
  * @author 이 인복
  * @date 2022-12-20
@@ -91,6 +91,19 @@ function openPopupAndFocus(objName, msg){
     $("#" + objName).focus();
 }
 
+/**
+ * function serializeToJson(objName)
+ *
+ * @author 이 인복
+ * @date 2022-12-21
+ * @param objName
+ * @returns {Window.jQuery|*}
+ * @decs form 태그를 json 타입으로 파싱하는 함수
+ */
+function serializeToJson(objName){
+    return $("#" + objName).serializeObject();
+}
+
 // ====================================================
 // 정규식
 
@@ -99,7 +112,7 @@ var regEng = /[a-zA-Z]/;
 var regSpeCh = /[~!@\#$%<>^&*]/;
 
 /**
- * function isExitSpeChar()
+ * function isExitSpeChar(objName, msg)
  *
  * @author: 이 인복
  * @date: 2022-12-16
@@ -118,7 +131,7 @@ function isExitSpeChar(objName, msg){
 }
 
 /**
- * function isExitEngChar()
+ * function isExitEngChar(objName, msg)
  *
  * @author: 이 인복
  * @date: 2022-12-19
@@ -137,7 +150,7 @@ function isExitEngChar(objName, msg){
 }
 
 /**
- * function isExitNumChar()
+ * function isExitNumChar(objName, msg)
  *
  * @author: 이 인복
  * @date: 2022-12-19
@@ -158,7 +171,7 @@ function isExitNumChar(objName, msg){
 }
 
 /**
- * function isSpecificWord()
+ * function isSpecificWord(objName, reg, msg)
  *
  * @author: 이 인복
  * @date: 2022-12-20
@@ -175,3 +188,25 @@ function isSpecificWord(objName, reg, msg){
     }
     return false;
 }
+
+// 배껴온거임
+// serializeArray -> array -> json
+jQuery.fn.serializeObject = function() {
+    var obj = null;
+    try {
+        if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+            var arr = this.serializeArray();
+            if (arr) {
+                obj = {};
+                jQuery.each(arr, function() {
+                    obj[this.name] = this.value;
+                });
+            }//if ( arr ) {
+        }
+    } catch (e) {
+        alert(e.message);
+    } finally {
+    }
+
+    return obj;
+};

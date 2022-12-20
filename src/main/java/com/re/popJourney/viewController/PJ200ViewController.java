@@ -52,12 +52,11 @@ public class PJ200ViewController {
         data.put("phone", phone);
         data.put("email", email);
 
-        mav.addObject("data", data);
-
-        mav.setViewName("PJ200Views/PJ202M");
          */
 
         ModelAndView mav = new ModelAndView();
+
+        mav.addObject("memVo", memVo);
         mav.setViewName("PJ200Views/PJ202M");
 
         return mav;

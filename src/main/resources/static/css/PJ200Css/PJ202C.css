@@ -37,7 +37,7 @@ html{
     border: 1px solid black;
     box-sizing: border-box;
 }
-#bnt_find_photo{
+#btn_find_photo{
     margin: 20px 0px 0px 232px;
 }
 .title{
@@ -58,6 +58,6 @@ html{
 input[type='text']:focus, #inputIntro:hover{
     outline-color: #fcba03;
 }
-#bnt_find_photo, #btn_nic_db_chk{
+#btn_find_photo, #btn_nic_db_chk{
     border-radius: 20px;
 }

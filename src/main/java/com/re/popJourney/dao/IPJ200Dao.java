@@ -9,5 +9,7 @@ import java.util.Map;
 @Mapper
 @Repository
 public interface IPJ200Dao {
-    Map<String, Object> selectPJ200DupId(MemVo memVo);
+    Map<String, Object> selectPJ200DupInfoCheck(MemVo memVo);
+
+    int insertPJ202Mem(MemVo memVo);
 }

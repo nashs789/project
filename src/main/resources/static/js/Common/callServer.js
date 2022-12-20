@@ -1,7 +1,7 @@
 function sendData(urlName, params){
-
+    console.log("params = " + params);
     console.log("urlName = " + urlName);
-    console.log("params = " + JSON.stringify(params));
+    console.log("jsonParams = " + JSON.stringify(params));
 
     $.ajax({
         url: urlName
@@ -9,11 +9,11 @@ function sendData(urlName, params){
         , async: false // false: 동기, true: 비동기
         //, dataType: "json" // xml, json, script, html
         , contentType: "application/json; charset=utf-8"
-        , data: params
+        , data: JSON.stringify(params)
         // beforeSend: function() 서버 요청 전 호출 되는 함수 return false; 일 경우 요청 중단
         // complete: function() // 성공 실패 상관없이 완료될경우
         , success: function(result) {
-            console.log(result);
+            return callback(result);
         } // callback success end
         , error: function(request, status, error) {
             console.log(request);

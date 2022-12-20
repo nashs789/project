@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.re.popJourney.dao.IPJ200Dao">
-	<select id="selectPJ200DupId" parameterType="memVo" resultType="HashMap">
+	<select id="selectPJ200DupInfoCheck" parameterType="memVo" resultType="HashMap">
 		SELECT MEM_NO	/* 멤버 번호 */
 		  FROM MEM		/* 멤버 테이블 */
-		 WHERE ID = #{id}
+		 WHERE 1 = 1
+		<if test='nic == null or nic ==""'>
+		   AND ID = #{id}
+		</if>
+		<if test='nic != null and nic !=""'>
+		   AND NIC = #{nic}
+		</if>
+		<if test='mem_no != null and mem_no != ""'>
+		   AND MEM_NO = #{mem_no}
+		</if>
 	</select>
+
+	<insert id="insertPJ202Mem" parameterType="memVo">
+		INSERT INTO MEM ( ID					/* 아이디 */
+						, PW					/* 비밀번호 */
+						, PHONE					/* 전화번호 */
+						, EMAIL					/* 이메일 */
+						, EMAIL_CONFIRM			/* 이메일인증여부 [0: 거부, 1: 동의]*/
+						, NAME					/* 이름 */
+						, NIC					/* 닉네임 */
+						, INTRO					/* 소개글 */
+						, PHOTO_PATH			/* 사진경로 */
+						, BIRTH					/* 생년월일 */
+						, SEX					/* 성별 [1: 남자, 2: 여자] */
+						, KEYWORD_NO			/* 키워드번호 */
+						, MARKETING				/* 마케팅수집동의여부[0: 거부, 1: 동의] */
+						, JOIN_DATE				/* 가입일 */
+						, LEAVE_DATE			/* 탈퇴일 */
+						, KEYWORD				/* 키워드 */
+						, TELCOM				/* 통신사 */
+						, LAST_DATE				/* 마지막접속일 */
+						)
+		     VALUES( #{id}
+		     	   , #{pw}
+				   , #{phone}
+				   , #{email}
+				   , #{email_confirm}
+				   , #{name}
+				   , #{nic}
+				   , #{intro}
+				   , #{photo_path}
+				   , #{birth}
+				   , #{sex}
+				   , #{keyword_no}
+				   , #{marketing}
+				   , SYSDATE()
+				   , NULL
+				   , #{keyword}
+				   , #{telcom}
+				   , #{last_date}
+			       )
+	</insert>
 </mapper>

@@ -21,25 +21,25 @@ public class PJ200Controller {
 
     // 아이디 중복확인 - 이인복 201
     // IDDbCk
-    // null과 중복예외 처리가 추가되어야함 2022.12.18 (추가처리)
-    @PostMapping(value="/selectPJ200DupId", produces="text/json;charset=UTF-8")
+    // null 과 중복예외 처리가 추가되어야함 2022.12.18 (추가처리)
+    @PostMapping(value="/selectPJ200DupInfoCheck", produces="application/json;charset=UTF-8")
     public String selectPJ200DupId(@RequestBody MemVo memVo) throws Throwable {
-        Map<String, Object> noDupId;
-        noDupId = pj200Service.selectPJ200DupId(memVo);
+        Map<String, Object> noDupInfo;
+        noDupInfo = pj200Service.selectPJ200DupInfoCheck(memVo);
 
         // 임시코드 null 체크 2022.12.20 (추가처리)
-        if(noDupId == null){
-            noDupId = new HashMap<>();
-            noDupId.put("dup", "N");
+        if(noDupInfo == null){
+            noDupInfo = new HashMap<>();
+            noDupInfo.put("dup", "N");
         } else {
-            noDupId.put("dup", "Y");
+            noDupInfo.put("dup", "Y");
         }
 
-
-        return PJUtils.getModelToJson("noDupId", noDupId);
+        return PJUtils.getModelToJson("noDupInfo", noDupInfo);
     }
 
     //이메일 인증코드확인 201
+    // checkCodes
     @RequestMapping(value = "/checkCodes", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String checkCodes(HashMap<String, String> params) throws Throwable {
@@ -70,6 +70,7 @@ public class PJ200Controller {
     }
 
     //인증 코드 메일 보내기 201
+    // sendCodes
     @RequestMapping(value = "sendCodes",
             method = RequestMethod.POST,
             produces ="test/json;charset=UTF-8")
@@ -139,71 +140,38 @@ public class PJ200Controller {
     }
 
     // 닉네임 중복확인 - 이인복 202
+    // nicDbCk
     // params에 넘어오는 키: storage(ID)
-    @RequestMapping(value = "/nicDbCk", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String nicDbCk(@RequestParam HashMap<String, String> params) throws Throwable {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-/*
-        if (params.get("MEM_NO") != null) {
-            HashMap<String, String> doubleCheck = ipjs.nicDbCk2(params);
+    @PostMapping(value="/selectPJ202DupNicName", produces="application/json;charset=UTF-8")
+    public String selectPJ202DupNicName(MemVo memVo) throws Throwable {
+        Map<String, Object> noDupNicName;
+        noDupNicName = pj200Service.selectPJ200DupInfoCheck(memVo);
 
-            try {
-                if (doubleCheck == null) {
-                    modelMap.put("msg", "success");
-                } else {
-                    modelMap.put("msg", "failed");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        // 임시코드 null 체크 2022.12.20 (추가처리)
+        if(noDupNicName == null){
+            noDupNicName = new HashMap<>();
+            noDupNicName.put("dup", "N");
         } else {
-            // doubleCheck로 넘어오는 키: MEM_NO
-            HashMap<String, String> doubleCheck = ipjs.nicDbCk(params);
-
-            try {
-                if (doubleCheck == null) {
-                    modelMap.put("msg", "success");
-                } else {
-                    modelMap.put("msg", "failed");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            noDupNicName.put("dup", "Y");
         }
-*/
-        return mapper.writeValueAsString(modelMap);
+
+        return PJUtils.getModelToJson("noDupNicName", noDupNicName);
     }
 
     // 회원등록 - 이인복 202
-    @RequestMapping(value = "/joins", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String joins(@RequestParam HashMap<String, String> params) throws Throwable {
+    // joins
+    @PostMapping(value = "/insertPJ202Mem", produces = "application/json;charset=UTF-8")
+    public String insertPJ202Mem(@RequestBody MemVo memVo) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> modelMap = new HashMap<String, Object>();
-/*
-        // 넘어갈 키 값(사용할것): inputName, birth, phone, email, inputID, inputPW
-        // inputCode, inputKeyword, sex, selectTelcom, selectKeyword, photoPath
-        // inputNic, inputIntro, marketing
 
-        //암호화
-        params.put("inputPW", Utils.encryptAES128(params.get("inputPW")));
+        log.info("memVo = {}", memVo);
 
-        try {
-            int cnt = ipjs.join(params);
-            ipjs.setProfile();
+        int cnt = pj200Service.insertPJ202Mem(memVo);
 
-            if (cnt != 0) {
-                modelMap.put("msg", "success");
-            } else {
-                modelMap.put("msg", "failed");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            modelMap.put("msg", "error");
-        }
- */
+        // 암호화
+        // params.put("inputPW", Utils.encryptAES128(params.get("inputPW")));
+
         return mapper.writeValueAsString(modelMap);
     }
 

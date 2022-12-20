@@ -8,55 +8,18 @@
 	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ202C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
-	<script type="text/javascript" src="static/js/callServer.js"></script>
-	<script type="text/javascript" src="static/js/callPopup.js"></script>
-	<script type="text/javascript" src="static/js/common.js"></script>
-	<script type="text/javascript" src="static/js/PJ202Js/PJ202S.js"></script>
+	<script type="text/javascript" src="static/js/PJ200Js/PJ202S.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	/*
-	if("{sMEM_NO}" != "" || "{data.marketing}" == "") {
-		location.href="main";
-	}
 
-	var popupText = ""; //팝업 문구변경
-	var nicCheck = "";  //닉네임 중복 확인용
-	
-	$("#nicDbCkBtn").on("click", function(){  //닉네임 중복체크
-		$(".popup").remove();
-		$(".bg").remove();
-		if($.trim($("#inputNic").val()) == "") {
-			popupText = "닉네임을 입력하세요.";
-			commonPopup(popupText);
-			$("#inputNic").focus();
-			return false;
-		}
-		
-		$("#valueStorage").val($("#inputNic").val());
-		
-		var params = $("#Form").serialize();
-		
-		$.ajax({
-			url: "nicDbCk",
-			data: params,
-			dataType:"json",
-			type: "post",
-			success:function(result) {
-				if(result.msg == "success") {
-					popupText = "사용 가능한 닉네임입니다.";
-					commonPopup(popupText);
-					nicCheck = $("#inputNic").val();
-				} else {
-					popupText = "사용 불가능한 닉네임입니다.";
-					commonPopup(popupText);
-				}
-			}, //success end
-			error: function(request, status, error) {
-				console.log(error);
-			} // error end
-		}); //ajax end 
-	}); //nicDbCkBtn click end
-	
+	let paramObj = {
+		"nic": ""
+	};
+
+$(document).ready(function(){
+	chkStat();
+	setEvent();
+
+	/*
 	$("#findPhotoBtn").on("click", function() {
 		$("#att").click();
 	});
@@ -153,30 +116,70 @@ $(document).ready(function(){
 	}); //preBtn click end
 	 */
 });//document ready end
+
+function chkStat(){
+	if("${sMemVo.mem_no}" != "" || "${memVo.marketing}" == "") {
+		//location.href="PJ100M";
+	}
+}
+
+function setEvent(){
+	// 닉네임 중복 체크 버튼 클릭
+	$("#btn_nic_db_chk").on("click", function(){
+		if(isEmpty("inp_nic", "닉네임을 입력하세요.")) {
+			return;
+		}
+
+		paramObj.nic = $("#inp_nic").val();
+
+		sendServer("selectPJ200DupInfoCheck", paramObj, function callback(result){
+			// 서버 수정과 함께 변경된 가능성이 있음 2022.12.20 (추가처리)
+			if(result.dup == "Y"){
+				commonPopup("사용 불가능한 닉네임입니다.");
+				$("#form_nicDupChkYn").val("N");
+				return;
+			}
+			$("#form_nicDupChkYn").val("Y");
+			$("#form_nic").val($("#inp_nic").val());
+		});
+	}); // btn_nic_db_chk click end
+
+	// next 버튼 클릭
+	$("#btn_next").on("click", function(){
+		sendServer("insertPJ202Mem", serializeToJson("memForm"), function callback(result){
+
+		});
+
+		//endPopup("회원가입 되셨습니다!!!");
+	});
+	// btn_next click end
+}
 </script>
 </head>
+
 <form id="fileForm" action="fileUploadAjax" method="post" enctype="multipart/form-data">
 	<input type="file" name="att" id="att" /> <!-- attach : 첨부 -->
 </form>
-<form action="#" id="Form">
-	<input type="hidden" id="valueStorage" name="storage"/>
+
+<form action="" id="memForm">
+	<input type="hidden" id="form_name" name="name" value="${memVo.name}"/>
+	<input type="hidden" id="form_birth" name="birth" value="${memVo.birth}"/>
+	<input type="hidden" id="form_sex" name="sex" value="${memVo.sex}"/>
+	<input type="hidden" id="form_id" name="id" value="${memVo.id}"/>
+	<input type="hidden" id="form_pw" name="pw" value="${memVo.pw}"/>
+	<input type="hidden" id="form_telcom" name="telcom" value="${memVo.telcom}"/>
+	<input type="hidden" id="form_phone" name="phone" value="${memVo.phone}"/>
+	<input type="hidden" id="form_email" name="email" value="${memVo.email}"/>
+	<input type="hidden" id="form_email_confirm" name="email_confirm" value="${memVo.email_confirm}"/>
+	<input type="hidden" id="form_keyword" name="keyword" value="${memVo.keyword}"/>
+	<input type="hidden" id="form_keyword_no" name="keyword_no" value="${memVo.keyword_no}"/>
+	<input type="hidden" id="form_marketing" name="marketing" value="${memVo.marketing}"/>
+	<input type="hidden" id="form_photo_path" name="photo_path" value=""/>
+	<input type="hidden" id="form_nic" name="nic" value=""/>
+	<input type="hidden" id="form_intro" name="intro" value=""/>
+	<input type="hidden" id="form_nicDupChkYn" value="N"/>
 </form>
 
-<form action="#" id="testForm">
-	<input type="hidden" id="name" name="name"/>
-	<input type="hidden" id="birth" name="birth"/>
-	<input type="hidden" id="sex" name="sex"/>
-	<input type="hidden" id="id" name="id"/>
-	<input type="hidden" id="pw" name="pw"/>
-	<input type="hidden" id="telcom" name="telcom"/>
-	<input type="hidden" id="phone" name="phone"/>
-	<input type="hidden" id="email" name="email"/>
-	<input type="hidden" id="email_confirm" name="email_confirm"/>
-	<input type="hidden" id="keyword" name="keyword"/>
-	<input type="hidden" id="marketing" name="marketing" value=""/> <%-- ${memVo.marketing} --%>
-	<input type="hidden" id="photo_path" name="photo_path" value=""/>
-	<input type="hidden" id="nic" name="nic" value=""/>
-</form>
 <body>
 	<div id="wrap">
 		<jsp:include page="../Frame/header.jsp"></jsp:include>
@@ -205,14 +208,14 @@ $(document).ready(function(){
 					<div id="photoArea">
 						<img id="photo" src="/static/images/profile.png">
 					</div>
-					<input type="button" value="사진찾기" id="bnt_find_photo"/><span id="fileName"></span>
+					<input type="button" value="사진찾기" id="btn_find_photo"/><span id="fileName"></span>
 
 					<div class="title">닉네임</div>
 					<input type="text" placeholder="닉네임을 입력하세요." id="inp_nic"/>
 					<input type="button" value="중복확인" id="btn_nic_db_chk"/>
 
 					<div class="title">소개글</div>
-					<textarea type="text" placeholder="안녕하세요~ 잘 부탁드립니다." id="inp_intro"></textarea>
+					<textarea type="text" placeholder="안녕하세요~ 잘 부탁드립니다." id="inp_intro" style="resize: none;"></textarea>
 				</div> <!-- infoWrap end -->
 
 				<div id="btnWrap">
