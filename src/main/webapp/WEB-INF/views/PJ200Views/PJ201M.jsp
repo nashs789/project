@@ -84,9 +84,9 @@ function setEvent(){
 	}); //preBtn click end
 
 	$("#btn_next").on("click", function(){
-		/*if(!checkAllConditionForJoin()){
+		if(!checkAllConditionForJoin()){
 			return;
-		}*/
+		}
 		setValToForm();
 		$("#memForm").submit();
 	});

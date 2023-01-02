@@ -147,10 +147,8 @@ function setEvent(){
 	// next 버튼 클릭
 	$("#btn_next").on("click", function(){
 		sendServer("insertPJ202Mem", serializeToJson("memForm"), function callback(result){
-
+			endPopup("회원가입 되셨습니다!!!");
 		});
-
-		//endPopup("회원가입 되셨습니다!!!");
 	});
 	// btn_next click end
 }

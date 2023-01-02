@@ -104,6 +104,21 @@ function serializeToJson(objName){
     return $("#" + objName).serializeObject();
 }
 
+/**
+ * function getMonthAndDayWithZero(objName)
+ *
+ * @author 이 인복
+ * @date 2022-01-03
+ * @param objName
+ * @returns {Window.jQuery|*}
+ * @decs 달, 일이 한자리 수 인경우 두 자리로 변경 (1 -> 01)
+ */
+function getMonthAndDayWithZero(objName){
+    let value = $("#" + objName).val();
+
+    return value.length == 1 ? "0" + value : value;
+}
+
 // ====================================================
 // 정규식
 

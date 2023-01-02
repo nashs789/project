@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 @Getter
 @Setter
 @ToString
-public class MemVo {
+public class MemVo extends CommonVo{
     private String mem_no;                  /* 회원번호 */
     private String id;                      /* 아이디 */
     private String pw;                      /* 비밀번호 */
