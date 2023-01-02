@@ -83,7 +83,7 @@ function checkAllConditionForJoin(){
         return false;
     }
 
-    if(getLength("inp_phone" != 8)){
+    if(getLength("inp_phone") != 8){
         commonPopup("8자리를 입력하세요");
         return false;
     }

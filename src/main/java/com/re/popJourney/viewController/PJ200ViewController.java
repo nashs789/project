@@ -41,25 +41,13 @@ public class PJ200ViewController {
     @PostMapping(value = "/PJ202M")
     public ModelAndView PJ202M(MemVo memVo) {
         log.info("memVo = {}", memVo.toString());
-        /*
-        String birth = params.get("inputYear") + "-" + params.get("inputMonth") + "-" + params.get("inputDay");
-        String phone = "010" + params.get("inputPhone");
-        String email = params.get("inputEmail") + "@" + params.get("inputDomain");
-
-        HashMap<String, String> data = params;
-
-        data.put("birth", birth);
-        data.put("phone", phone);
-        data.put("email", email);
-
-         */
-
+/*
         ModelAndView mav = new ModelAndView();
 
         mav.addObject("memVo", memVo);
-        mav.setViewName("PJ200Views/PJ202M");
+        mav.setViewName("PJ200Views/PJ202M");*/
 
-        return mav;
+        return PJUtils.getModelAndView("PJ200Views/PJ202M", "memVo", memVo);
     }
 
     // 회원정보수정 - 이인복

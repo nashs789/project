@@ -139,7 +139,9 @@ var regSpeCh = /[~!@\#$%<>^&*]/;
  */
 function isExitSpeChar(objName, msg){
     if(regSpeCh.test(trim(objName))){
-        openPopupAndFocus(objName, msg);
+        if(msg != ""){
+            openPopupAndFocus(objName, msg);
+        }
         return true;
     }
     return false;
@@ -158,7 +160,9 @@ function isExitSpeChar(objName, msg){
  */
 function isExitEngChar(objName, msg){
     if(regEng.test(trim(objName))){
-        openPopupAndFocus(objName, msg);
+        if(msg != ""){
+            openPopupAndFocus(objName, msg);
+        }
         return true;
     }
     return false;
