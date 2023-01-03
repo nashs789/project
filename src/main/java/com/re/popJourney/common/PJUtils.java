@@ -2,6 +2,7 @@ package com.re.popJourney.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.re.popJourney.model.MemVo;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -43,8 +44,12 @@ public class PJUtils {
         return mapper.writeValueAsString(modelMap);
     }
 
-    public static String getModelToJson(String name, Map<String, Object> map) throws JsonProcessingException {
+    public static String getModelToJson(Map<String, Object> map) throws JsonProcessingException {
         return mapper.writeValueAsString(map);
+    }
+
+    public static String getModelToJson(MemVo memVo) throws JsonProcessingException {
+        return mapper.writeValueAsString(memVo);
     }
 
     /**

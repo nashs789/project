@@ -119,6 +119,19 @@ function getMonthAndDayWithZero(objName){
     return value.length == 1 ? "0" + value : value;
 }
 
+/**
+ * function setValue(objName)
+ *
+ * @author 이 인복
+ * @date 2022-01-04
+ * @param objName
+ * @param value
+ * @decs 컴포넌트에 값 세팅
+ */
+function setCompInpValue(objName, value){
+    $("#" + objName).val(value);
+}
+
 // ====================================================
 // 정규식
 

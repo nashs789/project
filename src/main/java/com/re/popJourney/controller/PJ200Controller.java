@@ -35,7 +35,7 @@ public class PJ200Controller {
             noDupInfo.put("dup", "Y");
         }
 
-        return PJUtils.getModelToJson("noDupInfo", noDupInfo);
+        return PJUtils.getModelToJson(noDupInfo);
     }
 
     //이메일 인증코드확인 201
@@ -155,7 +155,7 @@ public class PJ200Controller {
             noDupNicName.put("dup", "Y");
         }
 
-        return PJUtils.getModelToJson("noDupNicName", noDupNicName);
+        return PJUtils.getModelToJson(noDupNicName);
     }
 
     // 회원등록 - 이인복 202
@@ -176,25 +176,9 @@ public class PJ200Controller {
     }
 
     // 회원정보 가져오기 - 이인복 203
-    @RequestMapping(value = "/getInfo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String getInfo(@RequestParam HashMap<String, String> params) throws Throwable {
-
-        ObjectMapper mapper = new ObjectMapper();
-        HashMap<String, String> modelMap = new HashMap<String, String>();
-/*
-        // NAME, ID, PW, PHONE, EMAIL, DOMAIN, YEAR, MONTH, DAY, SEX, KEYWORD_NO,
-        // KEYWORD, TELCOM
-        HashMap<String, String> myInfo = ipjs.getInfo(params);
-        modelMap = myInfo;
-
-        if (myInfo != null) {
-            modelMap.put("msg", "success");
-        } else {
-            modelMap.put("msg", "failed");
-        }
-*/
-        return mapper.writeValueAsString(modelMap);
+    @PostMapping(value = "/selectPJ203GetUserInfo", produces = "application/json;charset=UTF-8")
+    public String selectPJ203GetUserInfo(@RequestBody MemVo memVo) throws Throwable {
+        return PJUtils.getModelToJson(pj200Service.selectPJ203GetUserInfo(memVo));
     }
 
     // 회원정보 수정 - 이 인복 203

@@ -56,4 +56,19 @@
 				   , SYSDATE()
 			       )
 	</insert>
+
+	<select id="selectPJ203GetUserInfo" parameterType="memVo" resultType="memVo">
+		SELECT NAME 		/* 이름 */
+			 , BIRTH 		/* 생년월일 */
+			 , SEX   		/* 성별 [1: 남자, 2: 여자] */
+			 , ID   		/* 아이디 */
+			 , PHONE 		/* 전화번호 */
+			 , TELCOM 		/* 통신사 */
+			 , EMAIL 		/* 이메일 */
+			 , KEYWORD_NO 	/* 키워드번호 */
+			 , KEYWORD  	/* 키워드번호 */
+		FROM MEM	/* 멤버 테이블 */
+		WHERE LEAVE_DATE IS NULL
+		  AND MEM_NO = #{mem_no}
+	</select>
 </mapper>

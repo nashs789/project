@@ -1,3 +1,20 @@
+function setAllCompValue(result){
+    setCompInpValue("inp_name", result.name);
+    setCompInpValue("inp_id", result.id);
+    setCompInpValue("inp_keyword", result.keyword);
+    setCompInpValue("sel_telcom", result.telcom);
+    setCompInpValue("sel_keyword", result.keyword_no);
+    console.log(result.email);
+    console.log(result.phone);
+
+    /*
+    result.birth
+    result.sex
+    result.phone
+    result.email
+    */
+}
+
 function checkPopup()
 {
     var html = "";
@@ -45,9 +62,3 @@ function checkPopup()
     }); //cancelImg click end
 }//findBtnPopup end
 
-//비밀번호 조건이 안맞을 때 초기화
-function resetPW() {
-    $("#inputPW").val("");
-    $("#inputRePW").val("");
-    $("#inputPW").focus();
-}

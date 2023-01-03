@@ -12,4 +12,6 @@ public interface IPJ200Dao {
     Map<String, Object> selectPJ200DupInfoCheck(MemVo memVo);
 
     int insertPJ202Mem(MemVo memVo);
+
+    MemVo selectPJ203GetUserInfo(MemVo memVo);
 }

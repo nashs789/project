@@ -139,6 +139,7 @@ function setEvent(){
 				$("#form_nicDupChkYn").val("N");
 				return;
 			}
+
 			$("#form_nicDupChkYn").val("Y");
 			$("#form_nic").val($("#inp_nic").val());
 		});

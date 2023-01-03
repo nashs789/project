@@ -12,8 +12,25 @@
 	<script type="text/javascript" src="static/js/common.js"></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ203S.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
-	/*
+	chkStat();
+	setEvent();
+});//document ready end
+
+function chkStat(){
+	$("#inp_n")
+}
+
+function setEvent(){
+	sendServer("selectPJ203GetUserInfo", {"mem_no": '${sMemVo.mem_no}'}, function callback(result){
+		console.log(result.birth);
+		//setAllCompValue(result);
+	});
+}
+
+/*
+$(document).ready(function(){
 	var popupText = "";
 	var IDCheck = "";  //아이디 중복 확인용
 	var pattern1 = /[0-9]/;
@@ -186,9 +203,8 @@ $(document).ready(function(){
 	$("#preBtn").on("click", function(){ //이전버튼 클릭
 		location.href = "main";
 	}); //preBtn click end
-	 */
 });//document ready end
-
+*/
 </script>
 </head>
 <body>

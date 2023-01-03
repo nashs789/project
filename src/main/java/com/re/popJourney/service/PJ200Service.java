@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -36,5 +34,9 @@ public class PJ200Service {
         }
 
         return cnt;
+    }
+
+    public MemVo selectPJ203GetUserInfo(MemVo memVo) {
+        return ipj200Dao.selectPJ203GetUserInfo(memVo);
     }
 }

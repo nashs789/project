@@ -41,31 +41,26 @@ public class PJ200ViewController {
     @PostMapping(value = "/PJ202M")
     public ModelAndView PJ202M(MemVo memVo) {
         log.info("memVo = {}", memVo.toString());
-/*
-        ModelAndView mav = new ModelAndView();
-
-        mav.addObject("memVo", memVo);
-        mav.setViewName("PJ200Views/PJ202M");*/
 
         return PJUtils.getModelAndView("PJ200Views/PJ202M", "memVo", memVo);
     }
 
     // 회원정보수정 - 이인복
     // PJ203M
+    // editInfo
     @GetMapping(value = "/PJ203M")
-    public ModelAndView editInfo(ModelAndView mav) {
-        int page = 1;
+    public ModelAndView PJ203M(MemVo memVo) {
+        // 게시판 페이지로 보임 2022.01.04 (추가처리)
+        // int page = 1;
 
-        mav.addObject("page", page);
-        mav.setViewName("PJ200Views/PJ203M");
-
-        return mav;
+        return PJUtils.getModelAndView("PJ200Views/PJ203M", "memVo", memVo);
     }
 
     // 프로필 수정 페이지 - 이인복
     // PJ204M
+    // editProfile
     @GetMapping(value = "/PJ204M")
-    public ModelAndView editProfile(ModelAndView mav) {
+    public ModelAndView PJ204M(ModelAndView mav) {
         int page = 1;
 
         mav.addObject("page", page);
@@ -76,15 +71,17 @@ public class PJ200ViewController {
 
     // 아이디 찾기 페이지- 이인복
     // PJ205M
+    // findID
     @GetMapping(value = "/PJ205M")
-    public ModelAndView findID() {
+    public ModelAndView PJ205M() {
         return new ModelAndView("PJ200Views/PJ205M");
     }
 
     // 비밀번호 찾기 페이지- 이인복
     // PJ206M
+    // findPW
     @GetMapping(value = "/PJ206M")
-    public ModelAndView findPW() {
+    public ModelAndView PJ206M() {
         return new ModelAndView("PJ200Views/PJ206M");
     }
 }
