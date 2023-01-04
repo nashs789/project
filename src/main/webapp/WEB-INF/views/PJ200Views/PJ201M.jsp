@@ -16,11 +16,11 @@
 	};
 
 $(document).ready(function(){
-	chkStat();
-	setEvent();
+	chkStatPJ201M();
+	setEventPJ201M();
 });//document ready end
 
-function setEvent(){
+function setEventPJ201M(){
 	// 아이디 중복화인 버튼 클릭 이벤트
 	$("#btn_id_db_chk").on("click", function(){
 		if(isEmpty("inp_id", "아이디를 입력하세요.") || isExitSpeChar("inp_id", "아이디에 특수문자는 불가능합니다.")){
@@ -92,7 +92,7 @@ function setEvent(){
 	});
 }
 
-function chkStat(){
+function chkStatPJ201M(){
 	if("${sMemVo.mem_no}" != "" || "${memVo.marketing}" == "") {
 		//location.href="PJ100M";
 	}

@@ -16,8 +16,8 @@
 	};
 
 $(document).ready(function(){
-	chkStat();
-	setEvent();
+	chkStatPJ202M();
+	setEventPJ202M();
 
 	/*
 	$("#findPhotoBtn").on("click", function() {
@@ -117,13 +117,13 @@ $(document).ready(function(){
 	 */
 });//document ready end
 
-function chkStat(){
+function chkStatPJ202M(){
 	if("${sMemVo.mem_no}" != "" || "${memVo.marketing}" == "") {
 		//location.href="PJ100M";
 	}
 }
 
-function setEvent(){
+function setEventPJ202M(){
 	// 닉네임 중복 체크 버튼 클릭
 	$("#btn_nic_db_chk").on("click", function(){
 		if(isEmpty("inp_nic", "닉네임을 입력하세요.")) {

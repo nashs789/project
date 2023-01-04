@@ -1,18 +1,20 @@
 function setAllCompValue(result){
-    setCompInpValue("inp_name", result.name);
-    setCompInpValue("inp_id", result.id);
-    setCompInpValue("inp_keyword", result.keyword);
-    setCompInpValue("sel_telcom", result.telcom);
-    setCompInpValue("sel_keyword", result.keyword_no);
-    console.log(result.email);
-    console.log(result.phone);
+    setCompInpValue("inp_name"    , result.name);
+    setCompInpValue("inp_id"      , result.id);
+    setCompInpValue("inp_keyword" , result.keyword);
+    setCompInpValue("sel_telcom"  , result.telcom);
+    setCompInpValue("sel_keyword" , result.keyword_no);
+    setCompInpValue("sel_year"    , result.birth.substr(0, 4));
+    setCompInpValue("sel_month"   , result.birth.substr(5, 2));
+    setCompInpValue("sel_day"     , result.birth.substr(8, 2));
+    setCompInpValue("inp_email"   , result.email.substr(0, result.email.indexOf('@')));
+    setCompInpValue("inp_domain"  , result.email.substr(result.email.indexOf('@') + 1, result.email.length));
+    setCompInpValue("inp_phone"   , result.phone.substr(3));
+    setCompRadValue("rad_name_sex", result.sex);
 
-    /*
-    result.birth
-    result.sex
-    result.phone
-    result.email
-    */
+    $("#btn_code").css("background-color", "#2e3459");
+    $("#btn_code").css("color", "white");
+    $("#btn_code").css("cursor", "default");
 }
 
 function checkPopup()

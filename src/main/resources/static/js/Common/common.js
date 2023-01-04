@@ -132,6 +132,10 @@ function setCompInpValue(objName, value){
     $("#" + objName).val(value);
 }
 
+function setCompRadValue(objName, value){
+    $(":radio[name=\'" + objName + "\'][value=\'" + value + "\']").attr("checked", true);
+}
+
 // ====================================================
 // 정규식
 

@@ -14,8 +14,8 @@
 	<script type="text/javascript" src="static/js/Frame/header.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			chkStat();
-			setHeaderEvent();
+			chkStatHeader();
+			setEventHeader();
 			/*
 			$.ajax({
 					url: "notifications",
@@ -88,7 +88,7 @@
 			*/
 		}); // document ready end
 
-		function chkStat(){
+		function chkStatHeader(){
 			//로그인 상태 확인
 			if('${sMemVo.mem_no}' != ""){
 				$(".logins").css("display", "none");
@@ -139,7 +139,7 @@
 			}//if end -> 로그인 상태여부에 따른 처리
 		} // function chkStat end
 
-		function setHeaderEvent(){
+		function setEventHeader(){
 			//로그인 버튼 클릭
 			$("#btn_login").on("click", function(){
 				if(trim("inp_header_id") == "") {

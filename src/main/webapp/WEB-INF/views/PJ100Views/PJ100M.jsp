@@ -13,16 +13,16 @@
 		};
 
 		$(document).ready(function(){
-			setEvent();
-			chkStat();
+			setEventPJ100M();
+			chkStatPJ100M();
 			setNoticeBoard();
 		}); // document ready end
 
-		function chkStat(){
+		function chkStatPJ100M(){
 
 		}
 
-		function setEvent(){
+		function setEventPJ100M(){
 
 			var LCD = "#L"; // CD -> LCD
 			var CD = "#"; // LCD -> CD

@@ -9,23 +9,27 @@
 	<link href="static/css/Common/common.css" rel="stylesheet" type="text/css">
 	<link href="static/css/PJ200Css/PJ201C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
-	<script type="text/javascript" src="static/js/common.js"></script>
 	<script type="text/javascript" src="static/js/PJ200Js/PJ203S.js"></script>
+	<script type="text/javascript" src="static/js/common.js"></script>
 <script type="text/javascript">
 
+	let paramObj = {
+		"id": ""
+	};
+
 $(document).ready(function(){
-	chkStat();
-	setEvent();
+	chkStatPJ203M();
+	setEventPJ203M();
 });//document ready end
 
-function chkStat(){
-	$("#inp_n")
+function chkStatPJ203M(){
 }
 
-function setEvent(){
+
+function setEventPJ203M(){
 	sendServer("selectPJ203GetUserInfo", {"mem_no": '${sMemVo.mem_no}'}, function callback(result){
-		console.log(result.birth);
-		//setAllCompValue(result);
+		// 데이터 가져오는데 실패 했을경우 코드 필요 2022.01.05 (추가처리)
+		setAllCompValue(result);
 	});
 }
 
@@ -37,44 +41,7 @@ $(document).ready(function(){
     var pattern2 = /[a-zA-Z]/;
 	var pattern3 = /[~!@\#$%<>^&*]/; //특수문자 확인용 정규식
 	
-	var params = $("#form").serialize();
-
-	$.ajax({
-		url: "getInfo",
-		data: params,
-		dataType: "json",
-		type: "post",
-		success:function(result) {
-			if(result.msg == "success") {
-				$("#inputName").val(result.NAME);
-				$("#selectYear").val(result.YEAR);
-				$("#selectMonth").val(result.MONTH);
-				$("#selectDay").val(result.DAY);
-				$(":radio[name='sex'][value='" + result.SEX + "']").attr('checked', true);
-				$("#inputID").val(result.ID);
-				$("#inputPW").val(result.PW);
-				$("#inputRePW").val(result.PW);
-				$("#inputPhone").val(result.PHONE);
-				$("#inputEmail").val(result.EMAIL);
-				$("#inputDomain").val(result.DOMAIN);
-				$("#selectKeyword").val(result.KEYWORD_NO);
-				$("#inputKeyword").val(result.KEYWORD);
-				$("#sendCode").css("background-color", "#2e3459");
-				$("#sendCode").css("color", "white");
-				$("#sendCode").css("cursor", "default");
-			} else {
-				popupText("정보를 가져오는데 실패하였습니다.")
-				commonPopup(popupText);
-			}
-		}, //success end
-		error: function(request, status, error) {
-			console.log(error);
-		} // error end
-	}); //ajax end 
-	
 	$("#IDDbCkBtn").on("click", function(){  //아이디 중복체크
-		$(".popup").remove();
-		$(".bg").remove();
 		//아이디가 비어있을경우
 		if($.trim($("#inputID").val()) == "") {
 			popupText = "아이디를 입력하세요.";
@@ -208,11 +175,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="#" id="form">
+<%--<form action="#" id="form">
 	<input type="hidden" id="valueStorage" name="storage"/>
 	<input type="hidden" id="MEM_NO" name="MEM_NO" value="${sMEM_NO}"/>
 </form>
-<form action="#" id="memForm">
+<form action="#" id="memForm123">
 	<input type="hidden" id="MEM_NO" name="MEM_NO" value="${sMEM_NO }"/>
 	<input type="hidden" id="page" name="page" value="${page}"/>
 	<input type="hidden" id="GBN" name="GBN" value="1"/>
@@ -232,23 +199,17 @@ $(document).ready(function(){
 </form>
 <form action="#" id="notificationForm">
 	<input type="hidden" id="NOTF_NO" name="NOTF_NO" value=""/>
-</form>
+</form>--%>
 
-<form action="#" id="testForm">
-	<input type="hidden" id="name" name="name"/>
-	<input type="hidden" id="birth" name="birth"/>
-	<input type="hidden" id="sex" name="sex"/>
-	<input type="hidden" id="id" name="id"/>
-	<input type="hidden" id="pw" name="pw"/>
-	<input type="hidden" id="telcom" name="telcom"/>
-	<input type="hidden" id="phone" name="phone"/>
-	<input type="hidden" id="email" name="email"/>
-	<input type="hidden" id="email_confirm" name="email_confirm"/>
-	<input type="hidden" id="keyword" name="keyword"/>
-	<input type="hidden" id="marketing" name="marketing" value=""/> <%-- ${memVo.marketing} --%>
-	<input type="hidden" id="photo_path" name="photo_path" value=""/>
-	<input type="hidden" id="nic" name="nic" value=""/>
-	<input type="hidden" name="MEM_NO" value="${sMemVo.mem_no}"/>
+<form action="#" id="memForm">
+	<input type="hidden" id="form_sex" name="sex"/>
+	<input type="hidden" id="form_id" name="id"/>
+	<input type="hidden" id="form_pw" name="pw"/>
+	<input type="hidden" id="form_telcom" name="telcom"/>
+	<input type="hidden" id="form_phone" name="phone"/>
+	<input type="hidden" id="form_keyword" name="keyword"/>
+	<input type="hidden" id="form_keyword_no" name="keyword_no"/>
+	<input type="hidden" id="form_idDupChkYn" value="N"/>
 </form>
 <div id="wrap">
 		<jsp:include page="../Frame/header.jsp"></jsp:include>
@@ -277,11 +238,11 @@ $(document).ready(function(){
 							<option value="${i}">${i}</option>
 						</c:forEach>
 					</select><br/>
-					
+
 					<div id="rad_sex">
-						<label><input type="radio" value="0" checked disabled="disabled"/>선택없음</label>
-						<label><input type="radio" value="1" disabled="disabled"/>남자</label>
-						<label><input type="radio" value="2" disabled="disabled"/>여자</label>
+						<label><input type="radio" name="rad_name_sex" value="0" checked/>선택없음</label>
+						<label><input type="radio" name="rad_name_sex" value="1"/>남자</label>
+						<label><input type="radio" name="rad_name_sex" value="2"/>여자</label>
 					</div>
 				
 					<div class="title">아이디</div>

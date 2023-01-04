@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인화면</title>
+<title>약</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 	<link href="static/css/PJ200Css/PJ200C.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
@@ -17,6 +17,7 @@ $(document).ready(function(){
 
 	$("#chk_all").change(function(){ //전체선택 체크박스 클릭
 		if($("#chk_all").prop("checked") == true) {
+			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", true);
 			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", true);
 		} else {
 			$("#chk_q1, #chk_q2, #chk_q3").prop("checked", false);
