@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -269,8 +270,8 @@
 		<div class="banner">
 			<div class="top">
 				<div class="logo_area">
-					<a href="PJ100M"><img alt="로고" src="static/images/logo.png" class="logo_photo"></a>
-					<div class="site_name">우리들의 여행일지</div>
+					<a href="PJ100M"><img alt="<spring:message code="text.logo"/>" src="static/images/logo.png" class="logo_photo"></a>
+					<div class="site_name"><spring:message code="banner.siteName"/></div>
 				</div>
 				<div class="btns">
 					<ul>
@@ -289,7 +290,7 @@
 
 									<tfoot>
 									<tr>
-										<th colspan="3" id="notificationMore">...더보기</th>
+										<th colspan="3" id="notificationMore">...<spring:message code="text.more"/></th>
 									</tr>
 									</tfoot>
 								</table>
@@ -297,11 +298,11 @@
 						<li><img alt="bookmark" src="static/images/bmk.png" id="bookmarkPhoto"></li>
 						<li><img alt="프로필" src="" id="profilePhoto">
 							<ul id="profileSlidedown">
-								<li id="myPage">마이 페이지</li>
-								<li id="timeline">타임라인</li>
-								<li id="editProfile">프로필 수정</li>
-								<li id="editInfo">회원정보 수정</li>
-								<li id="logoutBtn">로그아웃</li>
+								<li id="myPage"><spring:message code="menu.myPage"/></li>
+								<li id="timeline"><spring:message code="menu.timeline"/></li>
+								<li id="editProfile"><spring:message code="menu.editProfile"/></li>
+								<li id="editInfo"><spring:message code="menu.editInfo"/></li>
+								<li id="logoutBtn"><spring:message code="menu.logoutBtn"/></li>
 							</ul>
 						</li>
 					</ul>
@@ -309,36 +310,36 @@
 				<div class="logins">
 					<div class="sub_login1">
 						<form action="#" id="loginForm">
-							<input type="button" id="btn_login" value="로그인" />
-							<input type="password" id="inp_header_pw" name="inputPW" placeholder="PW" />
-							<input type="text" id="inp_header_id" name="inputID" placeholder="ID" />
+							<input type="button" id="btn_login" value="<spring:message code="text.login"/>" />
+							<input type="password" id="inp_header_pw" name="inputPW" placeholder="<spring:message code="text.pw"/>" />
+							<input type="text" id="inp_header_id" name="inputID" placeholder="<spring:message code="text.id"/>" />
 						</form>
 					</div>
 					<div class="sub_login2">
-						<span id="join">회원가입</span>
-						<span id="find">ID/PW 찾기</span>
+						<span id="join"><spring:message code="text.join"/></span>
+						<span id="find"><spring:message code="text.findIdAndPw"/></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<nav class="menu">
 			<ul>
-				<li id="journalBoard">여행게시판</li>
-				<li id="community">자유게시판</li>
-				<li id="travelWriter">여행작가</li>
-				<li id="clientCenter">고객센터</li>
-				<li id="admin">내부관리자</li>
+				<li id="journalBoard"><spring:message code="bannerMenu.journalBoard"/></li>
+				<li id="community"><spring:message code="bannerMenu.community"/></li>
+				<li id="travelWriter"><spring:message code="bannerMenu.travelWriter"/></li>
+				<li id="clientCenter"><spring:message code="bannerMenu.clientCenter"/></li>
+				<li id="admin"><spring:message code="bannerMenu.admin"/></li>
 			</ul>
 		</nav>
 		<form action="#" id="goSearch" method="post" >
 			<img alt="search" src="static/images/search.png" class="search_icon"/>
 			<input type="text" class="search" id="inp_main_search_txt" name="inp_main_search_txt" value="${param.inp_main_search_txt}" placeholder="검색">
 			<select class="filter" id="sel_main_search_filter" name="sel_main_search_filter" >
-				<option value="0" selected="selected">통합검색</option>
-				<option value="1">여행일지</option>
-				<option value="2">해시태그</option>
-				<option value="3">자유게시판</option>
-				<option value="4">닉네임</option>
+				<option value="0" selected="selected"><spring:message code="text.search"/></option>
+				<option value="1"><spring:message code="text.journey"/></option>
+				<option value="2"><spring:message code="text.hashTag"/></option>
+				<option value="3"><spring:message code="text.community"/></option>
+				<option value="4"><spring:message code="text.nicName"/></option>
 			</select>
 		</form>
 	</div> <!-- header end -->

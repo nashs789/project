@@ -18,6 +18,16 @@ repositories {
 	mavenCentral()
 }
 
+i18nJs {
+	prefixInclude = [
+			'i18nJs'
+	]
+
+	prefixExclude = [
+			'default', 'other'
+	]
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -29,6 +39,7 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0' // mybatis
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16' // log4jdbc (db query log)
+	compile "org.grails.plugins:i18n-javascript:0.4.2"  // message.properties javascript
 }
 
 tasks.named('test') {
