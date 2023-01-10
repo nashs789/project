@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,23 +162,23 @@
 					</g>
 					
 					<g filter="url(#dropshadow)">
-						<text id="LCD0" class="TEXT" x="156" y="214">서울특별시</text>
-						<text id="LCD1" class="TEXT" x="503" y="695">부산광역시</text>
-						<text id="LCD2" class="TEXT" x="418" y="567">대구광역시</text>
-						<text id="LCD3" class="TEXT" x="67" y="177">인천광역시</text>
-						<text id="LCD4" class="TEXT" x="127" y="707">광주광역시</text>
-						<text id="LCD5" class="TEXT" x="221" y="463">대전광역시</text>
-						<text id="LCD6" class="TEXT" x="531" y="622">울산광역시</text>
-						<text id="LCD7" class="TEXT" x="199" y="418">세종특별자치시</text>
-						<text id="LCD8" class="TEXT" x="216" y="245">경기도</text>
-						<text id="LCD9" class="TEXT" x="370" y="179">강원도</text>
-						<text id="LCD11" class="TEXT" x="294" y="381">충청북도</text>
-						<text id="LCD10" class="TEXT" x="105" y="449">충청남도</text>
-						<text id="LCD12" class="TEXT" x="179" y="592">전라북도</text>
-						<text id="LCD13" class="TEXT" x="138" y="764">전라남도</text>
-						<text id="LCD14" class="TEXT" x="447" y="460">경상북도</text>
-						<text id="LCD15" class="TEXT" x="367" y="672">경상남도</text>
-						<text id="LCD16" class="TEXT" x="76" y="1070">제주특별자치도</text>
+						<text id="LCD0" class="TEXT" x="156" y="214"><spring:message code="PJ100M.cityName.Seoul"/></text>
+						<text id="LCD1" class="TEXT" x="503" y="695"><spring:message code="PJ100M.cityName.Busan"/></text>
+						<text id="LCD2" class="TEXT" x="418" y="567"><spring:message code="PJ100M.cityName.Daegu"/></text>
+						<text id="LCD3" class="TEXT" x="67" y="177"><spring:message code="PJ100M.cityName.Incheon"/></text>
+						<text id="LCD4" class="TEXT" x="127" y="707"><spring:message code="PJ100M.cityName.Gwangju"/></text>
+						<text id="LCD5" class="TEXT" x="221" y="463"><spring:message code="PJ100M.cityName.Daejeon"/></text>
+						<text id="LCD6" class="TEXT" x="531" y="622"><spring:message code="PJ100M.cityName.Ulsan"/></text>
+						<text id="LCD7" class="TEXT" x="199" y="418"><spring:message code="PJ100M.cityName.Sejong"/></text>
+						<text id="LCD8" class="TEXT" x="216" y="245"><spring:message code="PJ100M.cityName.GyeonggiDo"/></text>
+						<text id="LCD9" class="TEXT" x="370" y="179"><spring:message code="PJ100M.cityName.GangwonDo"/></text>
+						<text id="LCD11" class="TEXT" x="294" y="381"><spring:message code="PJ100M.cityName.ChungcheongbukDo"/></text>
+						<text id="LCD10" class="TEXT" x="75" y="449"><spring:message code="PJ100M.cityName.ChungcheongnamDo"/></text>
+						<text id="LCD12" class="TEXT" x="179" y="592"><spring:message code="PJ100M.cityName.JeollabukDo"/></text>
+						<text id="LCD13" class="TEXT" x="138" y="764"><spring:message code="PJ100M.cityName.JeollanamDo"/></text>
+						<text id="LCD14" class="TEXT" x="447" y="460"><spring:message code="PJ100M.cityName.GyeongsangbukDo"/></text>
+						<text id="LCD15" class="TEXT" x="367" y="672"><spring:message code="PJ100M.cityName.GyeongsangnamDo"/></text>
+						<text id="LCD16" class="TEXT" x="76" y="1070"><spring:message code="PJ100M.cityName.Jeju"/></text>
 					</g>
 				</svg>
 				</div> <!-- mapWrap end -->	

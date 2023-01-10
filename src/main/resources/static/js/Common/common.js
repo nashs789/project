@@ -246,3 +246,15 @@ jQuery.fn.serializeObject = function() {
 
     return obj;
 };
+
+// 복사한 코드
+function getMsgI18n(msg) {
+    var args = "\""+ msg + "\"";
+    for (var i = 1; i < arguments.length; i++) {
+        args += ", \"" + arguments[i] + "\"";
+    }
+    if (parent != this) {
+        return eval("parent.i18n(" + args + ")");
+    }
+    return eval("jQuery.i18n.prop(" + args + ")");
+}

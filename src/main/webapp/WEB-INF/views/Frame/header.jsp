@@ -9,6 +9,7 @@
 	<link href="static/css/Common/popup.css" rel="stylesheet" type="text/css">
 	<link href="static/css/Frame/header.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="static/script/jquery/jquery-1.12.4.min.js"/></script>
+	<script type="text/javascript" language="JavaScript" src="static/script/jquery/jquery.i18n.properties.js"></script>
 	<script type="text/javascript" src="static/js/Common/popup.js"></script>
 	<script type="text/javascript" src="static/js/Common/common.js"></script>
 	<script type="text/javascript" src="static/js/Common/callServer.js"></script>
@@ -17,6 +18,7 @@
 		$(document).ready(function(){
 			chkStatHeader();
 			setEventHeader();
+
 			/*
 			$.ajax({
 					url: "notifications",
@@ -141,12 +143,16 @@
 		} // function chkStat end
 
 		function setEventHeader(){
+			$("#sel_language").on("change", function(){
+				setChangeLanguage($("#sel_language").val());
+			});
+
 			//로그인 버튼 클릭
 			$("#btn_login").on("click", function(){
 				if(trim("inp_header_id") == "") {
-					commonPopup("아이디를 입력하세요.");
+					commonPopup('<spring:message code="header.alert.inputId"/>');
 				} else if(trim("inp_header_pw") == "") {
-					commonPopup("비밀번호를 입력하세요.");
+					commonPopup('<spring:message code="header.alert.inputPw"/>');
 				} else {
 					commonLogin();
 				}
@@ -185,20 +191,16 @@
 			$(".search_icon").on("click", function() {
 				if($("#sel_main_search_filter").val() == 0) {
 					$("#goSearch").attr("action", "PJ600M");
-					$("#goSearch").submit();
 				} else if($("#sel_main_search_filter").val() == 1) {
 					$("#goSearch").attr("action", "PJ601M");
-					$("#goSearch").submit();
 				} else if($("#sel_main_search_filter").val() == 2) {
 					$("#goSearch").attr("action", "PJ602M");
-					$("#goSearch").submit();
 				} else if($("#sel_main_search_filter").val() == 3) {
 					$("#goSearch").attr("action", "PJ603M");
-					$("#goSearch").submit();
 				} else {
 					$("#goSearch").attr("action", "PJ604M");
-					$("#goSearch").submit();
 				}
+				$("#goSearch").submit();
 			});
 
 			// =============== location.href ===============
@@ -263,15 +265,31 @@
 				location.href="PJ501M";
 			});
 		} // function setHeaderEvent end
+
+		function setChangeLanguage(language){
+			jQuery.i18n.properties({
+				name:'messages',
+				path:'/bundle/',
+				mode:'map',
+				language: language,
+				callback: function () {
+					$(".site_name").text(getMsgI18n("header.siteName"));
+				}
+			});
+		}
 	</script>
 </head>
 <body>
 	<div id="header">
 		<div class="banner">
 			<div class="top">
+				<select id="sel_language" style="position: absolute">
+					<option value="ko">ko</option>
+					<option value="en">en</option>
+				</select>
 				<div class="logo_area">
-					<a href="PJ100M"><img alt="<spring:message code="text.logo"/>" src="static/images/logo.png" class="logo_photo"></a>
-					<div class="site_name"><spring:message code="banner.siteName"/></div>
+					<a href="PJ100M"><img alt="<spring:message code="header.text.logo"/>" src="static/images/logo.png" class="logo_photo"></a>
+					<div class="site_name"><spring:message code="header.siteName"/></div>
 				</div>
 				<div class="btns">
 					<ul>
@@ -290,7 +308,7 @@
 
 									<tfoot>
 									<tr>
-										<th colspan="3" id="notificationMore">...<spring:message code="text.more"/></th>
+										<th colspan="3" id="notificationMore">...<spring:message code="header.text.more"/></th>
 									</tr>
 									</tfoot>
 								</table>
@@ -298,11 +316,11 @@
 						<li><img alt="bookmark" src="static/images/bmk.png" id="bookmarkPhoto"></li>
 						<li><img alt="프로필" src="" id="profilePhoto">
 							<ul id="profileSlidedown">
-								<li id="myPage"><spring:message code="menu.myPage"/></li>
-								<li id="timeline"><spring:message code="menu.timeline"/></li>
-								<li id="editProfile"><spring:message code="menu.editProfile"/></li>
-								<li id="editInfo"><spring:message code="menu.editInfo"/></li>
-								<li id="logoutBtn"><spring:message code="menu.logoutBtn"/></li>
+								<li id="myPage"><spring:message code="header.userMenu.myPage"/></li>
+								<li id="timeline"><spring:message code="header.userMenu.timeline"/></li>
+								<li id="editProfile"><spring:message code="header.userMenu.editProfile"/></li>
+								<li id="editInfo"><spring:message code="header.userMenu.editInfo"/></li>
+								<li id="logoutBtn"><spring:message code="header.userMenu.logoutBtn"/></li>
 							</ul>
 						</li>
 					</ul>
@@ -310,36 +328,36 @@
 				<div class="logins">
 					<div class="sub_login1">
 						<form action="#" id="loginForm">
-							<input type="button" id="btn_login" value="<spring:message code="text.login"/>" />
-							<input type="password" id="inp_header_pw" name="inputPW" placeholder="<spring:message code="text.pw"/>" />
-							<input type="text" id="inp_header_id" name="inputID" placeholder="<spring:message code="text.id"/>" />
+							<input type="button" id="btn_login" value="<spring:message code="header.text.login"/>" />
+							<input type="password" id="inp_header_pw" name="inputPW" placeholder="<spring:message code="header.text.pw"/>" />
+							<input type="text" id="inp_header_id" name="inputID" placeholder="<spring:message code="header.text.id"/>" />
 						</form>
 					</div>
 					<div class="sub_login2">
-						<span id="join"><spring:message code="text.join"/></span>
-						<span id="find"><spring:message code="text.findIdAndPw"/></span>
+						<span id="join"><spring:message code="header.text.join"/></span>
+						<span id="find"><spring:message code="header.text.findIdAndPw"/></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<nav class="menu">
 			<ul>
-				<li id="journalBoard"><spring:message code="bannerMenu.journalBoard"/></li>
-				<li id="community"><spring:message code="bannerMenu.community"/></li>
-				<li id="travelWriter"><spring:message code="bannerMenu.travelWriter"/></li>
-				<li id="clientCenter"><spring:message code="bannerMenu.clientCenter"/></li>
-				<li id="admin"><spring:message code="bannerMenu.admin"/></li>
+				<li id="journalBoard"><spring:message code="header.bannerMenu.journalBoard"/></li>
+				<li id="community"><spring:message code="header.bannerMenu.community"/></li>
+				<li id="travelWriter"><spring:message code="header.bannerMenu.travelWriter"/></li>
+				<li id="clientCenter"><spring:message code="header.bannerMenu.clientCenter"/></li>
+				<li id="admin"><spring:message code="header.bannerMenu.admin"/></li>
 			</ul>
 		</nav>
 		<form action="#" id="goSearch" method="post" >
 			<img alt="search" src="static/images/search.png" class="search_icon"/>
 			<input type="text" class="search" id="inp_main_search_txt" name="inp_main_search_txt" value="${param.inp_main_search_txt}" placeholder="검색">
 			<select class="filter" id="sel_main_search_filter" name="sel_main_search_filter" >
-				<option value="0" selected="selected"><spring:message code="text.search"/></option>
-				<option value="1"><spring:message code="text.journey"/></option>
-				<option value="2"><spring:message code="text.hashTag"/></option>
-				<option value="3"><spring:message code="text.community"/></option>
-				<option value="4"><spring:message code="text.nicName"/></option>
+				<option value="0" selected="selected"><spring:message code="header.text.search"/></option>
+				<option value="1"><spring:message code="header.text.journey"/></option>
+				<option value="2"><spring:message code="header.text.hashTag"/></option>
+				<option value="3"><spring:message code="header.text.community"/></option>
+				<option value="4"><spring:message code="header.text.nicName"/></option>
 			</select>
 		</form>
 	</div> <!-- header end -->

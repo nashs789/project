@@ -8,11 +8,7 @@ function commonLogin(){
         dataType: "json",
         type: "post",
         success:function(result) {
-            if(result.msg == "failed") {
-                commonPopup("ID와 PW가 일치하지 않습니다.");
-            } else {
-                location.reload();
-            }
+            // 로그인 실패 or 성공 여부 로직 추가
         }, //success end
         error: function(request, status, error) {
             console.log(error);
